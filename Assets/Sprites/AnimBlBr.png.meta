@@ -1,0 +1,705 @@
+fileFormatVersion: 2
+guid: 5fdeb2d7b3ba5524599bfb7fe1dcc4b0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4876199137766914969
+    second: AnimBlBr_0
+  - first:
+      213: 1638018427056120047
+    second: AnimBlBr_1
+  - first:
+      213: 3132591536210408055
+    second: AnimBlBr_2
+  - first:
+      213: -8485294802045116324
+    second: AnimBlBr_3
+  - first:
+      213: -1255711247867309376
+    second: AnimBlBr_4
+  - first:
+      213: 722330992905557270
+    second: AnimBlBr_5
+  - first:
+      213: -2588170350121330233
+    second: AnimBlBr_6
+  - first:
+      213: 4176341005822861043
+    second: AnimBlBr_7
+  - first:
+      213: 5426105213980502844
+    second: AnimBlBr_8
+  - first:
+      213: -6282987221082645175
+    second: AnimBlBr_9
+  - first:
+      213: 9147174444503328689
+    second: AnimBlBr_10
+  - first:
+      213: -4526201821170677604
+    second: AnimBlBr_11
+  - first:
+      213: -8488416476147726026
+    second: AnimBlBr_12
+  - first:
+      213: 3189812282475529645
+    second: AnimBlBr_13
+  - first:
+      213: 5963759537855200838
+    second: AnimBlBr_14
+  - first:
+      213: -205456530185088048
+    second: AnimBlBr_15
+  - first:
+      213: -6267811086915765804
+    second: AnimBlBr_16
+  - first:
+      213: 7977387050950667936
+    second: AnimBlBr_17
+  - first:
+      213: 790277812772358573
+    second: AnimBlBr_18
+  - first:
+      213: 6507632000853087316
+    second: AnimBlBr_19
+  - first:
+      213: -7008823753075891137
+    second: AnimBlBr_20
+  - first:
+      213: 3753022128770540966
+    second: AnimBlBr_21
+  - first:
+      213: 2699242655254093833
+    second: AnimBlBr_22
+  - first:
+      213: -3990939226631534226
+    second: AnimBlBr_23
+  - first:
+      213: -4398837458206978824
+    second: AnimBlBr_24
+  - first:
+      213: -299891798002535650
+    second: AnimBlBr_25
+  - first:
+      213: -6936061587674099259
+    second: AnimBlBr_26
+  - first:
+      213: 3396400637849948948
+    second: AnimBlBr_27
+  - first:
+      213: -824956779462712758
+    second: AnimBlBr_28
+  - first:
+      213: -8640130127718954117
+    second: AnimBlBr_29
+  - first:
+      213: 1014320438194183110
+    second: AnimBlBr_30
+  - first:
+      213: 4297700578089748313
+    second: AnimBlBr_31
+  - first:
+      213: 8958548863006734550
+    second: AnimBlBr_32
+  - first:
+      213: 2030550061174339562
+    second: AnimBlBr_33
+  - first:
+      213: 4386616533987021219
+    second: AnimBlBr_34
+  - first:
+      213: 7183167766412018391
+    second: AnimBlBr_35
+  - first:
+      213: -7460476950612807309
+    second: AnimBlBr_36
+  - first:
+      213: -3785571767762974554
+    second: AnimBlBr_37
+  - first:
+      213: 1698228053675915711
+    second: AnimBlBr_38
+  - first:
+      213: 7989525177989885138
+    second: AnimBlBr_39
+  - first:
+      213: 9180269904894322279
+    second: AnimBlBr_40
+  - first:
+      213: -4056697763568916648
+    second: AnimBlBr_41
+  - first:
+      213: 2794172276095683112
+    second: AnimBlBr_42
+  - first:
+      213: -3606639166457714179
+    second: AnimBlBr_43
+  - first:
+      213: -6660337812344165986
+    second: AnimBlBr_44
+  - first:
+      213: -8266647041843023364
+    second: AnimBlBr_45
+  - first:
+      213: -4465250229174093165
+    second: AnimBlBr_46
+  - first:
+      213: 1384958190818333435
+    second: AnimBlBr_47
+  - first:
+      213: -2044561437165854610
+    second: AnimBlBr_48
+  - first:
+      213: 998502661208091279
+    second: AnimBlBr_49
+  - first:
+      213: -3412538093448482080
+    second: AnimBlBr_50
+  - first:
+      213: -6964650420314711955
+    second: AnimBlBr_51
+  - first:
+      213: 5268836686506404167
+    second: AnimBlBr_52
+  - first:
+      213: -76147675193547845
+    second: AnimBlBr_53
+  - first:
+      213: 4396151932847750893
+    second: AnimBlBr_54
+  - first:
+      213: 7484741347544327926
+    second: AnimBlBr_55
+  - first:
+      213: 6621244656963975954
+    second: AnimBlBr_56
+  - first:
+      213: -5360465200654517577
+    second: AnimBlBr_57
+  - first:
+      213: 2309331563266280609
+    second: AnimBlBr_58
+  - first:
+      213: 5051794719505308517
+    second: AnimBlBr_59
+  - first:
+      213: -490128095850036002
+    second: AnimBlBr_60
+  - first:
+      213: -532977483253876493
+    second: AnimBlBr_61
+  - first:
+      213: 2242540729925079421
+    second: AnimBlBr_62
+  - first:
+      213: -4939445374888614604
+    second: AnimBlBr_63
+  - first:
+      213: -6944722367555659367
+    second: AnimBlBr_64
+  - first:
+      213: -8392376756621684976
+    second: AnimBlBr_65
+  - first:
+      213: -1525765331391217502
+    second: AnimBlBr_66
+  - first:
+      213: -2221611054154022182
+    second: AnimBlBr_67
+  - first:
+      213: -5972458051250535160
+    second: AnimBlBr_68
+  - first:
+      213: 4856138220255779681
+    second: AnimBlBr_69
+  - first:
+      213: 6197394506170885825
+    second: AnimBlBr_70
+  - first:
+      213: -5037268479219909788
+    second: AnimBlBr_71
+  - first:
+      213: -1246565672724253331
+    second: AnimBlBr_72
+  - first:
+      213: 4360727845825820019
+    second: AnimBlBr_73
+  - first:
+      213: -6585553631295192583
+    second: AnimBlBr_74
+  - first:
+      213: 3066044856946109928
+    second: AnimBlBr_75
+  - first:
+      213: 65617136566614631
+    second: AnimBlBr_76
+  - first:
+      213: -7846217989963915769
+    second: AnimBlBr_77
+  - first:
+      213: 2663837334891625163
+    second: AnimBlBr_78
+  - first:
+      213: -4776825032221363168
+    second: AnimBlBr_79
+  - first:
+      213: -1738029301975421372
+    second: AnimBlBr_80
+  - first:
+      213: 5971029555872046084
+    second: AnimBlBr_81
+  - first:
+      213: 7428603991568574898
+    second: AnimBlBr_82
+  - first:
+      213: -532462603123431010
+    second: AnimBlBr_83
+  - first:
+      213: 8100760972367104562
+    second: AnimBlBr_84
+  - first:
+      213: 355866516432098665
+    second: AnimBlBr_85
+  - first:
+      213: 8404642951959144556
+    second: AnimBlBr_86
+  - first:
+      213: 7129768366162283941
+    second: AnimBlBr_87
+  - first:
+      213: -8946650011517133810
+    second: AnimBlBr_88
+  - first:
+      213: 3682604684120608394
+    second: AnimBlBr_89
+  - first:
+      213: 8960664322058458707
+    second: AnimBlBr_90
+  - first:
+      213: -2901964743557894193
+    second: AnimBlBr_91
+  - first:
+      213: -918483784216893462
+    second: AnimBlBr_92
+  - first:
+      213: 737387754664014583
+    second: AnimBlBr_93
+  - first:
+      213: -6098590799574497169
+    second: AnimBlBr_94
+  - first:
+      213: -6229919842564336501
+    second: AnimBlBr_95
+  - first:
+      213: -6558204753412427866
+    second: AnimBlBr_96
+  - first:
+      213: 2177762360786776569
+    second: AnimBlBr_97
+  - first:
+      213: 6275110455709736151
+    second: AnimBlBr_98
+  - first:
+      213: -1802054930301571801
+    second: AnimBlBr_99
+  - first:
+      213: 3250395661653761246
+    second: AnimBlBr_100
+  - first:
+      213: 2327242379422546753
+    second: AnimBlBr_101
+  - first:
+      213: -5521920508998453148
+    second: AnimBlBr_102
+  - first:
+      213: -352492775667692726
+    second: AnimBlBr_103
+  - first:
+      213: -8238755781794894064
+    second: AnimBlBr_104
+  - first:
+      213: -6778736707699175565
+    second: AnimBlBr_105
+  - first:
+      213: 3595469151694554010
+    second: AnimBlBr_106
+  - first:
+      213: 3092148071390891398
+    second: AnimBlBr_107
+  - first:
+      213: 7779091475780182695
+    second: AnimBlBr_108
+  - first:
+      213: -1367288544320093312
+    second: AnimBlBr_109
+  - first:
+      213: 2049668708104155239
+    second: AnimBlBr_110
+  - first:
+      213: 7641209117527162170
+    second: AnimBlBr_111
+  - first:
+      213: 6434619580918135588
+    second: AnimBlBr_112
+  - first:
+      213: -6964858408841492121
+    second: AnimBlBr_113
+  - first:
+      213: 8378182922791979364
+    second: AnimBlBr_114
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 160
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AnimBlBr_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4320
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99bb9a4d74dbba340800000000000000
+      internalID: 4876199137766914969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3840
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe06930b4196bb610800000000000000
+      internalID: 1638018427056120047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3360
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 772773ea763397b20800000000000000
+      internalID: 3132591536210408055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2880
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c50e1a5a55d2e3a80800000000000000
+      internalID: -8485294802045116324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c2186ae541d29ee0800000000000000
+      internalID: -1255711247867309376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6151462063c360a00800000000000000
+      internalID: 722330992905557270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9d1de77c8f41cd0800000000000000
+      internalID: -2588170350121330233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fe18f0840855f930800000000000000
+      internalID: 4176341005822861043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3be33181f56d4b40800000000000000
+      internalID: 5426105213980502844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimBlBr_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ddc0f39685ec8a0800000000000000
+      internalID: -6282987221082645175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 32da9b957f4a93548aeca2268864230c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      AnimBlBr_0: 4876199137766914969
+      AnimBlBr_1: 1638018427056120047
+      AnimBlBr_2: 3132591536210408055
+      AnimBlBr_3: -8485294802045116324
+      AnimBlBr_4: -1255711247867309376
+      AnimBlBr_5: 722330992905557270
+      AnimBlBr_6: -2588170350121330233
+      AnimBlBr_7: 4176341005822861043
+      AnimBlBr_8: 5426105213980502844
+      AnimBlBr_9: -6282987221082645175
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
