@@ -16,7 +16,7 @@ public class SpiderVisual : MonoBehaviour {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Destroy() {
+    public void DestroyObj() {
         _spriteRenderer.enabled = false;
         _spider.DestroyYourself();
         

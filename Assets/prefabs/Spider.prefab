@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3482dc2a3702b1d449b9584597e674be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spider: {fileID: 0}
+  _spider: {fileID: 2958333330429318447}
 --- !u!1 &2991676094341793795
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,5 +248,5 @@ MonoBehaviour:
   _foregroundLayer:
     serializedVersion: 2
     m_Bits: 2048
-  _orientation: {x: 0, y: 1, z: 0}
+  _dir: {x: 0, y: 1, z: 0}
   _visual: {fileID: 632928983080955675}

@@ -27,7 +27,7 @@ public class BoxController : MonoBehaviour, IEvent {
 
         Collider2D collider = Physics2D.OverlapBox(transform.position + _dirMoveBox, new Vector2(0.5f, 0.5f), _foregroundLayer);
         if (collider) {
-            if (collider.gameObject.GetComponent<EventButtonController>()) return true;
+            if (CanWalk(collider)) return true;
             return false;
         }
 
@@ -40,7 +40,7 @@ public class BoxController : MonoBehaviour, IEvent {
 
         Collider2D collider = Physics2D.OverlapBox(transform.position + distance, new Vector2(0.5f, 0.5f), _foregroundLayer);
         if (collider) {
-            if (collider.gameObject.GetComponent<EventButtonController>()) return true;
+            if (CanWalk(collider)) return true;
             return false;
         }
 
@@ -51,10 +51,16 @@ public class BoxController : MonoBehaviour, IEvent {
         Collider2D collider = Physics2D.OverlapBox(_position + _dirMoveBox, new Vector2(0.5f, 0.5f), _foregroundLayer);
         
         if (collider && collider.gameObject != gameObject || Player.Instance.CheckCollision(gameObject)) {
-            if (collider.gameObject.GetComponent<EventButtonController>()) return;
+            if (CanWalk(collider)) return;
             transform.DOKill();
             transform.position = _position;
             _isMoving = false;
         }
+    }
+
+    private bool CanWalk(Collider2D collider) {
+        if (collider.gameObject.GetComponent<EventButtonController>() ||
+            collider.gameObject.GetComponent<Laser>()) return true;
+        return false;
     }
 }

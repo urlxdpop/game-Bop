@@ -22,6 +22,7 @@ public class SpiderController : MonoBehaviour, IMobs {
     }
 
     public void DestroyYourself() {
+        gameObject.GetComponent<Collider2D>().enabled = false;
         Destroy(this);
     }
 
@@ -55,8 +56,9 @@ public class SpiderController : MonoBehaviour, IMobs {
         Collider2D collider = Physics2D.OverlapBox(transform.position + _dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
 
         if (collider) {
-            if (collider.gameObject.GetComponent<WebController>() || collider.gameObject.GetComponent<EventButtonController>()) return false;
-            if (collider.gameObject.GetComponent<SpikeController>()) Die();
+            if (WalkToDie(collider)) Die();
+            if (CanWalk(collider)) return false;
+            
             return true;
         }
 
@@ -77,7 +79,7 @@ public class SpiderController : MonoBehaviour, IMobs {
         Collider2D collider = Physics2D.OverlapBox(_position + _dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
 
         if (collider && collider.gameObject != gameObject) {
-            if (collider.gameObject.GetComponent<WebController>() || collider.gameObject.GetComponent<EventButtonController>()) return;
+            if (CanWalk(collider)) return;
             transform.DOKill();
             transform.position = _position;
             _isMoving = false;
@@ -88,5 +90,18 @@ public class SpiderController : MonoBehaviour, IMobs {
         _visual.Spider_OnDie();
         transform.DOKill();
         _isDie = true;
+    }
+
+    private bool CanWalk(Collider2D collider) {
+        if (collider.gameObject.GetComponent<EventButtonController>() ||
+            collider.gameObject.GetComponent<SpikeController>() ||
+            collider.gameObject.GetComponent<Laser>()) return true;
+        return false;
+    }
+
+    private bool WalkToDie(Collider2D collider) {
+        if (collider.gameObject.GetComponent<SpikeController>() ||
+        collider.gameObject.GetComponent<Laser>()) return true;
+        return false;
     }
 }
