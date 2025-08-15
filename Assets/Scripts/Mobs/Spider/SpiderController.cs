@@ -2,14 +2,16 @@ using DG.Tweening;
 using UnityEngine;
 
 [SelectionBase]
-public class SpiderController : MonoBehaviour, IMobs {
+public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     [SerializeField] private float _speed;
     [SerializeField] private LayerMask _foregroundLayer;
     [SerializeField] private Vector3 _dir;
     [SerializeField] private SpiderVisual _visual;
 
     private float _waitTime = 0;
+    private float _walkTime = 0;
     private bool _isMoving;
+    private bool _getImpulse;
     private Vector3 _position;
     private bool _isDie;
 
@@ -26,6 +28,13 @@ public class SpiderController : MonoBehaviour, IMobs {
         Destroy(this);
     }
 
+    public void Impulse(Vector3 dir, float speed) {
+        if ((!_isMoving || _walkTime < 1) && !CheckWall()) {
+            _getImpulse = true;
+            Moving(dir);
+        }
+    }
+
     private void HandleMovement() {
         MoveOrRotate();
     }
@@ -35,33 +44,42 @@ public class SpiderController : MonoBehaviour, IMobs {
     }
 
     private void MoveOrRotate() {
-        if (!_isMoving) {
+        if (!_isMoving && !_getImpulse) {
             if (CheckWall()) {
                 Rotate();
             } else {
-
-                _position = transform.position;
-                _isMoving = true;
-                _waitTime = 0;
-                transform.DOMove(transform.position + _dir, _speed).
-                    OnUpdate(() => {
-                        CheckCollision();
-                    }).
-                    OnComplete(() => { _isMoving = false; });
+                Moving(_dir);
             }
         }
     }
 
+    private void Moving(Vector3 dir) {
+        _position = transform.position;
+        _isMoving = true;
+        _waitTime = 0;
+        _walkTime = 0;
+        transform.DOMove(transform.position + dir, _speed).
+            OnUpdate(() => {
+                CheckCollision(dir);
+                _walkTime += 1;
+            }).
+            OnComplete(() => { 
+                _isMoving = false; 
+                _getImpulse = false;
+            });
+    }
+
     private bool CheckWall() {
-        Collider2D collider = Physics2D.OverlapBox(transform.position + _dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
+        Collider2D[] collider = Physics2D.OverlapBoxAll(transform.position + _dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
 
-        if (collider) {
-            if (WalkToDie(collider)) Die();
-            if (CanWalk(collider)) return false;
-            
-            return true;
+        foreach (Collider2D col in collider) {
+            if (col) {
+                if (WalkToDie(col)) Die();
+                if (CanWalk(col)) return false;
+
+                return true;
+            }
         }
-
         return false;
     }
 
@@ -75,15 +93,18 @@ public class SpiderController : MonoBehaviour, IMobs {
         }
     }
 
-    private void CheckCollision() {
-        Collider2D collider = Physics2D.OverlapBox(_position + _dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
+    private void CheckCollision(Vector3 dir) {
+        Collider2D[] collider = Physics2D.OverlapBoxAll(_position + dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
 
-        if (collider && collider.gameObject != gameObject) {
-            if (CanWalk(collider)) return;
-            transform.DOKill();
-            transform.position = _position;
-            _isMoving = false;
+        foreach (Collider2D col in collider) {
+            if (col && col.gameObject != gameObject && !CanWalk(col)) {
+                transform.DOKill();
+                transform.position = _position;
+                _isMoving = false;
+                _getImpulse = false;
+            }
         }
+        
     }
 
     private void Die() {
@@ -93,10 +114,10 @@ public class SpiderController : MonoBehaviour, IMobs {
     }
 
     private bool CanWalk(Collider2D collider) {
-        if (collider.gameObject.GetComponent<EventButtonController>() ||
-            collider.gameObject.GetComponent<SpikeController>() ||
-            collider.gameObject.GetComponent<Laser>()) return true;
-        return false;
+        return collider.GetComponent<EventButtonController>() ||
+            collider.GetComponent<SpikeController>() ||
+            collider.GetComponent<Laser>() ||
+            collider.GetComponent<ImpulseController>();
     }
 
     private bool WalkToDie(Collider2D collider) {

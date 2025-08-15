@@ -129,6 +129,7 @@ public class Player : MonoBehaviour {
     private bool IsWalkable(Vector3 targetPos) {
         Collider2D collider = Physics2D.OverlapCircle(targetPos, 0.2f, _foregroundLayer);
         if (collider) {
+            if (CanWalk(collider)) return true;
             if (WebCollider(collider)) return true;
             if (MoveBox(collider)) return true;
             SpikeCollider(collider);
@@ -148,6 +149,10 @@ public class Player : MonoBehaviour {
 
                 CheckForEncounters();
             });
+    }
+    
+    private bool CanWalk(Collider2D collider) {
+        return collider.GetComponent<ImpulseController>();
     }
 
     private void CheckForEncounters() {

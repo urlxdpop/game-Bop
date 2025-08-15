@@ -14,3 +14,7 @@ public interface IBlockEvent {
 public interface IMobs {
     public void DestroyYourself();
 }
+
+public interface IImpulseObject {
+    public void Impulse(Vector3 dir, float speed);
+}

@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [SelectionBase]
-public class BoxController : MonoBehaviour, IEvent {
+public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
     [SerializeField] private LayerMask _foregroundLayer;
 
     private Vector3 _dirMoveBox;
@@ -19,6 +19,10 @@ public class BoxController : MonoBehaviour, IEvent {
              .OnComplete(() => {
                  _isMoving = false;
              });
+    }
+
+    public bool IsMoving() {
+        return _isMoving;
     }
 
     public bool CanMove(Vector3 player) {
@@ -47,20 +51,37 @@ public class BoxController : MonoBehaviour, IEvent {
         return true;
     }
 
+    public void Impulse(Vector3 dir, float speed) {
+        if (_isMoving) return;
+        _isMoving = true;
+        _dirMoveBox = dir;
+        _position = transform.position;
+        transform.DOMove(transform.position + _dirMoveBox, speed)
+             .OnUpdate(() => {
+                 CheckCollision();
+             })
+             .OnComplete(() => {
+                 _isMoving = false;
+             });
+    }
+
     private void CheckCollision() {
-        Collider2D collider = Physics2D.OverlapBox(_position + _dirMoveBox, new Vector2(0.5f, 0.5f), _foregroundLayer);
+        Collider2D[] collider = Physics2D.OverlapBoxAll(_position + _dirMoveBox, new Vector2(0.5f, 0.5f), _foregroundLayer);
         
-        if (collider && collider.gameObject != gameObject || Player.Instance.CheckCollision(gameObject)) {
-            if (CanWalk(collider)) return;
-            transform.DOKill();
-            transform.position = _position;
-            _isMoving = false;
+        foreach (Collider2D col in collider) {
+            if (col.gameObject != gameObject && !CanWalk(col) || Player.Instance.CheckCollision(gameObject)) {
+                transform.DOKill();
+                transform.position = _position;
+                _isMoving = false;
+                return;
+            }
         }
+        
     }
 
     private bool CanWalk(Collider2D collider) {
-        if (collider.gameObject.GetComponent<EventButtonController>() ||
-            collider.gameObject.GetComponent<Laser>()) return true;
-        return false;
+        return collider.GetComponent<EventButtonController>() ||
+                collider.GetComponent<Laser>() ||
+                collider.GetComponent<ImpulseController>();
     }
 }

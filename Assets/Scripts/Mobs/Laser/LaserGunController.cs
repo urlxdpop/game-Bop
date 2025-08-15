@@ -27,7 +27,6 @@ public class LaserGunController : MonoBehaviour {
 
     private void Update() {
         if (!_isDie) {
-
             if (!CollisionToDie()) {
                 TraceLaserPath();
                 if (_lastLaserTemp != _lastLaser) {
@@ -69,9 +68,6 @@ public class LaserGunController : MonoBehaviour {
             Vector3 nextPos = position + lasersDir[i];
             Collider2D collider = Physics2D.OverlapCircle(nextPos, 0.2f, _foreground);
             if (collider) {
-                if (i == 0) {
-                    Die();
-                }
                 break;
             }
             lasers[i] = nextPos;
