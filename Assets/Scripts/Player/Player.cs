@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 [SelectionBase]
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour {
     private float _timeEndInvulneradility;
     private bool _invulneradility;
     private int _maxHp;
+    private Vector3 _position;
 
     private void Awake() {
         Instance = this;
@@ -89,7 +91,7 @@ public class Player : MonoBehaviour {
             targetPos.x += _inputVector.x;
             targetPos.y += _inputVector.y;
 
-            if (IsWalkable(targetPos)) Move(targetPos);
+            if (IsWalkable(targetPos, false)) Move(targetPos);
         }
 
     }
@@ -115,7 +117,7 @@ public class Player : MonoBehaviour {
     private void SkillsActivated() {
         if (Input.GetKey(KeyCode.Space)) {
             if (!_skills.IsActive()) {
-                _skills.Destroy();
+                _skills.DestroyYourself();
                 CheckForDestroy();
             }
         } else if (Input.GetKey(KeyCode.LeftShift)) {
@@ -126,23 +128,37 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private bool IsWalkable(Vector3 targetPos) {
-        Collider2D collider = Physics2D.OverlapCircle(targetPos, 0.2f, _foregroundLayer);
-        if (collider) {
-            if (CanWalk(collider)) return true;
-            if (WebCollider(collider)) return true;
-            if (MoveBox(collider)) return true;
-            SpikeCollider(collider);
-            return false;
+    private bool IsWalkable(Vector3 targetPos, bool inSpike) {
+        Collider2D[] collider = Physics2D.OverlapCircleAll(targetPos, 0.2f, _foregroundLayer);
+
+        foreach (Collider2D col in collider) {
+            if (col) {
+                if (WebCollider(col)) return false;
+                if (MoveBox(col)) return false;
+                if (SpikeCollider(col, inSpike)) return false;
+                if (CanWalk(col)) return true;
+                return false;
+            }
         }
+
+
         return true;
     }
 
     private void Move(Vector3 targetPos) {
         _isMoving = true;
         _currentPos = targetPos;
+        _position = transform.position;
 
         transform.DOMove(targetPos, _speed)
+            .OnUpdate(() => {
+                if (StopMove()) {
+                    transform.position = _position;
+                    _isMoving = false;
+                    transform.DOKill();
+                    return;
+                }
+            })
             .OnComplete(() => {
                 transform.position = targetPos;
                 _isMoving = false;
@@ -150,9 +166,22 @@ public class Player : MonoBehaviour {
                 CheckForEncounters();
             });
     }
-    
+
+    private bool StopMove() {
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.01f, _foregroundLayer);
+
+        if (collider) {
+            if (CanWalk(collider)) return false;
+            return true;
+        }
+
+        return false;
+    }
+
     private bool CanWalk(Collider2D collider) {
-        return collider.GetComponent<ImpulseController>();
+        return collider.GetComponent<ImpulseController>() ||
+            collider.GetComponent<WebController>() ||
+            collider.GetComponent<SpikeController>();
     }
 
     private void CheckForEncounters() {
@@ -242,11 +271,13 @@ public class Player : MonoBehaviour {
         return false;
     }
 
-    private void SpikeCollider(Collider2D collider) {
+    private bool SpikeCollider(Collider2D collider, bool inSpike) {
         SpikeController spike = collider.gameObject.GetComponent<SpikeController>();
         if (spike) {
-            SpikeDamage(spike);
+            SpikeDamage(spike, inSpike);
+            return true;
         }
+        return false;
     }
 
     private void TakeDamage() {
@@ -256,17 +287,21 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void SpikeDamage(SpikeController spike) {
+    private void SpikeDamage(SpikeController spike, bool inSpike) {
         Vector2 dir = spike.Orientation();
+
         if (-dir == _inputVector) {
             TakeDamage();
         } else {
             TakeDamage();
 
-            if (IsWalkable(transform.position + (Vector3)_inputVector + (Vector3)dir)) {
+            if (!inSpike && IsWalkable(transform.position + (Vector3)_inputVector + (Vector3)dir, true)) {
                 transform.position += (Vector3)_inputVector;
                 Move(transform.position + (Vector3)dir);
             }
         }
+
+
     }
 }
+

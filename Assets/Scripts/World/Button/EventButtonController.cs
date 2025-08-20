@@ -23,8 +23,6 @@ public class EventButtonController : MonoBehaviour, IEvent {
     private void Update() {
         _boxActivated = CheckBox();
         CheckActive();
-
-        
     }
 
     public void Interact() {

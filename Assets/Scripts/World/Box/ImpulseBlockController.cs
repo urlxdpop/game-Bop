@@ -4,29 +4,29 @@ public class ImpulseBlockController : MonoBehaviour {
     [SerializeField] private Vector3 _dir;
     [SerializeField] private LayerMask _foreground;
     [SerializeField] private LayerMask _mobs;
-    [SerializeField] private GameObject _impulseBlock;
+    [SerializeField] private GameObject _impulseObject;
 
-    private Vector3[] _impulseBlocks;
-    private Vector3[] _impulseBlocksDir;
-    private GameObject[] _ImpulseBlocks;
-    private int _lastImpulseBlock;
-    private int _lastImpulseBlockTemp;
+    private Vector3[] _impulse;
+    private Vector3[] _impulseDir;
+    private ImpulseController[] _Impulse;
+    private int _lastImpulse;
+    private int _lastImpulseTemp = -1;
 
     private void OnValidate() {
         SetOrientation(_dir);
     }
 
     private void Start() {
-        _ImpulseBlocks = new GameObject[100];
-        //TraceImpulseBlockPath();
-        //SpawnImpulseBlocks();
+        _Impulse = new ImpulseController[100];
+        TraceImpulsePath();
+        SpawnImpulse();
     }
 
     private void Update() {
         TraceImpulsePath();
-        if (_lastImpulseBlockTemp != _lastImpulseBlock) {
+        if (_lastImpulseTemp != _lastImpulse) {
             SpawnImpulse();
-            _lastImpulseBlockTemp = _lastImpulseBlock;
+            _lastImpulseTemp = _lastImpulse == 0 && _lastImpulseTemp == -1 ? -1 : _lastImpulse;
         }
     }
 
@@ -45,25 +45,40 @@ public class ImpulseBlockController : MonoBehaviour {
         impulseBlocksDir[0] = _dir;
         Vector3 position = transform.position;
 
-        _lastImpulseBlock = 0;
+        _lastImpulse = 0;
         int i = 0;
         while (i < 99) {
             Vector3 nextPos = position + impulseBlocksDir[i];
-            Collider2D collider = Physics2D.OverlapCircle(nextPos, 0.2f, _foreground);
 
-            if (collider && !IgnoreObject(collider)) {
+            if (HaveColliderConnect(nextPos)) {
                 break;
             }
 
             impulseBlocks[i] = nextPos;
             impulseBlocksDir[i + 1] = _dir;
             position = nextPos;
-            _lastImpulseBlock = i;
+            _lastImpulse = i;
             i++;
         }
 
-        _impulseBlocks = impulseBlocks;
-        _impulseBlocksDir = impulseBlocksDir;
+        if (i == 0) {
+            _lastImpulseTemp = -1;
+        }
+
+        _impulse = impulseBlocks;
+        _impulseDir = impulseBlocksDir;
+    }
+
+    private bool HaveColliderConnect(Vector3 nextPos) {
+        Collider2D[] collider = Physics2D.OverlapCircleAll(nextPos, 0.2f, _foreground);
+
+        foreach (var col in collider) {
+            if (col && !IgnoreObject(col)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool IgnoreObject(Collider2D collider) {
@@ -74,20 +89,26 @@ public class ImpulseBlockController : MonoBehaviour {
     private void SpawnImpulse() {
         RemoveImpulse();
 
-        for (int i = 0; i < _lastImpulseBlock + 1; i++) {
-            GameObject blockObj = Instantiate(_impulseBlock, _impulseBlocks[i], Quaternion.LookRotation(_impulseBlocksDir[i]), transform);
-            blockObj.transform.right = _impulseBlocksDir[i];
-            _ImpulseBlocks[i] = blockObj;
+        if (_impulse[0] == Vector3.zero) {
+            return;
+        }
+
+        for (int i = 0; i < _lastImpulse + 1; i++) {
+            GameObject blockObj = Instantiate(_impulseObject, _impulse[i], Quaternion.LookRotation(_impulseDir[i]), transform);
+            blockObj.transform.right = _impulseDir[i];
+            _Impulse[i] = blockObj.GetComponent<ImpulseController>();
+        }
+
+        if (_lastImpulseTemp == -1) {
+            _lastImpulseTemp = _lastImpulse;
         }
     }
 
     private void RemoveImpulse() {
-        for (int i = 0; i < _ImpulseBlocks.Length; i++) {
-            if (_ImpulseBlocks[i] != null) {
-                Destroy(_ImpulseBlocks[i]);
-                _ImpulseBlocks[i] = null;
-            }else {
-                return;
+        for (int i = 0; i < _Impulse.Length; i++) {
+            if (_Impulse[i] != null) {
+                Destroy(_Impulse[i].gameObject);
+                _Impulse[i] = null;
             }
         }
     }

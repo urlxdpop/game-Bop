@@ -21,6 +21,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
     private void Update() {
         if (!_isDie) HandleMovement();
+        _getImpulse = false;
     }
 
     public void DestroyYourself() {
@@ -29,9 +30,13 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     }
 
     public void Impulse(Vector3 dir, float speed) {
-        if ((!_isMoving || _walkTime < 1) && !CheckWall()) {
+        bool wall = CheckWall(dir);
+
+        if ((!_isMoving || _walkTime < 2) && !wall) {
             _getImpulse = true;
             Moving(dir);
+        } else if (wall) {
+            _getImpulse = true;
         }
     }
 
@@ -45,7 +50,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
     private void MoveOrRotate() {
         if (!_isMoving && !_getImpulse) {
-            if (CheckWall()) {
+            if (CheckWall(_dir)) {
                 Rotate();
             } else {
                 Moving(_dir);
@@ -62,6 +67,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             OnUpdate(() => {
                 CheckCollision(dir);
                 _walkTime += 1;
+                _getImpulse = true;
             }).
             OnComplete(() => { 
                 _isMoving = false; 
@@ -69,8 +75,8 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             });
     }
 
-    private bool CheckWall() {
-        Collider2D[] collider = Physics2D.OverlapBoxAll(transform.position + _dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
+    private bool CheckWall(Vector3 dir) {
+        Collider2D[] collider = Physics2D.OverlapBoxAll(transform.position + dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
 
         foreach (Collider2D col in collider) {
             if (col) {

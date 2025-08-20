@@ -88,4 +88,4 @@ MonoBehaviour:
   _mobs:
     serializedVersion: 2
     m_Bits: 16384
-  _impulseBlock: {fileID: 3535435742446645422, guid: aee2bb158932d3148a49cfb29dade506, type: 3}
+  _impulseObject: {fileID: 3535435742446645422, guid: aee2bb158932d3148a49cfb29dade506, type: 3}

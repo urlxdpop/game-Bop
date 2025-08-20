@@ -23,7 +23,7 @@ public class Skills : MonoBehaviour {
         }
     }
 
-    public void Destroy() {
+    public void DestroyYourself() {
         _animator.SetTrigger(DESTROY);
         _isActive = true;
         _animPos = Player.Instance.CurrentPos();

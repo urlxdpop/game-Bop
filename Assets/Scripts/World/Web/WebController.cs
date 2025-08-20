@@ -7,6 +7,7 @@ public class WebController : MonoBehaviour, IEvent {
     public void Interact() {
         if (!_isDestroy) {
             _isDestroy = true;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 
