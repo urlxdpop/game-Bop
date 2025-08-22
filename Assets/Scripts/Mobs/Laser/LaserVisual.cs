@@ -3,7 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class LaserVisual : MonoBehaviour {
     private Vector3 _dir;
-    int _number;
+    private Vector3 _pastDir;
+    private bool _isRatate;
+    private int _number;
 
     private Animator _animator;
     private LaserGunController _laserGun;
@@ -21,9 +23,28 @@ public class LaserVisual : MonoBehaviour {
         _animator.enabled = IsLast();
     }
 
-    public void SetData(Vector3 dir, int number) {
-        _dir = dir;
+    public bool IsRotate() {
+        return _isRatate;
+    }
+
+    public Vector3 GetDir() {
+        return _dir;
+    }
+
+    public Vector3 GetPastDir() {
+        return _pastDir;
+    }
+
+    public void SetData(Vector3 dir, int number, Vector3 pastDir) {
+        _dir = dir.normalized;
+        _pastDir = pastDir.normalized;
         _number = number;
+
+        if (_pastDir != _dir) {
+            _isRatate = true;
+        } else {
+            _isRatate = false;
+        }
     }
 
     private bool IsLast() {

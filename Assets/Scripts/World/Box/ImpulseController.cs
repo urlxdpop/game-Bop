@@ -4,11 +4,7 @@ public class ImpulseController : MonoBehaviour {
     [SerializeField] private LayerMask _everythingLayer;
     [SerializeField] private float _speed = 0.5f;
 
-    private ImpulseBlockController _impulseBlock;
-
-    private void Awake() {
-        _impulseBlock = GetComponentInParent<ImpulseBlockController>();
-    }
+    private Vector3 _dir;
 
     private void Start() {
         CheckObject();
@@ -16,6 +12,10 @@ public class ImpulseController : MonoBehaviour {
 
     private void Update() {
         CheckObject();
+    }
+
+    public void SetDir(Vector3 dir) {
+        _dir = dir.normalized;
     }
 
     private void CheckObject() {
@@ -32,6 +32,6 @@ public class ImpulseController : MonoBehaviour {
     }
 
     private void ActivatedObj(IImpulseObject obj) {
-        obj.Impulse(_impulseBlock.Dir(), _speed);
+        obj.Impulse(_dir, _speed);
     }
 }

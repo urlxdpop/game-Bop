@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ImpulseBlockController : MonoBehaviour {
     [SerializeField] private Vector3 _dir;
@@ -11,9 +12,10 @@ public class ImpulseBlockController : MonoBehaviour {
     private ImpulseController[] _Impulse;
     private int _lastImpulse;
     private int _lastImpulseTemp = -1;
+    private Vector3 _rotateImpulse;
 
     private void OnValidate() {
-        SetOrientation(_dir);
+        transform.rotation = SetOrientation(_dir);
     }
 
     private void Start() {
@@ -34,28 +36,34 @@ public class ImpulseBlockController : MonoBehaviour {
         return _dir;
     }
 
-    private void SetOrientation(Vector2 dir) {
-        transform.rotation = Quaternion.Euler(0, 0, dir.x != 0 ? -dir.x * 90 : dir.y < 0 ? 180 : 0);
+    private Quaternion SetOrientation(Vector2 dir) {
+        return Quaternion.Euler(0, 0, dir.x != 0 ? -dir.x * 90 : dir.y < 0 ? 180 : 0);
     }
 
     private void TraceImpulsePath() {
-        Vector3[] impulseBlocks = new Vector3[100];
-        Vector3[] impulseBlocksDir = new Vector3[100];
+        Vector3[] impulse = new Vector3[100];
+        Vector3[] impulseDir = new Vector3[100];
 
-        impulseBlocksDir[0] = _dir;
+        Vector3 dir = _dir.normalized;
+        impulseDir[0] = dir;
         Vector3 position = transform.position;
 
         _lastImpulse = 0;
         int i = 0;
         while (i < 99) {
-            Vector3 nextPos = position + impulseBlocksDir[i];
+            Vector3 nextPos = position + dir;
 
-            if (HaveColliderConnect(nextPos)) {
-                break;
+            if (HaveColliderConnect(nextPos, dir)) {
+                if (_rotateImpulse != Vector3.zero) {
+                    dir = _rotateImpulse.normalized;
+                    _rotateImpulse = Vector3.zero;
+                } else {
+                    break;
+                }
             }
 
-            impulseBlocks[i] = nextPos;
-            impulseBlocksDir[i + 1] = _dir;
+            impulse[i] = nextPos;
+            impulseDir[i] = dir;
             position = nextPos;
             _lastImpulse = i;
             i++;
@@ -65,17 +73,17 @@ public class ImpulseBlockController : MonoBehaviour {
             _lastImpulseTemp = -1;
         }
 
-        _impulse = impulseBlocks;
-        _impulseDir = impulseBlocksDir;
+        _impulse = impulse;
+        _impulseDir = impulseDir;
     }
 
-    private bool HaveColliderConnect(Vector3 nextPos) {
-        Collider2D[] collider = Physics2D.OverlapCircleAll(nextPos, 0.2f, _foreground);
+    private bool HaveColliderConnect(Vector3 nextPos, Vector3 laserDir) {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(nextPos, 0.2f, _foreground);
 
-        foreach (var col in collider) {
-            if (col && !IgnoreObject(col)) {
-                return true;
-            }
+        foreach (var col in colliders) {
+            if (CheckMirror(col, laserDir)) return true;
+            if (IgnoreObject(col)) continue;
+            return true;
         }
 
         return false;
@@ -94,9 +102,12 @@ public class ImpulseBlockController : MonoBehaviour {
         }
 
         for (int i = 0; i < _lastImpulse + 1; i++) {
-            GameObject blockObj = Instantiate(_impulseObject, _impulse[i], Quaternion.LookRotation(_impulseDir[i]), transform);
-            blockObj.transform.right = _impulseDir[i];
-            _Impulse[i] = blockObj.GetComponent<ImpulseController>();
+            GameObject laserObj = Instantiate(_impulseObject, _impulse[i], Quaternion.identity, transform);
+
+            ImpulseController impulseComponent = laserObj.GetComponent<ImpulseController>();
+            _Impulse[i] = impulseComponent;
+            _Impulse[i].transform.rotation = SetOrientation(_impulseDir[i]);
+            _Impulse[i].SetDir(_impulseDir[i].normalized);
         }
 
         if (_lastImpulseTemp == -1) {
@@ -111,5 +122,17 @@ public class ImpulseBlockController : MonoBehaviour {
                 _Impulse[i] = null;
             }
         }
+    }
+
+    private bool CheckMirror(Collider2D collider, Vector3 impulseDir) {
+        var mirror = collider.GetComponent<MirrorController>();
+        if (mirror != null) {
+            Vector3 dir = mirror.RotateRay(impulseDir);
+            if (dir != Vector3.zero) {
+                _rotateImpulse = dir.normalized;
+                return true;
+            }
+        }
+        return false;
     }
 }

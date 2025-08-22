@@ -11,10 +11,6 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
     private bool _isMoving;
     private bool _isImpulse;
 
-    private void Update() {
-        if (_isImpulse)Debug.Log(_dirMoveBox) ;
-    }
-
     public void Interact() {
         if (_isImpulse) {
             transform.position = _position;

@@ -56,6 +56,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,6 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1615436713
   m_SortingLayer: 5
   m_SortingOrder: 0
@@ -176,6 +179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4e56b050fdba045933465faa777f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _expanentedLaser: {fileID: 21300000, guid: f0317956ae7ad9d4b940d8cbfdb01e58, type: 3}
+  _foreground:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &7874755260735855778
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +271,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -285,6 +294,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1615436713
   m_SortingLayer: 5
   m_SortingOrder: 1
