@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [SelectionBase]
@@ -105,6 +104,12 @@ public class LaserGunController : MonoBehaviour {
     }
 
     private bool HaveColliderConnect(Vector3 nextPos, Vector3 laserDir) {
+        Collider2D collider = Physics2D.OverlapCircle(nextPos, 0.2f, _mobs);
+
+        if (collider) {
+            if (collider.GetComponent<RedSpiderController>()) return true;
+        }
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(nextPos, 0.2f, _foreground);
 
         foreach (var col in colliders) {

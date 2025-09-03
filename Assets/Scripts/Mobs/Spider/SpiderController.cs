@@ -112,7 +112,6 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     }
 
     private void Teleported() {
-        //if (CheckWall(_teleportedPos, true)) return;
         transform.position = _teleportedPos;
         _position = _teleportedPos;
         _teleportedPos = Vector3.zero;
@@ -149,7 +148,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
     private bool WalkToDie(Collider2D collider) {
         if (collider.gameObject.GetComponent<SpikeController>() ||
-        collider.gameObject.GetComponent<Laser>()) return true;
+        (collider.gameObject.GetComponent<Laser>() && !GetComponent<RedSpiderController>())) return true;
         return false;
     }
 }
