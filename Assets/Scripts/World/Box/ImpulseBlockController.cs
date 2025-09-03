@@ -13,6 +13,7 @@ public class ImpulseBlockController : MonoBehaviour {
     private int _lastImpulse;
     private int _lastImpulseTemp = -1;
     private Vector3 _rotateImpulse;
+    private Vector3 _teleportedImpulse;
 
     private void OnValidate() {
         transform.rotation = SetOrientation(_dir);
@@ -57,16 +58,22 @@ public class ImpulseBlockController : MonoBehaviour {
                 if (_rotateImpulse != Vector3.zero) {
                     dir = _rotateImpulse.normalized;
                     _rotateImpulse = Vector3.zero;
-                } else {
+                } else if (_teleportedImpulse == Vector3.zero) {
                     break;
                 }
             }
 
             impulse[i] = nextPos;
             impulseDir[i] = dir;
-            position = nextPos;
             _lastImpulse = i;
             i++;
+
+            if (_teleportedImpulse != Vector3.zero) {
+                position = _teleportedImpulse;
+                _teleportedImpulse = Vector3.zero;
+            } else {
+                position = nextPos;
+            }
         }
 
         if (i == 0) {
@@ -82,7 +89,17 @@ public class ImpulseBlockController : MonoBehaviour {
 
         foreach (var col in colliders) {
             if (CheckMirror(col, laserDir)) return true;
+            if (CheckPortal(col)) return true;
             if (IgnoreObject(col)) continue;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CheckPortal(Collider2D col) {
+        if (col.GetComponent<PortalController>()) {
+            _teleportedImpulse = col.GetComponent<PortalController>().Teleported();
             return true;
         }
 

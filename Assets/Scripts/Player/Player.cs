@@ -27,6 +27,9 @@ public class Player : MonoBehaviour {
     private int _maxHp;
     private Vector3 _position;
 
+    private bool _inPortal;
+    private PortalController _portal;
+
     private void Awake() {
         Instance = this;
         _maxHp = _hp;
@@ -82,8 +85,11 @@ public class Player : MonoBehaviour {
     }
 
     private void PlayerMovement() {
+        _portal = null;
         _inputVector = GameInput.Instance.GetMovementAction();
+
         SetDominantOrientation();
+
         if (_inputVector != Vector2.zero) {
             OnRotate?.Invoke(this, EventArgs.Empty);
             Vector3 targetPos = transform.position;
@@ -91,7 +97,12 @@ public class Player : MonoBehaviour {
             targetPos.x += _inputVector.x;
             targetPos.y += _inputVector.y;
 
-            if (IsWalkable(targetPos, false)) Move(targetPos);
+            if (IsWalkable(targetPos, false, false)) {
+                if (_portal != null) {
+                    Teleported();
+                }
+                Move(targetPos);
+            }
         }
 
     }
@@ -128,24 +139,31 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private bool IsWalkable(Vector3 targetPos, bool inSpike) {
+    private bool IsWalkable(Vector3 targetPos, bool inSpike, bool inPortal) {
         Collider2D[] collider = Physics2D.OverlapCircleAll(targetPos, 0.2f, _foregroundLayer);
+
+        bool canWalk = true;
 
         foreach (Collider2D col in collider) {
             if (col) {
-                if (WebCollider(col)) return false;
-                if (MoveBox(col)) return false;
-                if (SpikeCollider(col, inSpike)) return false;
-                if (CanWalk(col)) return true;
-                return false;
+                if (!inPortal) PortalCollider(col);
+                if (WebCollider(col)) canWalk = false;
+                if (MoveBox(col)) canWalk = false;
+                if (SpikeCollider(col, inSpike)) canWalk = false;
+                if (!CanWalk(col)) canWalk = false;
             }
         }
 
 
-        return true;
+        return canWalk;
     }
 
     private void Move(Vector3 targetPos) {
+        if (_inPortal) {
+            _inPortal = false;
+            return;
+        }
+
         _isMoving = true;
         _currentPos = targetPos;
         _position = transform.position;
@@ -181,7 +199,8 @@ public class Player : MonoBehaviour {
     private bool CanWalk(Collider2D collider) {
         return collider.GetComponent<ImpulseController>() ||
             collider.GetComponent<WebController>() ||
-            collider.GetComponent<SpikeController>();
+            collider.GetComponent<SpikeController>() ||
+            collider.GetComponent<PortalController>();
     }
 
     private void CheckForEncounters() {
@@ -260,10 +279,16 @@ public class Player : MonoBehaviour {
         return false;
     }
 
+    private void PortalCollider(Collider2D collider) {
+        if (collider.gameObject.GetComponent<PortalController>()) {
+            _portal = collider.gameObject.GetComponent<PortalController>();
+        }
+    }
+
     private bool MoveBox(Collider2D collider) {
         BoxController box = collider.gameObject.GetComponent<BoxController>();
         if (box) {
-            if (box.CanMove(transform.position)) {
+            if (box.CanMove(transform.position, _portal)) {
                 box.GetComponent<IEvent>()?.Interact();
                 return true;
             }
@@ -295,13 +320,21 @@ public class Player : MonoBehaviour {
         } else {
             TakeDamage();
 
-            if (!inSpike && IsWalkable(transform.position + (Vector3)_inputVector + (Vector3)dir, true)) {
+            if (!inSpike && IsWalkable(transform.position + (Vector3)_inputVector + (Vector3)dir, true, false)) {
                 transform.position += (Vector3)_inputVector;
                 Move(transform.position + (Vector3)dir);
             }
         }
+    }
 
+    private void Teleported() {
+        Vector3 pos = _portal.Teleported();
 
+        if (IsWalkable(pos, false, true)) {
+            _inPortal = true;
+            transform.position = pos;
+            _currentPos = pos;
+        }
     }
 }
 

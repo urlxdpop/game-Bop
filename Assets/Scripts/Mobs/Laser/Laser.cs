@@ -1,7 +1,7 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class Laser : MonoBehaviour
-{
+public class Laser : MonoBehaviour {
     [SerializeField] private Sprite _expanentedLaser;
 
     private LaserVisual _laserVisual;
@@ -13,6 +13,10 @@ public class Laser : MonoBehaviour
     }
 
     private void Start() {
+        RotateLaser();
+    }
+
+    private void RotateLaser() {
         if (_laserVisual.IsRotate()) {
             _spriteRenderer.sprite = _expanentedLaser;
 

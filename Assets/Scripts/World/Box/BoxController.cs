@@ -1,6 +1,6 @@
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [SelectionBase]
 public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
@@ -8,6 +8,7 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
 
     private Vector3 _dirMoveBox;
     private Vector3 _position;
+    private Vector3 _portal;
     private bool _isMoving;
     private bool _isImpulse;
 
@@ -31,15 +32,16 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
         return _isMoving;
     }
 
-    public bool CanMove(Vector3 player) {
+    public bool CanMove(Vector3 player, PortalController portal) {
         if (_isMoving) return false;
-        _dirMoveBox = transform.position - player;
-
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + _dirMoveBox, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
-        foreach (var collider in colliders) {
-            if (CanWalk(collider)) return true;
+        if (portal != null) {
             return false;
+        } else {
+            _dirMoveBox = transform.position - player;
         }
+
+        if (!CanMovement(transform.position, _dirMoveBox)) return false;
+        Teleported(_dirMoveBox);
 
         return true;
     }
@@ -48,11 +50,7 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
         if (_isMoving) return false;
         _dirMoveBox = distance;
 
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + distance, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
-        foreach (var collider in colliders) {
-            if (CanWalk(collider)) return true;
-            return false;
-        }
+        if (!CanMovement(transform.position, _dirMoveBox)) return false;
 
         return true;
     }
@@ -62,12 +60,7 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
             return;
         }
 
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + dir, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
-        foreach (var collider in colliders) {
-            if (!CanWalk(collider)) {
-                return;
-            }
-        }
+        if (!CanMovement(transform.position, dir)) return;
 
         _isImpulse = true;
         _dirMoveBox = dir;
@@ -83,6 +76,36 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
              });
     }
 
+    private bool CanMovement(Vector3 pos, Vector3 dir) {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(pos + dir, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
+        bool canMove = true;   
+
+        foreach (var collider in colliders) {
+            if (!CanWalk(collider)) canMove = false;
+            PortalCollision(collider);
+        }
+
+        return canMove;
+    }
+
+    private void PortalCollision(Collider2D collider) {
+        if (collider.GetComponent<PortalController>()) {
+            _portal = collider.GetComponent<PortalController>().Teleported();
+            
+        }
+    }
+
+    private void Teleported(Vector3 dir) {
+        if (_portal != Vector3.zero) {
+            if (CanMovement(_portal, dir)) {
+                transform.position = _portal;
+                _position = _portal;
+            }
+
+            _portal = Vector3.zero;
+        }
+    }
+
     private void CheckCollision() {
         Collider2D[] collider = Physics2D.OverlapBoxAll(_position + _dirMoveBox, new Vector2(0.5f, 0.5f), _foregroundLayer);
 
@@ -95,12 +118,12 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
                 return;
             }
         }
-
     }
 
     private bool CanWalk(Collider2D collider) {
         return collider.GetComponent<EventButtonController>() ||
                 collider.GetComponent<Laser>() ||
-                collider.GetComponent<ImpulseController>();
+                collider.GetComponent<ImpulseController>() ||
+                collider.GetComponent<PortalController>();
     }
 }

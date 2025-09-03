@@ -13,7 +13,9 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     private bool _isMoving;
     private bool _getImpulse;
     private Vector3 _position;
+    private Vector3 _teleportedPos;
     private bool _isDie;
+    private bool _rotate;
 
     private void OnValidate() {
         SetMovingOrientation(_dir);
@@ -30,7 +32,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     }
 
     public void Impulse(Vector3 dir, float speed) {
-        bool wall = CheckWall(dir);
+        bool wall = CheckWall(dir, false);
 
         if ((!_isMoving || _walkTime < 2) && !wall) {
             _getImpulse = true;
@@ -50,9 +52,10 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
     private void MoveOrRotate() {
         if (!_isMoving && !_getImpulse) {
-            if (CheckWall(_dir)) {
+            if (CheckWall(_dir, false) || _rotate) {
                 Rotate();
             } else {
+                if (_teleportedPos != Vector3.zero) Teleported();
                 Moving(_dir);
             }
         }
@@ -75,28 +78,44 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             });
     }
 
-    private bool CheckWall(Vector3 dir) {
+    private bool CheckWall(Vector3 dir, bool inPortal) {
         Collider2D[] collider = Physics2D.OverlapBoxAll(transform.position + dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
+        bool wall = false;
 
         foreach (Collider2D col in collider) {
             if (col) {
                 if (WalkToDie(col)) Die();
-                if (CanWalk(col)) return false;
-
-                return true;
+                if (!CanWalk(col)) wall = true;
+                if(!inPortal) PortalCollision(col);
             }
         }
-        return false;
+
+        return wall;
     }
 
     private void Rotate() {
         if (_waitTime > _speed) {
             _waitTime = 0;
             _dir = -_dir;
+            _rotate = false;
             SetMovingOrientation(_dir);
         } else {
             _waitTime += Time.deltaTime;
         }
+    }
+
+    private void PortalCollision(Collider2D collider) {
+        if (collider.GetComponent<PortalController>()) {
+            _teleportedPos = collider.GetComponent<PortalController>().Teleported();
+            Teleported();
+        }
+    }
+
+    private void Teleported() {
+        //if (CheckWall(_teleportedPos, true)) return;
+        transform.position = _teleportedPos;
+        _position = _teleportedPos;
+        _teleportedPos = Vector3.zero;
     }
 
     private void CheckCollision(Vector3 dir) {
@@ -108,6 +127,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
                 transform.position = _position;
                 _isMoving = false;
                 _getImpulse = false;
+                _rotate = true;
             }
         }
         
@@ -123,7 +143,8 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
         return collider.GetComponent<EventButtonController>() ||
             collider.GetComponent<SpikeController>() ||
             collider.GetComponent<Laser>() ||
-            collider.GetComponent<ImpulseController>();
+            collider.GetComponent<ImpulseController>() ||
+            collider.GetComponent<PortalController>();
     }
 
     private bool WalkToDie(Collider2D collider) {

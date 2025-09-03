@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [SelectionBase]
@@ -14,6 +15,7 @@ public class LaserGunController : MonoBehaviour {
     private int _lastLaserTemp = -1;
     private bool _isDie;
     private Vector3 _rotateLaser;
+    private Vector3 _teleportedLaser;
 
     private void OnValidate() {
         transform.rotation = SetOrientation(_dir);
@@ -43,7 +45,7 @@ public class LaserGunController : MonoBehaviour {
 
     public Vector3 Dir() {
         return _dir;
-    }  
+    }
 
     public bool IsDie() {
         return _isDie;
@@ -75,6 +77,7 @@ public class LaserGunController : MonoBehaviour {
                 if (_rotateLaser != Vector3.zero) {
                     dir = _rotateLaser.normalized;
                     _rotateLaser = Vector3.zero;
+                } else if (_teleportedLaser != Vector3.zero) {
                 } else {
                     break;
                 }
@@ -82,9 +85,15 @@ public class LaserGunController : MonoBehaviour {
 
             lasers[i] = nextPos;
             lasersDir[i] = dir;
-            position = nextPos;
             _lastLaser = i;
             i++;
+
+            if (_teleportedLaser != Vector3.zero) {
+                position = _teleportedLaser;
+                _teleportedLaser = Vector3.zero;
+            } else {
+                position = nextPos;
+            }
         }
 
         if (i == 0) {
@@ -100,7 +109,17 @@ public class LaserGunController : MonoBehaviour {
 
         foreach (var col in colliders) {
             if (CheckMirror(col, laserDir)) return true;
+            if (CheckPortal(col)) return true;
             if (IgnoreObject(col)) continue;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CheckPortal(Collider2D col) {
+        if (col.GetComponent<PortalController>()) {
+            _teleportedLaser = col.GetComponent<PortalController>().Teleported();
             return true;
         }
 
@@ -121,7 +140,7 @@ public class LaserGunController : MonoBehaviour {
             _Lasers[i] = laserComponent;
             _Lasers[i].transform.rotation = SetOrientation((Vector2)_lasersDir[i]);
             LaserVisual visual = laserObj.GetComponentInChildren<LaserVisual>();
-            visual.SetData(_lasersDir[i].normalized, i, i == 0 ? _dir : _lasersDir[i-1]);
+            visual.SetData(_lasersDir[i].normalized, i, i == 0 ? _dir : _lasersDir[i - 1]);
         }
 
         if (_lastLaserTemp == -1) {
