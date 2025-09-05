@@ -3,7 +3,15 @@
   "WorkspaceRootPath": "D:\\Nikita\\Unity\\myProject\\Play\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\world\\portal\\portalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world\\portal\\portalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\spider\\redspidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\spider\\redspidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,20 +23,12 @@
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\spider\\spidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\spider\\redspidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\spider\\redspidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\world\\box\\boxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\world\\box\\boxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world\\box\\boxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\world\\portal\\portalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world\\portal\\portalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\player\\playervisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -138,11 +138,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 700,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "RedSpiderController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Spider\\RedSpiderController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Spider\\RedSpiderController.cs",
@@ -155,15 +155,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "PortalController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Portal\\PortalController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\World\\Portal\\PortalController.cs",
               "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Portal\\PortalController.cs",
               "RelativeToolTip": "Assets\\Scripts\\World\\Portal\\PortalController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAABfAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-24T13:13:53.106Z"
+              "WhenOpened": "2025-08-24T13:13:53.106Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -215,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "LaserGunController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
@@ -240,7 +241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Player.cs",
@@ -264,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "BoxController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Box\\BoxController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\World\\Box\\BoxController.cs",
@@ -272,8 +273,7 @@
               "RelativeToolTip": "Assets\\Scripts\\World\\Box\\BoxController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T07:16:32.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-25T07:16:32.469Z"
             },
             {
               "$type": "Document",
@@ -301,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "LaserGunVisual.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunVisual.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Laser\\LaserGunVisual.cs",
@@ -309,8 +309,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Mobs\\Laser\\LaserGunVisual.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T16:11:41.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T16:11:41.349Z"
             },
             {
               "$type": "Document",
@@ -338,7 +337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "SpiderController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Spider\\SpiderController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Spider\\SpiderController.cs",
@@ -346,8 +345,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Mobs\\Spider\\SpiderController.cs",
               "ViewState": "AgIAAGEAAAAAAAAAAAAAAJYAAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T08:02:07.847Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T08:02:07.847Z"
             },
             {
               "$type": "Document",

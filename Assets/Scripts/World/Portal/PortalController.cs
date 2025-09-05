@@ -31,9 +31,5 @@ public class PortalController : MonoBehaviour {
                 break;
             }
         }
-
-        if (_secondPortal == null) {
-            Debug.LogWarning($"No second portal found for portal number {_numberEvent}", this);
-        }
     }
 }
