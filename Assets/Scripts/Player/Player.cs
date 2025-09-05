@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [SelectionBase]
 public class Player : MonoBehaviour {
@@ -310,6 +311,9 @@ public class Player : MonoBehaviour {
             _hp--;
             _invulneradility = true;
         }
+        if (_hp <= 0) {
+            Die();
+        }
     }
 
     private void SpikeDamage(SpikeController spike, bool inSpike) {
@@ -335,6 +339,12 @@ public class Player : MonoBehaviour {
             transform.position = pos;
             _currentPos = pos;
         }
+    }
+
+    private void Die() {
+        DOTween.Clear(true);
+        GameInput.Instance.Disable();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 
