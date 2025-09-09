@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private LayerMask _interactLayer;
     [SerializeField] private LayerMask _mobsLayer;
     [SerializeField] private Skills _skills;
+    [SerializeField] private GameObject _oxygenVisual;
     [SerializeField] private int _hp;
 
     public event EventHandler OnRotate;
@@ -21,11 +22,17 @@ public class Player : MonoBehaviour {
     private string _lastButton;
     private GameObject _currentInteractableObject;
     private Vector2 _currentPos;
+    private Vector3 _position;
+
     private float _timeInvulneradility;
     private float _timeEndInvulneradility;
     private bool _invulneradility;
     private int _maxHp;
-    private Vector3 _position;
+
+    private int _oxygen;
+    private bool _inWater;
+    private float _timeOxygen = 2f;
+    private float _timeCurrentOxygen;
 
     private bool _inPortal;
     private PortalController _portal;
@@ -33,6 +40,8 @@ public class Player : MonoBehaviour {
     private void Awake() {
         Instance = this;
         _maxHp = _hp;
+        _oxygen = 5;
+        _timeCurrentOxygen = _timeOxygen;
     }
 
     private void Start() {
@@ -48,6 +57,7 @@ public class Player : MonoBehaviour {
 
         CheckMobs();
         SkillsActivated();
+        CheckWater();
     }
 
     public Vector2 InputVector() {
@@ -80,8 +90,16 @@ public class Player : MonoBehaviour {
         return _hp;
     }
 
+    public int GetOxygen() {
+        return _oxygen;
+    }
+
     public int GetMaxHP() {
         return _maxHp;
+    }
+
+    public void InWater() {
+        _inWater = true;
     }
 
     public void Die() {
@@ -345,6 +363,39 @@ public class Player : MonoBehaviour {
             transform.position = pos;
             _currentPos = pos;
         }
+    }
+
+    private void CheckWater() {
+
+        if (_inWater) {
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0.1f, _interactLayer);
+
+            bool isInWater = false;
+            foreach (Collider2D collider in colliders) {
+                if (collider.gameObject.GetComponent<WaterController>()) {
+                    isInWater = true;
+                }
+            }
+
+            if (!isInWater) {
+                _inWater = false;
+            } else {
+                if (_oxygen > 0) {
+                    _timeCurrentOxygen -= Time.deltaTime;
+                    if (_timeCurrentOxygen <= 0) {
+                        _oxygen--;
+                        _timeCurrentOxygen = _timeOxygen;
+                    }
+                } else {
+                    TakeDamage();
+                    _timeCurrentOxygen = _timeOxygen;
+                }
+            }
+        } else {
+            _oxygen = 5;
+        }
+
+        _oxygenVisual.SetActive(_inWater);
     }
 }
 
