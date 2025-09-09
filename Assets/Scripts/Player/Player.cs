@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -83,6 +82,13 @@ public class Player : MonoBehaviour {
 
     public int GetMaxHP() {
         return _maxHp;
+    }
+
+    public void Die() {
+        DOTween.KillAll();
+        DOTween.Clear(true);
+        GameInput.Instance.Disable();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void PlayerMovement() {
@@ -339,12 +345,6 @@ public class Player : MonoBehaviour {
             transform.position = pos;
             _currentPos = pos;
         }
-    }
-
-    private void Die() {
-        DOTween.Clear(true);
-        GameInput.Instance.Disable();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 

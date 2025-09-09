@@ -902,7 +902,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   _skills: {fileID: 9175419877381483362}
-  _hp: 1
+  _hp: 10
 --- !u!114 &6297136201250966762
 MonoBehaviour:
   m_ObjectHideFlags: 0
