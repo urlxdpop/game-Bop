@@ -31,8 +31,9 @@ public class Player : MonoBehaviour {
 
     private int _oxygen;
     private bool _inWater;
-    private float _timeOxygen = 2f;
     private float _timeCurrentOxygen;
+
+    private const float TIME_OXYGEN = 2f;
 
     private bool _inPortal;
     private PortalController _portal;
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour {
         Instance = this;
         _maxHp = _hp;
         _oxygen = 5;
-        _timeCurrentOxygen = _timeOxygen;
+        _timeCurrentOxygen = TIME_OXYGEN;
     }
 
     private void Start() {
@@ -100,6 +101,20 @@ public class Player : MonoBehaviour {
 
     public void InWater() {
         _inWater = true;
+    }
+
+    public bool CheckGunNear(GameObject gun) {
+        Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(transform.position, new Vector2(7f, 7f), _mobsLayer);
+
+        foreach (Collider2D col in collider2Ds) {
+            if (col) {
+                if (col.gameObject == gun) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public void Die() {
@@ -384,11 +399,11 @@ public class Player : MonoBehaviour {
                     _timeCurrentOxygen -= Time.deltaTime;
                     if (_timeCurrentOxygen <= 0) {
                         _oxygen--;
-                        _timeCurrentOxygen = _timeOxygen;
+                        _timeCurrentOxygen = TIME_OXYGEN;
                     }
                 } else {
                     TakeDamage();
-                    _timeCurrentOxygen = _timeOxygen;
+                    _timeCurrentOxygen = TIME_OXYGEN;
                 }
             }
         } else {
