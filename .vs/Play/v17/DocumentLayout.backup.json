@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "D:\\Nikita\\Unity\\myProject\\Play\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\laser\\lasergunvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\laser\\lasergunvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\cannon\\cannonvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\cannon\\cannonvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\cannon\\cannoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\cannon\\cannoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\cannon\\cannonvisualboom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\cannon\\cannonvisualboom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\cannon\\cannonballcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\cannon\\cannonballcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\cannon\\cannonvisualboom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\cannon\\cannonvisualboom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\cannon\\cannoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\cannon\\cannoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,30 +34,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 700,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LaserGunVisual.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunVisual.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Laser\\LaserGunVisual.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunVisual.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Mobs\\Laser\\LaserGunVisual.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "CannonController.cs",
+              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
+              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAD4AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T15:16:32.701Z",
+              "WhenOpened": "2025-09-10T12:24:15.348Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "CannonVisual.cs",
+              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonVisual.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Cannon\\CannonVisual.cs",
+              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonVisual.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mobs\\Cannon\\CannonVisual.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T15:17:05.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "LaserGunController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
               "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
               "RelativeToolTip": "Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAAAC4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-10T15:15:55.515Z",
               "EditorCaption": ""
@@ -77,7 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "CannonballController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonballController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Cannon\\CannonballController.cs",
@@ -85,21 +98,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Mobs\\Cannon\\CannonballController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T14:10:26.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CannonController.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Mobs\\Cannon\\CannonController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T12:24:15.348Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-10T14:10:26.93Z"
             },
             {
               "$type": "Document",
