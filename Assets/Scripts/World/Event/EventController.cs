@@ -29,4 +29,20 @@ public class EventController : MonoBehaviour
     public IBlockEvent[] GetAllEvents() {
         return events;
     }
+
+    public void EventTriggerActivated(int numberEvent) {
+        foreach (IBlockEvent e in events) {
+            if (e.NumberEvent() == numberEvent) {
+                e.Activated();
+            }
+        }
+    }
+
+    public void EventTriggerDeactivated(int numberEvent) {
+        foreach (IBlockEvent e in events) {
+            if (e.NumberEvent() == numberEvent) {
+                e.Deactivated();
+            }
+        }
+    }
 }

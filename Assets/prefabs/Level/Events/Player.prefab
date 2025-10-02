@@ -1239,9 +1239,12 @@ MonoBehaviour:
   _mobsLayer:
     serializedVersion: 2
     m_Bits: 16384
+  _bossLayer:
+    serializedVersion: 2
+    m_Bits: 32768
   _skills: {fileID: 9175419877381483362}
   _oxygenVisual: {fileID: 2896636221021282647}
-  _hp: 10
+  _hp: 4
 --- !u!114 &6297136201250966762
 MonoBehaviour:
   m_ObjectHideFlags: 0

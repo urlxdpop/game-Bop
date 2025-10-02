@@ -28,7 +28,7 @@ public class EventButtonController : MonoBehaviour, IEvent {
     public void Interact() {
         _isActive = !_isActive;
 
-        EventTriggerActivated();
+        EventController.Instance.EventTriggerActivated(_numberEvent);
     }
 
     public bool IsActive() {
@@ -39,27 +39,7 @@ public class EventButtonController : MonoBehaviour, IEvent {
         if (_isActive != _startActiveState) {
             if (gameObject != Player.Instance.CurrentInteractableObject() && !_boxActivated) {
                 _isActive = _startActiveState;
-                EventTriggerDeactivated();
-            }
-        }
-    }
-
-    private void EventTriggerActivated() {
-        IBlockEvent[] events = EventController.Instance.GetAllEvents();
-
-        foreach (IBlockEvent e in events) {
-            if (e.NumberEvent() == _numberEvent) {
-                e.Activated();
-            }
-        }
-    }
-
-    private void EventTriggerDeactivated() {
-        IBlockEvent[] events = EventController.Instance.GetAllEvents();
-
-        foreach (IBlockEvent e in events) {
-            if (e.NumberEvent() == _numberEvent) {
-                e.Deactivated();
+                EventController.Instance.EventTriggerDeactivated(_numberEvent);
             }
         }
     }
@@ -71,7 +51,7 @@ public class EventButtonController : MonoBehaviour, IEvent {
             if (collider.gameObject != _box) {
                 _box = collider.gameObject;
                 _isActive = !_isActive;
-                EventTriggerActivated();
+                EventController.Instance.EventTriggerActivated(_numberEvent);
                 return true;
             } else {
                 return true;

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,11 +12,14 @@ public class Player : MonoBehaviour {
     [SerializeField] private LayerMask _foregroundLayer;
     [SerializeField] private LayerMask _interactLayer;
     [SerializeField] private LayerMask _mobsLayer;
+    [SerializeField] private LayerMask _bossLayer;
     [SerializeField] private Skills _skills;
     [SerializeField] private GameObject _oxygenVisual;
     [SerializeField] private int _hp;
 
     public event EventHandler OnRotate;
+
+    private Transform _camera;
 
     private bool _isMoving;
     private Vector2 _inputVector;
@@ -28,6 +32,14 @@ public class Player : MonoBehaviour {
     private float _timeEndInvulneradility;
     private bool _invulneradility;
     private int _maxHp;
+
+    private float _timeStunning;
+    private float _timeEndStunning;
+    private bool _stunning;
+    private bool _webStunning;
+    private bool _isFliesAway;
+    private bool _isFlyingMove;
+    private Vector3 _dirFliesAway;
 
     private int _oxygen;
     private bool _inWater;
@@ -49,16 +61,19 @@ public class Player : MonoBehaviour {
         _lastButton = "x";
         _currentPos = transform.position;
         _timeEndInvulneradility = 1f;
+        _camera = GetComponentInChildren<Camera>().GetComponent<Transform>();
+        _timeEndStunning = 0.5f;
     }
 
     public void HandlerUpdate() {
-        if (!_isMoving) {
+        if (!_isMoving && !_stunning) {
             PlayerMovement();
         }
 
         CheckMobs();
         SkillsActivated();
         CheckWater();
+        CheckBoss();
     }
 
     public Vector2 InputVector() {
@@ -82,9 +97,14 @@ public class Player : MonoBehaviour {
     }
 
     public bool CheckCollision(GameObject gameObject) {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.2f, _foregroundLayer);
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.2f);
         if (collider) return collider.gameObject == gameObject;
         return false;
+    }
+
+    public void StunningPlayer() {
+        _stunning = true;
+        _webStunning = true;
     }
 
     public int GetHP() {
@@ -187,7 +207,7 @@ public class Player : MonoBehaviour {
         foreach (Collider2D col in collider) {
             if (col) {
                 if (!inPortal) PortalCollider(col);
-                if (WebCollider(col)) canWalk = false;
+                WebCollider(col);
                 if (MoveBox(col)) canWalk = false;
                 if (SpikeCollider(col, inSpike)) canWalk = false;
                 if (!CanWalk(col)) canWalk = false;
@@ -296,6 +316,25 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private void CheckBoss() {
+        Stunning();
+        if (BossController.Instance.IsBossFight() && !_stunning) {
+            Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.2f, _bossLayer);
+            if (collider) {
+                TakeDamage();
+                if (collider.gameObject.GetComponent<SpiderBossController>()) {
+                    Vector3 pos = collider.transform.position;
+
+                    if (Mathf.Abs(pos.x - transform.position.x) < 0.5f && Mathf.Abs(pos.y - transform.position.y) < 0.5f) {
+                        transform.position = pos;
+                        _stunning = true;
+                        _dirFliesAway = ComputeDirForFliesAway();
+                    }
+                }
+            }
+        }
+    }
+
     private Vector3 IsTrueDistance(Vector3 distance) {
         if (Mathf.Abs(distance.x) == 2 || Mathf.Abs(distance.y) == 2) {
             if (Mathf.Abs(distance.x) == 2 && Mathf.Abs(distance.y) == 2) {
@@ -352,6 +391,74 @@ public class Player : MonoBehaviour {
         }
         if (_hp <= 0) {
             Die();
+        }
+    }
+
+    private void Stunning() {
+        if (_isFliesAway) {
+            FliesAway();
+        }else if (_stunning) {
+            _timeStunning += Time.deltaTime;
+            StartCoroutine(Shake());
+            if (_timeStunning >= _timeEndStunning) {
+                _timeStunning = 0;
+                if (!_webStunning) {
+                    _isFliesAway = true;
+                }else {
+                    _webStunning = false;
+                    _stunning = false;
+                }
+            }
+        }
+    }
+
+    private IEnumerator Shake() {
+        float x;
+        float y;
+        float timeLeft = Time.time;
+
+        while ((timeLeft + _timeEndStunning) > Time.time) {
+            x = UnityEngine.Random.Range(-0.3f, 0.3f);
+            y = UnityEngine.Random.Range(-0.3f, 0.3f);
+
+            _camera.localPosition = new Vector3(x, y, -10);
+            yield return new WaitForSeconds(0.025f);
+        }
+
+        _camera.localPosition = new Vector3(0, 0, -10);
+    }
+
+    private Vector3 ComputeDirForFliesAway() {
+        Vector3 dir = Vector3.right;
+        switch (UnityEngine.Random.Range(0, 4)) {
+            case 0:
+                dir = Vector3.up; break;
+            case 1:
+                dir = Vector3.down; break;
+            case 2:
+                dir = Vector3.left; break;
+        }
+
+        return dir;
+    }
+
+    private void FliesAway() {
+        if (!_isFlyingMove) {
+            _position = transform.position;
+            _currentPos = _position + _dirFliesAway;
+            _isFlyingMove = true;
+
+            if (!IsWalkable(_currentPos, false, false)) {
+                _isFliesAway = false;
+                _stunning = false;
+                _isFlyingMove = false;
+                _currentPos = _position;
+                return;
+            }
+
+            transform.DOMove(_currentPos, 0.1f).OnComplete(() => {
+                _isFlyingMove = false;
+            });
         }
     }
 

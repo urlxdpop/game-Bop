@@ -17,8 +17,14 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     private bool _isDie;
     private bool _rotate;
 
+    private Collider2D _collider;
+
     private void OnValidate() {
         SetMovingOrientation(_dir);
+    }
+
+    private void Awake() {
+        _collider = GetComponent<Collider2D>();
     }
 
     private void Update() {
@@ -42,12 +48,27 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
         }
     }
 
-    private void HandleMovement() {
-        MoveOrRotate();
+    public void BossCreated(Vector3 finalPos) {
+        _collider.enabled = false;
+        transform.DOMove(finalPos, 0.2f).OnComplete(() => {
+            _collider.enabled = true;
+        });
     }
 
-    private void SetMovingOrientation(Vector2 dir) {
+    public void SetMovingOrientation(Vector3 dir) {
+        _dir = dir;
         transform.rotation = Quaternion.Euler(0, 0, dir.x != 0 ? -dir.x * 90 : dir.y < 0 ? 180 : 0);
+    }
+
+    public void Die() {
+        _visual.Spider_OnDie();
+        transform.DOKill();
+        _isDie = true;
+    }
+
+
+    private void HandleMovement() {
+        if (_collider.enabled) MoveOrRotate();
     }
 
     private void MoveOrRotate() {
@@ -72,8 +93,8 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
                 _walkTime += 1;
                 _getImpulse = true;
             }).
-            OnComplete(() => { 
-                _isMoving = false; 
+            OnComplete(() => {
+                _isMoving = false;
                 _getImpulse = false;
             });
     }
@@ -86,7 +107,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             if (col) {
                 if (WalkToDie(col)) Die();
                 if (!CanWalk(col)) wall = true;
-                if(!inPortal) PortalCollision(col);
+                if (!inPortal) PortalCollision(col);
             }
         }
 
@@ -122,6 +143,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
         foreach (Collider2D col in collider) {
             if (col && col.gameObject != gameObject && !CanWalk(col)) {
+                if (WalkToDie(col)) Die();
                 transform.DOKill();
                 transform.position = _position;
                 _isMoving = false;
@@ -129,13 +151,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
                 _rotate = true;
             }
         }
-        
-    }
 
-    private void Die() {
-        _visual.Spider_OnDie();
-        transform.DOKill();
-        _isDie = true;
     }
 
     private bool CanWalk(Collider2D collider) {
@@ -143,12 +159,20 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             collider.GetComponent<SpikeController>() ||
             collider.GetComponent<Laser>() ||
             collider.GetComponent<ImpulseController>() ||
-            collider.GetComponent<PortalController>();
+            collider.GetComponent<PortalController>() ||
+            collider.GetComponent<WebController>() ||
+            collider.GetComponent<SpiderBossController>();
     }
 
     private bool WalkToDie(Collider2D collider) {
         if (collider.gameObject.GetComponent<SpikeController>() ||
         (collider.gameObject.GetComponent<Laser>() && !GetComponent<RedSpiderController>())) return true;
+        else if (collider.GetComponent<SpiderBossController>()) {
+            if (GetComponent<RedSpiderController>()) {
+                collider.GetComponent<SpiderBossController>().TakeDamage();
+            }
+            return true;
+        }
         return false;
     }
 }

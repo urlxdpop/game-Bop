@@ -18,3 +18,8 @@ public interface IMobs {
 public interface IImpulseObject {
     public void Impulse(Vector3 dir, float speed);
 }
+
+public interface IBoss {
+    public void Fight();
+    public void SharpAttack();
+}

@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - BossArena
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - 
   - Interactable
   - Mobs
-  - 
+  - Boss
   - Frontground
   - 
   - 
@@ -59,11 +61,17 @@ TagManager:
   - name: Frontground
     uniqueID: 751719793
     locked: 0
+  - name: Boss
+    uniqueID: 2243092519
+    locked: 0
   - name: Event
     uniqueID: 1634903551
     locked: 0
   - name: UI
     uniqueID: 3553693353
+    locked: 0
+  - name: Upper
+    uniqueID: 2337342911
     locked: 0
   m_RenderingLayers:
   - Default
