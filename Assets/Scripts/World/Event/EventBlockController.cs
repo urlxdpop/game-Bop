@@ -21,7 +21,7 @@ public class EventBlockController : MonoBehaviour, IBlockEvent
         transform.Find("Visual").gameObject.SetActive(false);
 
         _roundPos = Vector3Int.RoundToInt(transform.position);
-        _roundPos -= new Vector3Int(1,1,0);
+        _roundPos -= new Vector3Int(-5,1,0);
 
         if (_forground == null) {
             _forground = GameObject.Find("Forground").GetComponent<Tilemap>();
