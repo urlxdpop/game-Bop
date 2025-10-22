@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
     public event EventHandler OnRotate;
 
     private Transform _camera;
+    private PlayerDamageVisual _damageVisual;
 
     private bool _isMoving;
     private Vector2 _inputVector;
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour {
         _maxHp = _hp;
         _oxygen = 5;
         _timeCurrentOxygen = TIME_OXYGEN;
+
+        _damageVisual = GetComponentInChildren<PlayerDamageVisual>();
     }
 
     private void Start() {
@@ -388,6 +391,7 @@ public class Player : MonoBehaviour {
         if (!_invulneradility) {
             _hp--;
             _invulneradility = true;
+            _damageVisual.TakeDamage();
         }
         if (_hp <= 0) {
             Die();

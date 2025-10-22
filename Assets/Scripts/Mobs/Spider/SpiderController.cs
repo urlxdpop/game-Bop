@@ -43,8 +43,6 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
         if ((!_isMoving || _walkTime < 2) && !wall) {
             _getImpulse = true;
             Moving(dir);
-        } else if (wall) {
-            _getImpulse = true;
         }
     }
 

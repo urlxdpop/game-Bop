@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Laser : MonoBehaviour {
     [SerializeField] private Sprite _expanentedLaser;
@@ -28,7 +27,6 @@ public class Laser : MonoBehaviour {
             if (dir.x == -1) {
                 if (dir.y == -1) {
                     transform.localRotation = Quaternion.Euler(0, 0, 0 - rot.z);
-
                 } else if (dir.y == 1) {
                     transform.localRotation = Quaternion.Euler(0, 0, -90 - rot.z);
                 } else Debug.LogError("Error Y Rotation");

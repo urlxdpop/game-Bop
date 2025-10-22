@@ -45,6 +45,13 @@ public class LaserVisual : MonoBehaviour {
         } else {
             _isRatate = false;
         }
+
+        if (!_isRatate) {
+            return;
+        }
+        int angle = dir.x != 0 ? dir.x == pastDir.y ? -90 : 180 : dir.y == pastDir.x ? 180 : -90;
+
+        transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
     private bool IsLast() {

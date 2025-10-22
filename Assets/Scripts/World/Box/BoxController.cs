@@ -123,6 +123,7 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
         return collider.GetComponent<EventButtonController>() ||
                 collider.GetComponent<Laser>() ||
                 collider.GetComponent<ImpulseController>() ||
-                collider.GetComponent<PortalController>();
+                collider.GetComponent<PortalController>() ||
+                collider.GetComponent<WaterController>();
     }
 }

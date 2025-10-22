@@ -13,6 +13,10 @@ public class PortalController : MonoBehaviour {
         FindSecondPortal();
     }
 
+    private void Start() {
+        FindSecondPortal();
+    }
+
     public void SetSecondPortal(PortalController portal) {
         _secondPortal = portal;
     }
