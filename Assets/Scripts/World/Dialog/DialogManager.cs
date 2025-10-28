@@ -3,11 +3,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+enum DialogAutors {
+    Повестователь,
+    Гэп,
+    Неизвестный
+}
 public class DialogManager : MonoBehaviour
 {
     public static DialogManager Instance { get; private set; }
 
     [SerializeField] private GameObject _dialogBox;
+    [SerializeField] private Text _dialogAutor;
     [SerializeField] private Text _dialogText;
     [SerializeField] private int _lettersForSecond = 20;
 
@@ -32,6 +38,7 @@ public class DialogManager : MonoBehaviour
         if ((Input.anyKeyDown && ArrowAndWASDDontKeyDown()) && !_isTyping) {
             _currentLine++;
             if (_currentLine < _dialog.Lines.Count) {
+                _dialogAutor.text = _dialog.Speakers[_currentLine].ToString();
                 StartCoroutine(TypeDialog(_dialog.Lines[_currentLine]));
             } else { 
                 _dialogBox.SetActive(false);
@@ -48,6 +55,7 @@ public class DialogManager : MonoBehaviour
 
         _dialogBox.SetActive(true);
         _dialog = dialog;
+        _dialogAutor.text = _dialog.Speakers[0].ToString();
 
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
