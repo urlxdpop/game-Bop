@@ -44,13 +44,20 @@ public class DialogManager : MonoBehaviour
                 _dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 _currentLine = 0;
+                
             }
         }
     }
 
-    public IEnumerator ShowDialog(Dialog dialog) {
-        yield return new WaitForEndOfFrame();
+    public IEnumerator ShowDialog(Dialog dialog, int numEvent) {
+        if (EventController.Instance.IsActivatedEvent(numEvent)) {
+            yield break;
+        } else {
+            EventController.Instance.Activate(numEvent);
+        }
 
+        yield return new WaitForEndOfFrame();
+        
         OnShowDialog?.Invoke();
 
         _dialogBox.SetActive(true);

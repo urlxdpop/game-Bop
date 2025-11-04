@@ -11,7 +11,7 @@ showStatusBar = false
 scopes = {
 	"last_search.66F56946" = "Scene"
 	"OpenInspectorPreview.66F56946" = "0"
-	"currentGroup.66F56946" = "all"
+	"currentGroup.66F56946" = "asset"
 	"picker_window_position_offset.00000000" = "45,59998;179,2;320;550,4"
 	"picker_visibility_flags.00000000" = "0"
 	"picker_item_size.00000000" = "1"
@@ -102,6 +102,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"Scene "
 ]
 searchItemFavorites = [
 ]

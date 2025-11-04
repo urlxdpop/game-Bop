@@ -64,9 +64,7 @@ public class BossController : MonoBehaviour {
 
     private void FindBoss() {
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-        if (boss == null) {
-            Debug.LogError("No boss found");
-        } else {
+        if (boss != null){
             _boss = boss.GetComponent<IBoss>();
             if (_boss == null) {
                 Debug.LogError("Boss does not implement IBoss interface");

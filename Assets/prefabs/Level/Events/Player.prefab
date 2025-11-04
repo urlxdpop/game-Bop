@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 3156936507994206894}
   - component: {fileID: 8718092423063479595}
   - component: {fileID: 2101178618197545563}
+  - component: {fileID: 2403880402496754624}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -402,8 +403,8 @@ Camera:
   m_GameObject: {fileID: 3811617921068490679}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -426,7 +427,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 8
   orthographic: 1
   orthographic size: 5
   m_Depth: -1
@@ -496,6 +497,23 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &2403880402496754624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811617921068490679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9017b1e3398afc74ba551bdd0e06d0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  _rightLimit: 0
+  _leftLimit: 0
+  _topLimit: 0
+  _bottomLimit: 0
+  _camera: {fileID: 3156936507994206894}
 --- !u!1 &4186061556756277213
 GameObject:
   m_ObjectHideFlags: 0

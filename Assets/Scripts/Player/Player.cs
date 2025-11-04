@@ -69,6 +69,8 @@ public class Player : MonoBehaviour {
     }
 
     public void HandlerUpdate() {
+        if(Time.deltaTime <= 0.5) CheckForEncounters();
+
         if (!_isMoving && !_stunning) {
             PlayerMovement();
         }
