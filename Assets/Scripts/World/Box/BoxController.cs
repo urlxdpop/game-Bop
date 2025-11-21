@@ -9,12 +9,21 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
     private Vector3 _position;
     private Vector3 _portal;
     private bool _isMoving;
+    private bool _isMovingInImpulse;
     private bool _isImpulse;
 
-    public void Interact() {
+
+    private void Update() {
+
         if (_isImpulse) {
+            _isImpulse = CheckImpulse();
+        }
+    }
+
+    public void Interact() {
+        if (_isMovingInImpulse) {
             transform.position = _position;
-            _isImpulse = false;
+            _isMovingInImpulse = false;
         }
         _position = transform.position;
         _isMoving = true;
@@ -31,13 +40,15 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
         return _isMoving;
     }
 
+    public Vector3 DirMoveBox() {
+        return _dirMoveBox;
+    }
+
     public bool CanMove(Vector3 player, PortalController portal) {
-        if (_isMoving) return false;
-        if (portal != null) {
-            return false;
-        } else {
-            _dirMoveBox = transform.position - player;
-        }
+        if (_isMoving || _isImpulse) return false;
+        if (portal != null) return false;
+
+        _dirMoveBox = transform.position - player;
 
         if (!CanMovement(transform.position, _dirMoveBox)) return false;
         Teleported(_dirMoveBox);
@@ -55,13 +66,14 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
     }
 
     public void Impulse(Vector3 dir, float speed) {
-        if (_isImpulse || _isMoving) {
+        if (_isMovingInImpulse || _isMoving) {
             return;
         }
+        _isImpulse = true;
 
         if (!CanMovement(transform.position, dir)) return;
 
-        _isImpulse = true;
+        _isMovingInImpulse = true;
         _dirMoveBox = dir;
         _position = transform.position;
 
@@ -71,13 +83,17 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
              })
              .OnComplete(() => {
                  _isMoving = false;
-                 _isImpulse = false;
+                 _isMovingInImpulse = false;
              });
+    }
+
+    public bool IsImpulse() {
+        return _isMovingInImpulse;
     }
 
     private bool CanMovement(Vector3 pos, Vector3 dir) {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(pos + dir, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
-        bool canMove = true;   
+        bool canMove = true;
 
         foreach (var collider in colliders) {
             if (!CanWalk(collider)) canMove = false;
@@ -90,7 +106,7 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
     private void PortalCollision(Collider2D collider) {
         if (collider.GetComponent<PortalController>()) {
             _portal = collider.GetComponent<PortalController>().Teleported();
-            
+
         }
     }
 
@@ -109,11 +125,11 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
         Collider2D[] collider = Physics2D.OverlapBoxAll(_position + _dirMoveBox, new Vector2(0.5f, 0.5f), _foregroundLayer);
 
         foreach (Collider2D col in collider) {
-            if (col.gameObject != gameObject && !CanWalk(col) || Player.Instance.CheckCollision(gameObject)) {
+            if (col.gameObject != gameObject && !CanWalk(col)) {
                 transform.DOKill();
                 transform.position = _position;
                 _isMoving = false;
-                _isImpulse = false;
+                _isMovingInImpulse = false;
                 return;
             }
         }
@@ -125,5 +141,19 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
                 collider.GetComponent<ImpulseController>() ||
                 collider.GetComponent<PortalController>() ||
                 collider.GetComponent<WaterController>();
+    }
+
+    private bool CheckImpulse() {
+        Collider2D[] collider = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), _foregroundLayer);
+
+        bool impulse = false;
+
+        foreach (Collider2D col in collider) {
+            if (col.GetComponent<ImpulseController>()) {
+                impulse = true;
+            }
+        }
+
+        return impulse;
     }
 }

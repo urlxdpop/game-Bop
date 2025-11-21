@@ -109,7 +109,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bda3bdb33e69e44fb7d2b61e0247c7d, type: 3}
+  m_Sprite: {fileID: -902086654454736923, guid: 3d6ade42c98863542a39c083220e8a67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 8718092423063479595}
   - component: {fileID: 2101178618197545563}
   - component: {fileID: 2403880402496754624}
+  - component: {fileID: 6615981057810906920}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -429,7 +430,7 @@ Camera:
   far clip plane: 1000
   field of view: 8
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -509,11 +510,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9017b1e3398afc74ba551bdd0e06d0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _rightLimit: 0
-  _leftLimit: 0
-  _topLimit: 0
-  _bottomLimit: 0
   _camera: {fileID: 3156936507994206894}
+--- !u!114 &6615981057810906920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811617921068490679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.PixelPerfectCamera
+  m_ComponentVersion: 1
+  m_AssetsPPU: 30
+  m_RefResolutionX: 420
+  m_RefResolutionY: 210
+  m_CropFrame: 0
+  m_GridSnapping: 0
+  m_FilterMode: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &4186061556756277213
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +548,7 @@ GameObject:
   - component: {fileID: 2214218222707645938}
   - component: {fileID: 2336303452806155692}
   m_Layer: 0
-  m_Name: playerVisual
+  m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -975,7 +996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bda3bdb33e69e44fb7d2b61e0247c7d, type: 3}
+  m_Sprite: {fileID: -902086654454736923, guid: 3d6ade42c98863542a39c083220e8a67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1019,7 +1040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 144.30002, y: 0}
+  m_AnchoredPosition: {x: 144.29999, y: 0}
   m_SizeDelta: {x: 51.9, y: 51.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8756392604241656798
@@ -1050,7 +1071,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bda3bdb33e69e44fb7d2b61e0247c7d, type: 3}
+  m_Sprite: {fileID: -902086654454736923, guid: 3d6ade42c98863542a39c083220e8a67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1169,7 +1190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 48.100006, y: 0}
+  m_AnchoredPosition: {x: 48.100037, y: 0}
   m_SizeDelta: {x: 51.9, y: 51.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6933353033015418013
@@ -1200,7 +1221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bda3bdb33e69e44fb7d2b61e0247c7d, type: 3}
+  m_Sprite: {fileID: -902086654454736923, guid: 3d6ade42c98863542a39c083220e8a67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1369,8 +1390,8 @@ MonoBehaviour:
   - {fileID: 1363335873805436648}
   - {fileID: 4585131417247777465}
   - {fileID: 4383226235568510223}
-  _fullLive: {fileID: 21300000, guid: 4bda3bdb33e69e44fb7d2b61e0247c7d, type: 3}
-  _emptyLive: {fileID: -189998821, guid: 7235e2dafb61be446802e28ebb980963, type: 3}
+  _fullLive: {fileID: -902086654454736923, guid: 3d6ade42c98863542a39c083220e8a67, type: 3}
+  _emptyLive: {fileID: -3423010355018589931, guid: d7eab0ca1aa4217478e79b5c0f453b24, type: 3}
 --- !u!114 &4366740463620878864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,7 +1411,7 @@ MonoBehaviour:
   - {fileID: 4050889667831534365}
   - {fileID: 6445784467670984798}
   _fullOxygenSprite: {fileID: 21300000, guid: bd5482db24dc62a40a82bb538a13781e, type: 3}
-  _emptyOxygenSprite: {fileID: -189998821, guid: 7235e2dafb61be446802e28ebb980963, type: 3}
+  _emptyOxygenSprite: {fileID: -3423010355018589931, guid: d7eab0ca1aa4217478e79b5c0f453b24, type: 3}
 --- !u!1 &7975029688515398760
 GameObject:
   m_ObjectHideFlags: 0

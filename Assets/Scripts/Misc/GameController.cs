@@ -7,16 +7,27 @@ public enum GameState {
     END_GAME,
 }
 
+public enum Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+}
+
 public class GameController : MonoBehaviour {
     public static GameController Instance { get; private set; }
 
     [SerializeField] private Tilemap _foregroundTilemap;
-    [SerializeField] private GameObject _endGame;
-
+    
+    private GameObject _endGame;
     private GameState _gameState;
+    private CameraController _cameraController;
 
     private void Awake() {
         Instance = this;
+
+        _endGame = GameObject.Find("EndGame");
+        _endGame.SetActive(false);
     }
 
     private void Start() {
@@ -28,6 +39,10 @@ public class GameController : MonoBehaviour {
     }
 
     private void Update() {
+        if (_cameraController == null) {
+            SetCameraLimits();
+        }
+
         HandlerState();
     }
 
@@ -36,14 +51,16 @@ public class GameController : MonoBehaviour {
     }
 
     private void SetCameraLimits() {
-        CameraController cameraController = Camera.main.GetComponent<CameraController>();
-        _foregroundTilemap.CompressBounds();
-        cameraController.SetLimit(
-            _foregroundTilemap.localBounds.max.x,
-            _foregroundTilemap.localBounds.min.x,
-            _foregroundTilemap.localBounds.min.y,
-            _foregroundTilemap.localBounds.max.y
-        );
+        if (Camera.main != null && Camera.main.TryGetComponent<CameraController>(out var component)) {
+            _cameraController = component;
+            _foregroundTilemap.CompressBounds();
+            _cameraController.SetLimit(
+                _foregroundTilemap.localBounds.max.x,
+                _foregroundTilemap.localBounds.min.x,
+                _foregroundTilemap.localBounds.min.y,
+                _foregroundTilemap.localBounds.max.y
+            );
+        }
     }
 
     private void SubscribeForActionEvent() {

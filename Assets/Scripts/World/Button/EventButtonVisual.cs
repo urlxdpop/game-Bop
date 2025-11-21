@@ -14,6 +14,10 @@ public class EventButtonVisual : MonoBehaviour {
         _animator = GetComponent<Animator>();
     }
 
+    private void Start() {
+        GetComponentInChildren<Canvas>().enabled = false;
+    }
+
     private void Update() {
         _animator.SetBool(ACTIVE, _button.IsActive());
     }

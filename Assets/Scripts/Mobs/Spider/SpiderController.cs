@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     [SerializeField] private float _speed;
     [SerializeField] private LayerMask _foregroundLayer;
-    [SerializeField] private Vector3 _dir;
+    [SerializeField] private Direction _direction;
     [SerializeField] private SpiderVisual _visual;
 
     private float _waitTime = 0;
@@ -14,17 +14,24 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     private bool _getImpulse;
     private Vector3 _position;
     private Vector3 _teleportedPos;
+    private Vector3 _dir;
     private bool _isDie;
     private bool _rotate;
 
     private Collider2D _collider;
 
     private void OnValidate() {
+        _dir = SetDir(_direction);
         SetMovingOrientation(_dir);
     }
 
     private void Awake() {
         _collider = GetComponent<Collider2D>();
+    }
+
+    private void Start() {
+        _dir = SetDir(_direction);
+        SetMovingOrientation(_dir);
     }
 
     private void Update() {
@@ -64,9 +71,22 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
         _isDie = true;
     }
 
+    private Vector3 SetDir(Direction dir) {
+        return dir switch {
+            Direction.UP => Vector3.up,
+            Direction.DOWN => Vector3.down,
+            Direction.LEFT => Vector3.left,
+            Direction.RIGHT => Vector3.right,
+            _ => Vector3.zero,
+        };
+    }
+
 
     private void HandleMovement() {
-        if (_collider.enabled) MoveOrRotate();
+        if (_collider.enabled) {
+            MoveOrRotate();
+            CheckDie();
+        }
     }
 
     private void MoveOrRotate() {
@@ -103,7 +123,6 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
         foreach (Collider2D col in collider) {
             if (col) {
-                if (WalkToDie(col)) Die();
                 if (!CanWalk(col)) wall = true;
                 if (!inPortal) PortalCollision(col);
             }
@@ -137,11 +156,10 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     }
 
     private void CheckCollision(Vector3 dir) {
-        Collider2D[] collider = Physics2D.OverlapBoxAll(_position + dir, new Vector2(0.5f, 0.5f), _foregroundLayer);
+        Collider2D[] collider = Physics2D.OverlapBoxAll(_position + dir, new Vector2(0.5f, 0.5f), 0f);
 
         foreach (Collider2D col in collider) {
             if (col && col.gameObject != gameObject && !CanWalk(col)) {
-                if (WalkToDie(col)) Die();
                 transform.DOKill();
                 transform.position = _position;
                 _isMoving = false;
@@ -172,5 +190,15 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             return true;
         }
         return false;
+    }
+
+    private void CheckDie() {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0f);
+
+        foreach (Collider2D col in colliders) {
+            if (col && col.gameObject != gameObject) {
+                if (WalkToDie(col)) Die();
+            }
+        }
     }
 }

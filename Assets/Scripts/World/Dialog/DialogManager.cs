@@ -6,7 +6,8 @@ using UnityEngine.UI;
 enum DialogAutors {
     Повестователь,
     Гэп,
-    Неизвестный
+    Неизвестный,
+    Подсказка
 }
 public class DialogManager : MonoBehaviour
 {

@@ -15,6 +15,9 @@ public class EventDialogController : MonoBehaviour, IEvent
 
     private void Awake() {
         _isActive = true;
+
+        _textNumEvent.text = null;
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
     public int NumberEvent() {

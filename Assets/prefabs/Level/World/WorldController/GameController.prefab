@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c2a0e59ecff40a46bbcac307390dc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _foregroundTilemap: {fileID: 0}
+  _foregroundTilemap: {fileID: 7200556785378656071}
 --- !u!114 &9029190980923571660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +143,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5378196282954128400, guid: d80a56b73430d824d8fe71d6b24ccf29, type: 3}
   m_PrefabInstance: {fileID: 1220364886884078400}
   m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &7200556785378656071 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 8287220731873340423, guid: d80a56b73430d824d8fe71d6b24ccf29, type: 3}
+  m_PrefabInstance: {fileID: 1220364886884078400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2214600653731064844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,6 +221,10 @@ PrefabInstance:
     - target: {fileID: 4939222244672016275, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
       propertyPath: m_Name
       value: EndGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939222244672016275, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8121635678037006423, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
       propertyPath: m_Pivot.x

@@ -1,15 +1,14 @@
-using TMPro;
+
 using UnityEngine;
 
 public class SecretWayController : MonoBehaviour, IEvent
 {
-    //[SerializeField] private TextMeshProUGUI _textNumEvent;
     [SerializeField] private SecretsData _secretsData;
 
     private int _numberSecret = 0;
 
-    private void OnValidate() {
-        //_textNumEvent.text = _numberSecret.ToString();
+    private void Start() {
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
     public void Interact() {

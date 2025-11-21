@@ -184,7 +184,7 @@ MonoBehaviour:
   _numberEvent: 0
   _textNumEvent: {fileID: 3078819099320474964}
   _forground: {fileID: 0}
-  _wallBlock: {fileID: 11400000, guid: 26771cbb08099bb4a822df50ac31c3a6, type: 2}
+  _wallBlock: {fileID: 11400000, guid: 1cf40db6827b5484ab5bda9bd28369a0, type: 2}
 --- !u!1 &3628656498760536188
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ SpriteRenderer:
   m_SortingLayerID: 1634903551
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: -162862576, guid: 7235e2dafb61be446802e28ebb980963, type: 3}
+  m_Sprite: {fileID: 155082378000168693, guid: 2844d8c219531dc47aee10dcca32efcd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

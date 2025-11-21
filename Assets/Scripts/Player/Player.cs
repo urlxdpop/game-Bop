@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
     private PlayerDamageVisual _damageVisual;
 
     private bool _isMoving;
+    private bool _movingBox;
     private Vector2 _inputVector;
     private string _lastButton;
     private GameObject _currentInteractableObject;
@@ -66,11 +67,11 @@ public class Player : MonoBehaviour {
         _timeEndInvulneradility = 1f;
         _camera = GetComponentInChildren<Camera>().GetComponent<Transform>();
         _timeEndStunning = 0.5f;
+
+        CheckForEncounters();
     }
 
     public void HandlerUpdate() {
-        if(Time.deltaTime <= 0.5) CheckForEncounters();
-
         if (!_isMoving && !_stunning) {
             PlayerMovement();
         }
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour {
         SkillsActivated();
         CheckWater();
         CheckBoss();
+        InWall();
     }
 
     public Vector2 InputVector() {
@@ -87,6 +89,10 @@ public class Player : MonoBehaviour {
 
     public bool IsMoving() {
         return _isMoving;
+    }
+
+    public bool MovingBox() {
+        return _movingBox;
     }
 
     public Vector2 CurrentPos() {
@@ -101,8 +107,8 @@ public class Player : MonoBehaviour {
         return _speed;
     }
 
-    public bool CheckCollision(GameObject gameObject) {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.2f);
+    public bool CheckCollision(GameObject gameObject, Vector3 pos) {
+        Collider2D collider = Physics2D.OverlapCircle(pos != Vector3.zero ? pos : transform.position, 0.2f);
         if (collider) return collider.gameObject == gameObject;
         return false;
     }
@@ -205,7 +211,7 @@ public class Player : MonoBehaviour {
     }
 
     private bool IsWalkable(Vector3 targetPos, bool inSpike, bool inPortal) {
-        Collider2D[] collider = Physics2D.OverlapCircleAll(targetPos, 0.2f, _foregroundLayer);
+        Collider2D[] collider = Physics2D.OverlapBoxAll(targetPos, new Vector2(0.5f, 0.5f),0, _foregroundLayer);
 
         bool canWalk = true;
 
@@ -213,9 +219,12 @@ public class Player : MonoBehaviour {
             if (col) {
                 if (!inPortal) PortalCollider(col);
                 WebCollider(col);
-                if (MoveBox(col)) canWalk = false;
                 if (SpikeCollider(col, inSpike)) canWalk = false;
                 if (!CanWalk(col)) canWalk = false;
+                if (MoveBox(col)) {
+                    canWalk = true;
+                    _movingBox = true;
+                }
             }
         }
 
@@ -251,14 +260,18 @@ public class Player : MonoBehaviour {
     }
 
     private bool StopMove() {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.01f, _foregroundLayer);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f),0, _foregroundLayer);
 
-        if (collider) {
-            if (CanWalk(collider)) return false;
-            return true;
+        bool isMoving = false;
+
+        foreach (Collider2D collider in colliders) {
+            if (collider) {
+                if (!CanWalk(collider)) isMoving = true;
+            }
         }
+        
 
-        return false;
+        return isMoving;
     }
 
     private bool CanWalk(Collider2D collider) {
@@ -327,7 +340,7 @@ public class Player : MonoBehaviour {
             Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.2f, _bossLayer);
             if (collider) {
                 TakeDamage();
-                if (collider.gameObject.GetComponent<SpiderBossController>()) {
+                if (collider.GetComponent<SpiderBossController>()) {
                     Vector3 pos = collider.transform.position;
 
                     if (Mathf.Abs(pos.x - transform.position.x) < 0.5f && Mathf.Abs(pos.y - transform.position.y) < 0.5f) {
@@ -356,32 +369,37 @@ public class Player : MonoBehaviour {
     }
 
     private bool WebCollider(Collider2D collider) {
-        if (collider.gameObject.GetComponent<WebController>()) {
-            collider.gameObject.GetComponent<WebController>().GetComponent<IEvent>().Interact();
+        if (collider.GetComponent<WebController>()) {
+            collider.GetComponent<WebController>().GetComponent<IEvent>().Interact();
             return true;
         }
         return false;
     }
 
     private void PortalCollider(Collider2D collider) {
-        if (collider.gameObject.GetComponent<PortalController>()) {
-            _portal = collider.gameObject.GetComponent<PortalController>();
+        if (collider.GetComponent<PortalController>()) {
+            _portal = collider.GetComponent<PortalController>();
         }
     }
 
     private bool MoveBox(Collider2D collider) {
-        BoxController box = collider.gameObject.GetComponent<BoxController>();
-        if (box) {
-            if (box.CanMove(transform.position, _portal)) {
-                box.GetComponent<IEvent>()?.Interact();
-                return true;
-            }
+        BoxController box = collider.GetComponent<BoxController>();
+
+        if (!box) return false;
+
+        if (box.CanMove(transform.position, _portal)) {
+            box.GetComponent<IEvent>()?.Interact();
+            return true;
+        } else if (box.IsMoving()) {
+        if (box.DirMoveBox() == (Vector3)_inputVector) {
+            return true;
         }
+    }
         return false;
     }
 
     private bool SpikeCollider(Collider2D collider, bool inSpike) {
-        SpikeController spike = collider.gameObject.GetComponent<SpikeController>();
+        SpikeController spike = collider.GetComponent<SpikeController>();
         if (spike) {
             SpikeDamage(spike, inSpike);
             return true;
@@ -403,14 +421,14 @@ public class Player : MonoBehaviour {
     private void Stunning() {
         if (_isFliesAway) {
             FliesAway();
-        }else if (_stunning) {
+        } else if (_stunning) {
             _timeStunning += Time.deltaTime;
             StartCoroutine(Shake());
             if (_timeStunning >= _timeEndStunning) {
                 _timeStunning = 0;
                 if (!_webStunning) {
                     _isFliesAway = true;
-                }else {
+                } else {
                     _webStunning = false;
                     _stunning = false;
                 }
@@ -500,7 +518,7 @@ public class Player : MonoBehaviour {
 
             bool isInWater = false;
             foreach (Collider2D collider in colliders) {
-                if (collider.gameObject.GetComponent<WaterController>()) {
+                if (collider.GetComponent<WaterController>()) {
                     isInWater = true;
                 }
             }
@@ -524,6 +542,23 @@ public class Player : MonoBehaviour {
         }
 
         _oxygenVisual.SetActive(_inWater);
+    }
+
+    private void InWall() {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.01f, 0.01f), 0.1f);
+
+        foreach (Collider2D collider in colliders) {
+            if (!CanWalk(collider) && !Interacted(collider)) {
+                _hp = 0;
+                TakeDamage();
+            }
+        }
+    }
+
+    private bool Interacted(Collider2D col) {
+        if(col.GetComponent<IEvent>() != null && !col.GetComponent<BoxController>() ||
+           col.GetComponent<IMobs>() != null) return true;
+        return false;
     }
 }
 

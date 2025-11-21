@@ -35,7 +35,7 @@ public class WebController : MonoBehaviour, IEvent {
     }
 
     private void CheckPlayer() {
-        if (Player.Instance.CheckCollision(gameObject)) {
+        if (Player.Instance.CheckCollision(gameObject, Vector3.zero)) {
             Player.Instance.StunningPlayer();
             BossController.Instance.SharpAttack();
         }

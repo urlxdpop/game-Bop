@@ -4,12 +4,11 @@ using UnityEngine;
 [SelectionBase]
 public class EventButtonController : MonoBehaviour, IEvent {
     [SerializeField] private int _numberEvent;
-    [SerializeField] private bool _isActive;
     [SerializeField] private TextMeshProUGUI _textNumEvent;
-    [SerializeField] private LayerMask _foregroundLayer;
 
+    private bool _isActive = false;
     private bool _startActiveState;
-    private GameObject _box;
+    private GameObject _obj;
     private bool _boxActivated;
 
     private void OnValidate() {
@@ -17,16 +16,16 @@ public class EventButtonController : MonoBehaviour, IEvent {
     }
 
     private void Start() {
-        _startActiveState = _isActive;
+        _startActiveState = false;
     }
 
-    private void Update() {
+    private void Update() { 
         _boxActivated = CheckBox();
         CheckActive();
     }
 
     public void Interact() {
-        _isActive = !_isActive;
+        _isActive = !_startActiveState;
 
         EventController.Instance.EventTriggerActivated(_numberEvent);
     }
@@ -45,19 +44,32 @@ public class EventButtonController : MonoBehaviour, IEvent {
     }
 
     private bool CheckBox() {
-        Collider2D collider = Physics2D.OverlapBox(transform.position, new Vector2(0.5f, 0.5f), _foregroundLayer);
-
-        if (collider.gameObject.GetComponent<BoxController>() || collider.gameObject.GetComponent<SpiderController>()) {
-            if (collider.gameObject != _box) {
-                _box = collider.gameObject;
-                _isActive = !_isActive;
-                EventController.Instance.EventTriggerActivated(_numberEvent);
-                return true;
-            } else {
-                return true;
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0);
+        foreach (var collider in colliders) {
+            if (MobsOrBox(collider)) {
+                if (collider.gameObject != _obj) {
+                    _obj = collider.gameObject;
+                    _isActive = !_startActiveState;
+                    EventController.Instance.EventTriggerActivated(_numberEvent);
+                    return true;
+                } else {
+                    return true;
+                }
             }
         }
-        _box = null;
+        _obj = null;
+        return false;
+    }
+
+    private bool MobsOrBox(Collider2D collider) {
+        if (GetComponent<MobsButton>()) {
+            if (collider.GetComponent<SpiderController>() ||
+                collider.GetComponent<CannonController>() ||
+                collider.GetComponent<LaserGunController>()) return true;
+        } else {
+            if (collider.GetComponent<BoxController>()) return true;
+        }
+
         return false;
     }
 }
