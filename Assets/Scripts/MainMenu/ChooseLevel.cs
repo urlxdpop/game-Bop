@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,9 +8,28 @@ public class ChooseLevel : MonoBehaviour {
     private string[] _allLevels;
     private GameObject[] _buttons = new GameObject[10];
     private int _numLevels = 0;
+    private int _numPages = 2;
+    private int _page = 1;
 
     private void Start() {
         _allLevels = SetLevels();
+        CreateLevelButtons();
+    }
+
+
+    public void NextPage() {
+        _page++;
+        if(_page >= _numPages) {
+            _page = 0;
+        }
+        CreateLevelButtons();
+    }
+
+    public void LastPage() {
+        _page--;
+        if (_page < 0) {
+            _page = _numPages - 1;
+        }
         CreateLevelButtons();
     }
 
@@ -44,10 +64,18 @@ public class ChooseLevel : MonoBehaviour {
     }
 
     private void CreateLevelButtons() {
-        for (int i = 0; i < _numLevels; i++) {
-            _buttons[i] = Instantiate(_LevelButton, new Vector3(transform.position.x, transform.position.y - 50*i, 0), transform.rotation, transform);
-            _buttons[i].name = _allLevels[i];
-            _buttons[i].GetComponent<LevelButton>().SetData(_allLevels[i]);
+        for (int i = 0; i < 10; i++) {
+            if (_buttons[i] != null) {
+                Destroy(_buttons[i]);
+            }
+        }
+        for (int i = _page * 10; i < (_page + 1) * 10; i++) {
+            if (_allLevels[i] == null) break;
+            int j = i - _page * 10;
+            _buttons[j] = Instantiate(_LevelButton, new Vector3(transform.position.x, transform.position.y - 75*j, 0), transform.rotation, transform);
+            _buttons[j].name = _allLevels[i];
+            _buttons[j].GetComponent<LevelButton>().SetData(_allLevels[i]);
         }
     }
+
 }
