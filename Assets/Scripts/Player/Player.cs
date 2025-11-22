@@ -134,6 +134,11 @@ public class Player : MonoBehaviour {
         _inWater = true;
     }
 
+    public void StopMoving() {
+        _movingBox = false;
+        _isMoving = false;
+    }
+
     public bool CheckGunNear(GameObject gun) {
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(transform.position, new Vector2(7f, 7f), _mobsLayer);
 
@@ -247,6 +252,7 @@ public class Player : MonoBehaviour {
                 if (StopMove()) {
                     transform.position = _position;
                     _isMoving = false;
+                    _movingBox = false;
                     transform.DOKill();
                     return;
                 }
@@ -254,7 +260,7 @@ public class Player : MonoBehaviour {
             .OnComplete(() => {
                 transform.position = targetPos;
                 _isMoving = false;
-
+                _movingBox = false;
                 CheckForEncounters();
             });
     }

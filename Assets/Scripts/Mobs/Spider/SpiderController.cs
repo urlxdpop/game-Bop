@@ -46,9 +46,9 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
     public void Impulse(Vector3 dir, float speed) {
         bool wall = CheckWall(dir, false);
-
+        _getImpulse = true;
+        
         if ((!_isMoving || _walkTime < 2) && !wall) {
-            _getImpulse = true;
             Moving(dir);
         }
     }
@@ -94,6 +94,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             if (CheckWall(_dir, false) || _rotate) {
                 Rotate();
             } else {
+               
                 if (_teleportedPos != Vector3.zero) Teleported();
                 Moving(_dir);
             }
@@ -109,7 +110,6 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             OnUpdate(() => {
                 CheckCollision(dir);
                 _walkTime += 1;
-                _getImpulse = true;
             }).
             OnComplete(() => {
                 _isMoving = false;

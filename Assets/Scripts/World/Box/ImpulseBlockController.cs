@@ -1,11 +1,13 @@
 using UnityEngine;
 
 public class ImpulseBlockController : MonoBehaviour {
-    [SerializeField] private Vector3 _dir;
+
+    [SerializeField] private Direction _direction;
     [SerializeField] private LayerMask _foreground;
     [SerializeField] private LayerMask _mobs;
     [SerializeField] private GameObject _impulseObject;
 
+    private Vector3 _dir;
     private Vector3[] _impulse;
     private Vector3[] _impulseDir;
     private ImpulseController[] _Impulse;
@@ -15,10 +17,13 @@ public class ImpulseBlockController : MonoBehaviour {
     private Vector3 _teleportedImpulse;
 
     private void OnValidate() {
+        _dir = SetDir(_direction);
         transform.rotation = SetOrientation(_dir);
     }
 
     private void Start() {
+        _dir = SetDir(_direction);
+        transform.rotation = SetOrientation(_dir);
         _Impulse = new ImpulseController[100];
         TraceImpulsePath();
         SpawnImpulse();
@@ -38,6 +43,16 @@ public class ImpulseBlockController : MonoBehaviour {
 
     private Quaternion SetOrientation(Vector2 dir) {
         return Quaternion.Euler(0, 0, dir.x != 0 ? -dir.x * 90 : dir.y < 0 ? 180 : 0);
+    }
+
+    private Vector3 SetDir(Direction dir) {
+        return dir switch {
+            Direction.UP => Vector3.up,
+            Direction.DOWN => Vector3.down,
+            Direction.LEFT => Vector3.left,
+            Direction.RIGHT => Vector3.right,
+            _ => Vector3.zero,
+        };
     }
 
     private void TraceImpulsePath() {
@@ -107,7 +122,8 @@ public class ImpulseBlockController : MonoBehaviour {
 
     private bool IgnoreObject(Collider2D collider) {
         return collider.GetComponent<IImpulseObject>() != null ||
-            collider.GetComponent<ImpulseController>();
+            collider.GetComponent<ImpulseController>() ||
+            collider.GetComponent<CanImpulse>();
     }
 
     private void SpawnImpulse() {
@@ -141,8 +157,7 @@ public class ImpulseBlockController : MonoBehaviour {
     }
 
     private bool CheckMirror(Collider2D collider, Vector3 impulseDir) {
-        var mirror = collider.GetComponent<MirrorController>();
-        if (mirror != null) {
+        if (collider.TryGetComponent<MirrorController>(out var mirror)) {
             Vector3 dir = mirror.RotateRay(impulseDir);
             if (dir != Vector3.zero) {
                 _rotateImpulse = dir.normalized;

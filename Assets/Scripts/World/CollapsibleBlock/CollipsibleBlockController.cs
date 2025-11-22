@@ -8,6 +8,7 @@ public class CollipsibleBlockController : MonoBehaviour, IEvent
     public void Interact() {
         if (!_isDestroy) {
             _isDestroy = true;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 

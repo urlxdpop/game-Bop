@@ -66,7 +66,9 @@ public class GameController : MonoBehaviour {
     private void SubscribeForActionEvent() {
         DialogManager.Instance.OnShowDialog += () => {
             _gameState = GameState.DIALOG;
+            Player.Instance.StopMoving();
         };
+
         DialogManager.Instance.OnHideDialog += () => {
             if (_gameState == GameState.DIALOG) _gameState = GameState.FREE_ROAM;
         };

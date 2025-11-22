@@ -17,7 +17,6 @@ public class PlayerVisual : MonoBehaviour
 
     private void Start() {
         Player.Instance.OnRotate += Player_OnRotate;
-        
     }
 
     private void Update() {

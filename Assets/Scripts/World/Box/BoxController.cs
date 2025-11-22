@@ -140,7 +140,9 @@ public class BoxController : MonoBehaviour, IEvent, IImpulseObject {
                 collider.GetComponent<Laser>() ||
                 collider.GetComponent<ImpulseController>() ||
                 collider.GetComponent<PortalController>() ||
-                collider.GetComponent<WaterController>();
+                collider.GetComponent<WaterController>() ||
+                collider.GetComponent<EventBlockController>() ||
+                collider.GetComponent<EventDialogController>();
     }
 
     private bool CheckImpulse() {

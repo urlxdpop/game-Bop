@@ -22,9 +22,8 @@ public class ImpulseController : MonoBehaviour {
         Collider2D[] collision = Physics2D.OverlapCircleAll(transform.position, 0.2f, _everythingLayer);
 
         foreach (Collider2D col in collision) {
-            IImpulseObject impulseObject = col.GetComponent<IImpulseObject>();
-
-            if (impulseObject != null) {
+            
+            if (col.TryGetComponent<IImpulseObject>(out var impulseObject)) {
                 ActivatedObj(impulseObject);
             }
         }

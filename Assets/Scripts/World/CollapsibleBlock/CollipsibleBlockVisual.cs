@@ -18,10 +18,14 @@ public class CollipsibleBlockVisual : MonoBehaviour
     private void Update() {
         _isDestroy = _block.IsDestroy();
 
-        _animator.SetBool(IS_DESTROY, _isDestroy);
+        if (_isDestroy) {
+            _animator.SetBool(IS_DESTROY, _isDestroy);
+            GetComponent<SpriteRenderer>().sortingLayerName = "Mobs";
+        }
     }
 
     public void Destroy() { 
+
         _block.Destroy();
     }
 }

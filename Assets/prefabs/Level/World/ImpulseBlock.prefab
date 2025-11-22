@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ed9718317fa784a855763cadbe7db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImpulseBlockController
-  _dir: {x: 0, y: 1, z: 0}
+  _direction: 0
   _foreground:
     serializedVersion: 2
     m_Bits: 2048
@@ -154,6 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7934766992279705629}
   - component: {fileID: 608952300243141841}
+  - component: {fileID: 2573184817292385075}
   m_Layer: 11
   m_Name: Visual
   m_TagString: Untagged
@@ -234,3 +235,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2573184817292385075
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830987219396862936}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0652c728b870a74459181a147c6ff53e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

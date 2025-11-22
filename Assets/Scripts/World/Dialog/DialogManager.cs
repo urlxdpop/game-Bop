@@ -7,7 +7,8 @@ enum DialogAutors {
     Повестователь,
     Гэп,
     Неизвестный,
-    Подсказка
+    Подсказка,
+    Табличка
 }
 public class DialogManager : MonoBehaviour
 {
