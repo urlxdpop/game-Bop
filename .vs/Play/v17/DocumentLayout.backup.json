@@ -3,64 +3,20 @@
   "WorkspaceRootPath": "D:\\Nikita\\Unity\\myProject\\Play\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\boss\\spiderbosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\spiderbosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\boss\\spiderbossvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\spiderbossvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\boss\\boomvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\boomvisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\cannon\\cannonballcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\cannon\\cannonballcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\boss\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\spider\\spidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\spider\\spidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\mobs\\laser\\laser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\laser\\laser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\boss\\arenablock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\arenablock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mainmenu\\chooselevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu\\chooselevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mainmenu\\levelbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu\\levelbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mainmenu\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|d:\\nikita\\unity\\myproject\\play\\assets\\scripts\\world\\mirror\\mirrorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world\\mirror\\mirrorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobs\\laser\\laserguncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\world\\box\\boxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world\\box\\boxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\world\\box\\impulsecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world\\box\\impulsecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|D:\\Nikita\\Unity\\myProject\\Play\\assets\\scripts\\world\\dialog\\dialogmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F33A664F-2330-B7F1-F09C-321DE0D8611C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world\\dialog\\dialogmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,8 +26,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 695,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Laser.cs",
+              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\Laser.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Laser\\Laser.cs",
+              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\Laser.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mobs\\Laser\\Laser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T10:57:05.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MirrorController.cs",
+              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Mirror\\MirrorController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\World\\Mirror\\MirrorController.cs",
+              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Mirror\\MirrorController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\World\\Mirror\\MirrorController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABsAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T10:40:49.07Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -79,184 +61,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CannonballController.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonballController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Cannon\\CannonballController.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Cannon\\CannonballController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Mobs\\Cannon\\CannonballController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T09:44:21.851Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BoomVisual.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\BoomVisual.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BoomVisual.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\BoomVisual.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\BoomVisual.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T09:42:37.333Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SpiderBossVisual.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\SpiderBossVisual.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\SpiderBossVisual.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\SpiderBossVisual.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\SpiderBossVisual.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAABBwAQAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T09:33:59.489Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SpiderBossController.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\SpiderBossController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\SpiderBossController.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\SpiderBossController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\SpiderBossController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAIwIIAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T08:50:43.679Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BossController.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\BossController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossController.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\BossController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\BossController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T08:50:34.756Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ArenaBlock.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\ArenaBlock.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\ArenaBlock.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Boss\\ArenaBlock.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\ArenaBlock.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T08:49:40.674Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "LaserGunController.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
               "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
               "RelativeToolTip": "Assets\\Scripts\\Mobs\\Laser\\LaserGunController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T07:31:43.89Z"
+              "WhenOpened": "2025-11-23T07:31:43.89Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MainMenu.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\MainMenu\\MainMenu.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu\\MainMenu.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\MainMenu\\MainMenu.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MainMenu\\MainMenu.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T14:25:50.663Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LevelButton.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\MainMenu\\LevelButton.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu\\LevelButton.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\MainMenu\\LevelButton.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MainMenu\\LevelButton.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T14:25:41.95Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ChooseLevel.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\MainMenu\\ChooseLevel.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu\\ChooseLevel.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\MainMenu\\ChooseLevel.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MainMenu\\ChooseLevel.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAB8AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T14:24:36.062Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "BoxController.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Box\\BoxController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\World\\Box\\BoxController.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Box\\BoxController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\World\\Box\\BoxController.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAABBwJAAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T04:19:34.597Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DialogManager.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Dialog\\DialogManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\World\\Dialog\\DialogManager.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Dialog\\DialogManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\World\\Dialog\\DialogManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T07:35:58.69Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ImpulseController.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Box\\ImpulseController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\World\\Box\\ImpulseController.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\World\\Box\\ImpulseController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\World\\Box\\ImpulseController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T07:16:18.607Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SpiderController.cs",
-              "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Spider\\SpiderController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Mobs\\Spider\\SpiderController.cs",
-              "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Mobs\\Spider\\SpiderController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Mobs\\Spider\\SpiderController.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAAAJYAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T04:53:52.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Player.cs",
               "ToolTip": "D:\\Nikita\\Unity\\myProject\\Play\\Assets\\Scripts\\Player\\Player.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\Player.cs",
-              "ViewState": "AgIAAJwBAAAAAAAAAAAAAL0BAAANAAAAAAAAAA==",
+              "ViewState": "AgIAACkCAAAAAAAAAAAAAD8CAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T12:19:50.963Z"
+              "WhenOpened": "2025-07-01T12:19:50.963Z",
+              "EditorCaption": ""
             }
           ]
         },

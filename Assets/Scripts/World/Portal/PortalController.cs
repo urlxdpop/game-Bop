@@ -14,6 +14,8 @@ public class PortalController : MonoBehaviour {
     }
 
     private void Start() {
+        GetComponentInChildren<Canvas>().enabled = false;
+
         FindSecondPortal();
     }
 
