@@ -1,9 +1,8 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SpiderBossVisual : MonoBehaviour {
     [SerializeField] private GameObject _boom;
-    [SerializeField] private float _time = 1f;
+    [SerializeField] private float _time = 50f;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -22,7 +21,6 @@ public class SpiderBossVisual : MonoBehaviour {
             if (_timer < _time) {
                 SpawnBoom();
             } else {
-                Debug.Log("die"); 
                 DestroyYourself();
             }
         }
@@ -30,14 +28,13 @@ public class SpiderBossVisual : MonoBehaviour {
 
     public void Die() {
         _isDie = true;
-        Debug.Log("kill");
     }
 
     private void SpawnBoom() {
         _timerSpawnBoom += Time.deltaTime;
         if (_timerSpawnBoom > 0.1f) {
             Vector3 pos = new(transform.position.x + Random.Range(-1.5f, 1.5f), transform.position.y + Random.Range(-1.5f, 1.5f));
-            Instantiate(_boom, pos, Quaternion.AngleAxis(0, Vector3.forward));
+            Instantiate(_boom, pos, Quaternion.AngleAxis(0, Vector3.forward), transform);
             _timerSpawnBoom = 0;
         }
     }

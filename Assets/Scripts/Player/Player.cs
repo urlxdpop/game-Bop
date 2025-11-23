@@ -42,12 +42,13 @@ public class Player : MonoBehaviour {
     private bool _isFliesAway;
     private bool _isFlyingMove;
     private Vector3 _dirFliesAway;
+    private bool _isShaking;
 
     private int _oxygen;
     private bool _inWater;
     private float _timeCurrentOxygen;
 
-    private const float TIME_OXYGEN = 2f;
+    private const float TIME_OXYGEN = 1.5f;
 
     private bool _inPortal;
     private PortalController _portal;
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour {
         _currentPos = transform.position;
         _timeEndInvulneradility = 1f;
         _camera = GetComponentInChildren<Camera>().GetComponent<Transform>();
-        _timeEndStunning = 0.5f;
+        _timeEndStunning = 1f;
 
         CheckForEncounters();
     }
@@ -429,7 +430,10 @@ public class Player : MonoBehaviour {
             FliesAway();
         } else if (_stunning) {
             _timeStunning += Time.deltaTime;
-            StartCoroutine(Shake());
+            if (!_isShaking) {
+                _isShaking = true;
+                StartCoroutine(Shake());
+            }
             if (_timeStunning >= _timeEndStunning) {
                 _timeStunning = 0;
                 if (!_webStunning) {
@@ -438,6 +442,7 @@ public class Player : MonoBehaviour {
                     _webStunning = false;
                     _stunning = false;
                 }
+                _isShaking = false;
             }
         }
     }
@@ -448,11 +453,11 @@ public class Player : MonoBehaviour {
         float timeLeft = Time.time;
 
         while ((timeLeft + _timeEndStunning) > Time.time) {
-            x = UnityEngine.Random.Range(-0.3f, 0.3f);
-            y = UnityEngine.Random.Range(-0.3f, 0.3f);
+            x = UnityEngine.Random.Range(-0.4f, 0.4f);
+            y = UnityEngine.Random.Range(-0.4f, 0.4f);
 
             _camera.localPosition = new Vector3(x, y, -10);
-            yield return new WaitForSeconds(0.025f);
+            yield return new WaitForSeconds(0.04f);
         }
 
         _camera.localPosition = new Vector3(0, 0, -10);
@@ -563,7 +568,13 @@ public class Player : MonoBehaviour {
 
     private bool Interacted(Collider2D col) {
         if(col.GetComponent<IEvent>() != null && !col.GetComponent<BoxController>() ||
-           col.GetComponent<IMobs>() != null) return true;
+           col.GetComponent<IMobs>() != null ||
+           col.GetComponent<IBoss>() != null ||
+           col.GetComponent<Laser>() ||
+           col.GetComponent<LaserGunController>() ||
+           col.GetComponent<CannonballController>() ||
+           col.GetComponent<CannonController>() ||
+           col.GetComponent<ArenaBlock>()) return true;
         return false;
     }
 }

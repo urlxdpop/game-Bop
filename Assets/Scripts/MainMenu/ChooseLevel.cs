@@ -8,8 +8,9 @@ public class ChooseLevel : MonoBehaviour {
     private string[] _allLevels;
     private GameObject[] _buttons = new GameObject[10];
     private int _numLevels = 0;
-    private int _numPages = 2;
-    private int _page = 1;
+    private int _page = 0;
+
+    private const int PAGES = 2;
 
     private void Start() {
         _allLevels = SetLevels();
@@ -19,7 +20,7 @@ public class ChooseLevel : MonoBehaviour {
 
     public void NextPage() {
         _page++;
-        if(_page >= _numPages) {
+        if(_page >= PAGES) {
             _page = 0;
         }
         CreateLevelButtons();
@@ -28,7 +29,7 @@ public class ChooseLevel : MonoBehaviour {
     public void LastPage() {
         _page--;
         if (_page < 0) {
-            _page = _numPages - 1;
+            _page = PAGES - 1;
         }
         CreateLevelButtons();
     }

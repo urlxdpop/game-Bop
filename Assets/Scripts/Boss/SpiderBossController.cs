@@ -12,7 +12,7 @@ public class SpiderBossController : MonoBehaviour, IBoss {
     [SerializeField] private float _dalayWithAttack;
     [SerializeField] private float _animationTimer;
     [SerializeField] private int _numWebs = 15;
-    [SerializeField] private int _numSpider = 10;
+    [SerializeField] private int _numSpider = 8;
     [SerializeField] private GameObject _warningBlock;
     [SerializeField] private GameObject _webBlock;
     [SerializeField] private GameObject _spider;
@@ -128,9 +128,9 @@ public class SpiderBossController : MonoBehaviour, IBoss {
             if (!_isAnimation) {
                 _isAnimation = true;
                 for (int i = 0; i < _numSpider; i++) {
-                    GameObject spider = Instantiate(Random.Range(0, 1f) > 0.07 ? _spider : _redSpider, transform.position, Quaternion.AngleAxis(0, Vector3.forward));
+                    GameObject spider = Instantiate(Random.Range(0, 1f) > 0.1f ? _spider : _redSpider, transform.position, Quaternion.AngleAxis(0, Vector3.forward));
                     spider.GetComponent<SpiderController>().BossCreated(_SpawnPos[i]);
-                    spider.GetComponent<SpiderController>().SetMovingOrientation(GetRandomRotation());
+                    spider.GetComponent<SpiderController>().SetMovingOrientation(GetRandomRotation(), true);
                 }
                 ReturnSettings();
             }
@@ -179,8 +179,8 @@ public class SpiderBossController : MonoBehaviour, IBoss {
 
         for (int i = 0; i < _numSpider; i++) {
             while (true) {
-                int x = (int)Random.Range(startArena.x - 1, endArena.x + 1);
-                int y = (int)Random.Range(startArena.y - 1, endArena.y + 1);
+                int x = (int)Random.Range(startArena.x, endArena.x + 1);
+                int y = (int)Random.Range(startArena.y, endArena.y + 1);
                 Vector3 pos = new(x, y, 0);
 
                 _SpawnPos[i] = pos;
@@ -211,6 +211,12 @@ public class SpiderBossController : MonoBehaviour, IBoss {
     }
 
     private void HideWarningBlock() {
+        GameObject[] warnings = GameObject.FindGameObjectsWithTag("Warning");
+
+        foreach (GameObject warning in warnings) {
+            Destroy(warning);
+        }
+
         for (int i = 0; i < _warningBlocks.Length; i++) {
             if (_warningBlocks[i] != null) {
                 Destroy(_warningBlocks[i]);
@@ -238,6 +244,11 @@ public class SpiderBossController : MonoBehaviour, IBoss {
     private void Die() {
         _collider2D.enabled = false;
         _isDead = true;
+        GameObject[] spiders = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject spider in spiders) {
+            spider.transform.DOKill();
+            Destroy(spider);
+        }
 
         GetComponentInChildren<SpiderBossVisual>().Die();
     }

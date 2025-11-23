@@ -22,7 +22,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
     private void OnValidate() {
         _dir = SetDir(_direction);
-        SetMovingOrientation(_dir);
+        SetMovingOrientation(_dir, false);
     }
 
     private void Awake() {
@@ -31,7 +31,7 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
 
     private void Start() {
         _dir = SetDir(_direction);
-        SetMovingOrientation(_dir);
+        SetMovingOrientation(_dir, false);
     }
 
     private void Update() {
@@ -60,8 +60,12 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
         });
     }
 
-    public void SetMovingOrientation(Vector3 dir) {
+    public void SetMovingOrientation(Vector3 dir, bool setDirection) {
         _dir = dir;
+        if (setDirection) {
+            _direction = SetDirection(dir);
+        }
+
         transform.rotation = Quaternion.Euler(0, 0, dir.x != 0 ? -dir.x * 90 : dir.y < 0 ? 180 : 0);
     }
 
@@ -79,6 +83,14 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
             Direction.RIGHT => Vector3.right,
             _ => Vector3.zero,
         };
+    }
+
+    private Direction SetDirection(Vector3 dir) {
+        if (dir == Vector3.up) return Direction.UP;
+        if (dir == Vector3.down) return Direction.DOWN;
+        if (dir == Vector3.left) return Direction.LEFT;
+        if (dir == Vector3.right) return Direction.RIGHT;
+        return default;
     }
 
 
@@ -132,11 +144,11 @@ public class SpiderController : MonoBehaviour, IMobs, IImpulseObject {
     }
 
     private void Rotate() {
-        if (_waitTime > _speed) {
+        if (_waitTime > _speed + Random.Range(0, 0.1f)) {
             _waitTime = 0;
             _dir = -_dir;
             _rotate = false;
-            SetMovingOrientation(_dir);
+            SetMovingOrientation(_dir, false);
         } else {
             _waitTime += Time.deltaTime;
         }

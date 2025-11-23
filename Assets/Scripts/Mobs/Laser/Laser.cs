@@ -18,7 +18,7 @@ public class Laser : MonoBehaviour {
     private void RotateLaser() {
         if (_laserVisual.IsRotate()) {
             _spriteRenderer.sprite = _expanentedLaser;
-
+            Debug.Log("Rotating Laser");
             LaserGunController gun = GetComponentInParent<LaserGunController>();
             Vector3 rot = gun.transform.eulerAngles;
 

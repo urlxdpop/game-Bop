@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class MirrorController : MonoBehaviour
 {
-    [SerializeField] private Vector3 _dir;
+    [SerializeField] private Direction _direction;
+    
+    private Vector3 _dir;
 
     private void OnValidate() {
+        _dir = SetDir(_direction);
         SetOrientation();
     }
 
@@ -14,6 +17,16 @@ public class MirrorController : MonoBehaviour
 
     private void SetOrientation() {
         transform.rotation = Quaternion.Euler(_dir.y == -1 ? 0 : 180, _dir.x == 1 ? 0 : 180, 0);
+    }
+
+    private Vector3 SetDir(Direction dir) {
+        return dir switch {
+            Direction.UP => new(-1, 1),
+            Direction.DOWN => new(1, -1),
+            Direction.LEFT => new(-1, -1),
+            Direction.RIGHT => new(1, 1),
+            _ => Vector3.zero,
+        };
     }
 
     public Vector3 RotateRay(Vector3 dir) {

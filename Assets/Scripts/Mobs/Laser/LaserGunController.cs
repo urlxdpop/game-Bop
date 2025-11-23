@@ -2,11 +2,12 @@ using UnityEngine;
 
 [SelectionBase]
 public class LaserGunController : MonoBehaviour {
-    [SerializeField] private Vector3 _dir;
+    [SerializeField] private Direction _direction;
     [SerializeField] private LayerMask _foreground;
     [SerializeField] private LayerMask _mobs;
     [SerializeField] private GameObject _laser;
 
+    private Vector3 _dir;
     private Vector3[] _lasers;
     private Vector3[] _lasersDir;
     private Laser[] _Lasers;
@@ -16,11 +17,16 @@ public class LaserGunController : MonoBehaviour {
     private Vector3 _rotateLaser;
     private Vector3 _teleportedLaser;
 
+
     private void OnValidate() {
+        _dir = SetDir(_direction);
         transform.rotation = SetOrientation(_dir);
     }
 
     private void Start() {
+        _dir = SetDir(_direction);
+        transform.rotation = SetOrientation(_dir);
+
         _Lasers = new Laser[100];
         TraceLaserPath();
         SpawnLasers();
@@ -57,6 +63,16 @@ public class LaserGunController : MonoBehaviour {
 
     private Quaternion SetOrientation(Vector2 dir) {
         return Quaternion.Euler(0, 0, dir.y != 0 ? dir.y * 90 : dir.x < 0 ? 180 : 0);
+    }
+
+    private Vector3 SetDir(Direction dir) {
+        return dir switch {
+            Direction.UP => Vector3.up,
+            Direction.DOWN => Vector3.down,
+            Direction.LEFT => Vector3.left,
+            Direction.RIGHT => Vector3.right,
+            _ => Vector3.zero,
+        };
     }
 
     private void TraceLaserPath() {
@@ -187,7 +203,8 @@ public class LaserGunController : MonoBehaviour {
     }
 
     private bool IgnoreObject(Collider2D collider) {
-        return collider.GetComponent<ImpulseController>();
+        return collider.GetComponent<ImpulseController>() ||
+            collider.GetComponent<LaserIgnorer>();
     }
 
     private void Die() {
