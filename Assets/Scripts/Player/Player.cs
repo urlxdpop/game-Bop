@@ -162,6 +162,11 @@ public class Player : MonoBehaviour {
     }
 
     private void PlayerMovement() {
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            GameController.Instance.OpenMenu();
+            return;
+        }
+
         _portal = null;
         _inputVector = GameInput.Instance.GetMovementAction();
 

@@ -6,6 +6,6 @@ public class ReturnScene : MonoBehaviour
     [SerializeField] private LevelData _levelData;
 
     private void Start() {
-        SceneManager.LoadScene(_levelData.LevelName);
+        SceneManager.LoadScene(_levelData.levelName);
     }
 }

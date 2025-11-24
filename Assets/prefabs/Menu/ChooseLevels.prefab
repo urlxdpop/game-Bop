@@ -315,3 +315,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChooseLevel
   _LevelButton: {fileID: 7768920170862913027, guid: ea941dfc9c26d814e89f0092672d4214, type: 3}
+  _levelData: {fileID: 11400000, guid: bfc13ee2ef218634089c8ab615f808e6, type: 2}
+  _secretsData: {fileID: 11400000, guid: b836af77d8fd28840b4663d7bfd43554, type: 2}

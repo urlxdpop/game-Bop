@@ -18,4 +18,8 @@ public class SecretWayController : MonoBehaviour, IEvent
     public void SetNumberSecret(int number) {
         _numberSecret = number;
     }
+
+    public int GetNumberSecret() {
+        return _numberSecret;
+    }
 }

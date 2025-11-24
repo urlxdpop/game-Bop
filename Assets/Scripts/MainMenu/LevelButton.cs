@@ -7,8 +7,8 @@ public class LevelButton : MonoBehaviour
     private string _levelName;
     private Text _text;
 
-    public void SetData(string name) {
-        _levelName = name;
+    public void SetData(string name, string levelName) {
+        _levelName = levelName;
         _text = GetComponentInChildren<Text>();
         _text.text = name;
     }

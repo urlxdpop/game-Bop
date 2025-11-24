@@ -1,8 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SecretsController : MonoBehaviour
-{
+public class SecretsController : MonoBehaviour {
     public static SecretsController Instance { get; private set; }
 
     [SerializeField] private SecretsData _secretsData;
@@ -31,21 +31,16 @@ public class SecretsController : MonoBehaviour
     }
 
     public void SecretFound(SecretWayController secretWay) {
-        Vector3 pos = secretWay.transform.position;
+        int numberSecret = secretWay.GetNumberSecret();
 
-        int i = 0;
-        for (i = 0; i < _numSecretsInLevel; i++) {
-            if (_secretsData.SecretWayPosition[i] == pos) {
-                if (!_secretsData.IsSecretOpen[i]) {
-                    _numSecretsFound++;
-                    _secretsData.IsSecretOpen[i] = true;
+        if (!_secretsData.isSecretOpen[_level,numberSecret]) {
+            _numSecretsFound++;
+            _secretsData.SecretFound(SceneManager.GetActiveScene().name, numberSecret);
 
-                    _textNumSecrets.text = "Secret find: " + _numSecretsFound + " / " + _numSecretsInLevel;
-                    _timer = 0;
-                }
-                break;
-            }
+            _textNumSecrets.text = "Secret find: " + _numSecretsFound + " / " + _numSecretsInLevel;
+            _timer = 0;
         }
+
     }
 
     private void NumSecrets() {
@@ -54,19 +49,17 @@ public class SecretsController : MonoBehaviour
         int i = 0;
         foreach (var item in allObjects) {
             if (item.GetComponent<SecretWayController>()) {
-                _secretsData.SecretWayPosition[i] = item.transform.position;
-                _secretsData.NumSecretsInLevel[_level] = i + 1;
-                _secretsData.IsSecretOpen[i] = false;
                 item.GetComponent<SecretWayController>().SetNumberSecret(i);
                 i++;
             }
         }
 
+        _secretsData.SaveNumSecretInLevel(SceneManager.GetActiveScene().name, i);
         _numSecretsInLevel = i;
     }
 
     private void LevelName() {
-        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        string sceneName = SceneManager.GetActiveScene().name;
         string[] SplitScene = sceneName.Split('-');
         int head = int.Parse(SplitScene[0]) - 1;
         int act = int.Parse(SplitScene[1]) - 1;
@@ -77,10 +70,10 @@ public class SecretsController : MonoBehaviour
         if (_timer == 0) {
             _textBox.SetActive(true);
             _timer += Time.deltaTime;
-        } else { 
+        } else {
             if (_timer < _timeDisplay) {
                 _timer += Time.deltaTime;
-            } else if (_timer < _timeDisplay+1){
+            } else if (_timer < _timeDisplay + 1) {
                 _textBox.SetActive(false);
             }
         }

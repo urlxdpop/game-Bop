@@ -1,9 +1,10 @@
-using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ChooseLevel : MonoBehaviour {
     [SerializeField] private GameObject _LevelButton;
+    [SerializeField] private LevelData _levelData;
+    [SerializeField] private SecretsData _secretsData;
 
     private string[] _allLevels;
     private GameObject[] _buttons = new GameObject[10];
@@ -20,7 +21,7 @@ public class ChooseLevel : MonoBehaviour {
 
     public void NextPage() {
         _page++;
-        if(_page >= PAGES) {
+        if (_page >= PAGES) {
             _page = 0;
         }
         CreateLevelButtons();
@@ -55,7 +56,7 @@ public class ChooseLevel : MonoBehaviour {
                     act++;
                     _numLevels++;
                     continue;
-                }else {
+                } else {
                     break;
                 }
             }
@@ -71,11 +72,26 @@ public class ChooseLevel : MonoBehaviour {
             }
         }
         for (int i = _page * 10; i < (_page + 1) * 10; i++) {
-            if (_allLevels[i] == null) break;
+            if (_allLevels[i] == null || !_levelData.levelOpened[i]) continue;
             int j = i - _page * 10;
-            _buttons[j] = Instantiate(_LevelButton, new Vector3(transform.position.x, transform.position.y - 75*j, 0), transform.rotation, transform);
-            _buttons[j].name = _allLevels[i];
-            _buttons[j].GetComponent<LevelButton>().SetData(_allLevels[i]);
+
+
+            _buttons[j] = Instantiate(_LevelButton, new Vector3(transform.position.x, transform.position.y - 75 * j, 0), transform.rotation, transform);
+            if (_secretsData.numSecretsInLevel[i] != 0) {
+                int numSecretsFound = 0;
+                
+                for (int k = 0; k < _secretsData.numSecretsInLevel[i]; k++) {
+                    if (_secretsData.isSecretOpen[i,k]) {
+                        numSecretsFound++;
+                    }
+                }
+                _buttons[j].name = _allLevels[i] + $" ({numSecretsFound}/{_secretsData.numSecretsInLevel[i]})";
+                _buttons[j].GetComponent<LevelButton>().SetData(_buttons[j].name, _allLevels[i]);
+            } else {
+                _buttons[j].name = _allLevels[i];
+                _buttons[j].GetComponent<LevelButton>().SetData(_allLevels[i], _allLevels[i]);
+            }
+            
         }
     }
 

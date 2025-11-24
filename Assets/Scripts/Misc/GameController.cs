@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -5,6 +6,7 @@ public enum GameState {
     FREE_ROAM,
     DIALOG,
     END_GAME,
+    MENU
 }
 
 public enum Direction {
@@ -18,8 +20,10 @@ public class GameController : MonoBehaviour {
     public static GameController Instance { get; private set; }
 
     [SerializeField] private Tilemap _foregroundTilemap;
-    
+    [SerializeField] private LevelData _levelData;
+
     private GameObject _endGame;
+    private GameObject _menu;
     private GameState _gameState;
     private CameraController _cameraController;
 
@@ -28,9 +32,13 @@ public class GameController : MonoBehaviour {
 
         _endGame = GameObject.Find("EndGame");
         _endGame.SetActive(false);
+
     }
 
     private void Start() {
+        _menu = GetComponentInChildren<GameMenu>().gameObject;
+        _menu.SetActive(false);
+
         _gameState = GameState.FREE_ROAM;
 
         SubscribeForActionEvent();
@@ -48,6 +56,18 @@ public class GameController : MonoBehaviour {
 
     public void TheEndGame() {
         _gameState = GameState.END_GAME;
+        _levelData.LevelComplate(SceneManager.GetActiveScene().name, (int)Time.time);
+    }
+
+    public void OpenMenu() {
+        _menu.SetActive(true);
+        _gameState = GameState.MENU;
+        Player.Instance.StopMoving();
+    }
+
+    public void ResumeGame() {
+        _menu.SetActive(false);
+        _gameState = GameState.FREE_ROAM;
     }
 
     private void SetCameraLimits() {
@@ -85,6 +105,10 @@ public class GameController : MonoBehaviour {
             case GameState.END_GAME:
                 _endGame.SetActive(true);
                 break;
+            case GameState.MENU:
+                break;
         }
     }
+
+
 }
