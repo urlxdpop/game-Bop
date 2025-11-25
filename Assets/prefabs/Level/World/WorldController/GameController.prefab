@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 235526546186638596}
   - component: {fileID: 9029190980923571660}
   - component: {fileID: 783108536558793633}
+  - component: {fileID: -1915323049009695945}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -83,6 +84,24 @@ MonoBehaviour:
   _dialogAutor: {fileID: 162424949245199765}
   _dialogText: {fileID: 4118961744987816049}
   _lettersForSecond: 20
+--- !u!114 &-1915323049009695945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351770985261394208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d90341c2f25f6469c15439299c51ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DBRequest
+  _text: {fileID: 0}
+  _inputName: {fileID: 0}
+  _inputPassword: {fileID: 0}
+  _playerData: {fileID: 11400000, guid: 68c29fcf744105940b5d41d2d301b09b, type: 2}
+  _levelData: {fileID: 11400000, guid: bfc13ee2ef218634089c8ab615f808e6, type: 2}
+  _secretsData: {fileID: 11400000, guid: b836af77d8fd28840b4663d7bfd43554, type: 2}
 --- !u!1001 &468629578318596164
 PrefabInstance:
   m_ObjectHideFlags: 0

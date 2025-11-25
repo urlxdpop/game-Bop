@@ -57,6 +57,7 @@ public class GameController : MonoBehaviour {
     public void TheEndGame() {
         _gameState = GameState.END_GAME;
         _levelData.LevelComplate(SceneManager.GetActiveScene().name, (int)Time.time);
+        GetComponent<DBRequest>().SaveDataToDB();
     }
 
     public void OpenMenu() {

@@ -32,4 +32,17 @@ namespace SaveData {
             }
         }
     }
+
+    [System.Serializable]
+    public class PlayerData {
+        public int playerId;
+        public string playerName;
+        public int saveId;
+
+        public PlayerData() {
+            saveId = -1;
+            playerId = -1;
+            playerName = "";
+        }
+    }
 }

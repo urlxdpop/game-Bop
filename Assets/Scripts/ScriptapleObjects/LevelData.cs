@@ -42,8 +42,8 @@ public class LevelData : ScriptableObject
             i++;
         }
 
-        int head = Mathf.CeilToInt(i/15);
-        int act = (i%15)+1;
+        int head = Mathf.FloorToInt(i/15)+1;
+        int act = (i%15);
         levelName = $"{head}-{act}";
     }
 
