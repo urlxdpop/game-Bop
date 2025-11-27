@@ -21,11 +21,14 @@ public class GameController : MonoBehaviour {
 
     [SerializeField] private Tilemap _foregroundTilemap;
     [SerializeField] private LevelData _levelData;
+    [SerializeField] private SecretsData _secretData;
 
     private GameObject _endGame;
     private GameObject _menu;
     private GameState _gameState;
     private CameraController _cameraController;
+
+    private float _gameTime;
 
     private void Awake() {
         Instance = this;
@@ -36,6 +39,8 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
+        _gameTime = 0;
+
         _menu = GetComponentInChildren<GameMenu>().gameObject;
         _menu.SetActive(false);
 
@@ -54,9 +59,14 @@ public class GameController : MonoBehaviour {
         HandlerState();
     }
 
+    public float GameTime() {
+        return _gameTime;
+    }
+
     public void TheEndGame() {
         _gameState = GameState.END_GAME;
-        _levelData.LevelComplate(SceneManager.GetActiveScene().name, (int)Time.time);
+        _levelData.LevelComplate(SceneManager.GetActiveScene().name, (int)_gameTime);
+        _endGame.GetComponent<EndGameController>().SetData((int)_gameTime, _levelData, _secretData);
         GetComponent<DBRequest>().SaveDataToDB();
     }
 
@@ -99,9 +109,11 @@ public class GameController : MonoBehaviour {
         switch (_gameState) {
             case GameState.FREE_ROAM:
                 Player.Instance.HandlerUpdate();
+                _gameTime += Time.deltaTime;
                 break;
             case GameState.DIALOG:
                 DialogManager.Instance.HandleUpdate();
+                _gameTime += Time.deltaTime;
                 break;
             case GameState.END_GAME:
                 _endGame.SetActive(true);

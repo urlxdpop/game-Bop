@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2958333330429318447, guid: 6700c1000990b4e4d859f934d33d9d8c, type: 3}
+      propertyPath: _speed
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 2991676094341793795, guid: 6700c1000990b4e4d859f934d33d9d8c, type: 3}
       propertyPath: m_Name
       value: RedSpider

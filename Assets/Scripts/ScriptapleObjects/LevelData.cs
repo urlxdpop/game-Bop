@@ -28,7 +28,7 @@ public class LevelData : ScriptableObject
         int[] level = levelName.Split('-').Select(x => int.Parse(x)).ToArray();
         int levelIndex = (level[0] - 1) * 15 + (level[1] - 1);
 
-        levelOpened[levelIndex + 1] = true;
+        if (levelOpened[levelIndex]) levelOpened[levelIndex + 1] = true;
         this.levelName = level[1] < 15 ? $"{level[0]}-{level[1] + 1}" : $"{level[0] + 1}-1";
         minTimeForLevel[levelIndex] = minTimeForLevel[levelIndex] != 0 ? Mathf.Min(minTimeForLevel[levelIndex], time) : time;
         timeForAllLevels += time;

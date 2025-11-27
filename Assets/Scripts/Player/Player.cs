@@ -294,7 +294,7 @@ public class Player : MonoBehaviour {
     }
 
     private void CheckForEncounters() {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.01f, _interactLayer);
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.3f, _interactLayer);
         if (collider) {
             GameObject gameObject = collider.gameObject;
             _currentInteractableObject = gameObject;

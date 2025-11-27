@@ -56,6 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _foregroundTilemap: {fileID: 7200556785378656071}
   _levelData: {fileID: 11400000, guid: bfc13ee2ef218634089c8ab615f808e6, type: 2}
+  _secretData: {fileID: 11400000, guid: b836af77d8fd28840b4663d7bfd43554, type: 2}
 --- !u!114 &9029190980923571660
 MonoBehaviour:
   m_ObjectHideFlags: 0
