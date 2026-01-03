@@ -16,36 +16,66 @@ public class LaserGunController : MonoBehaviour {
     private bool _isDie;
     private Vector3 _rotateLaser;
     private Vector3 _teleportedLaser;
-
+    private bool _isOn = true;
 
     private void OnValidate() {
         _dir = SetDir(_direction);
         transform.rotation = SetOrientation(_dir);
+
+        _Lasers = new Laser[100];
     }
 
     private void Start() {
         _dir = SetDir(_direction);
         transform.rotation = SetOrientation(_dir);
 
-        _Lasers = new Laser[100];
         TraceLaserPath();
         SpawnLasers();
     }
 
     private void Update() {
-        if (!_isDie) {
-            if (!CollisionToDie()) {
-                TraceLaserPath();
-                if (_lastLaserTemp != _lastLaser) {
-                    SpawnLasers();
-                    _lastLaserTemp = _lastLaser == 0 && _lastLaserTemp == -1 ? -1 : _lastLaser;
-                }
+        if (_isDie || !_isOn) return;
+
+        if (!CollisionToDie()) {
+            TraceLaserPath();
+            if (_lastLaserTemp != _lastLaser) {
+                SpawnLasers();
+                _lastLaserTemp = _lastLaser == 0 && _lastLaserTemp == -1 ? -1 : _lastLaser;
             }
         }
     }
 
     public bool CheckLaserPosition(int number) {
         return number == _lastLaser;
+    }
+
+    public bool HaveLaser() {
+        return _Lasers[0];
+    }
+
+    public void InBoss() {
+        Off();
+    }
+
+    public void On() {
+        _isOn = true;
+        _lastLaserTemp = -1;
+    }
+
+    public void Off() {
+        _isOn = false;
+        RemoveLasers();
+    }
+
+    public Vector3[] Lasers() {
+        Vector3[] lasers = new Vector3[100];
+        int i = 0;
+
+        while (i < 13 && _lasers[i] != Vector3.zero) {
+            lasers[i] = _lasers[i++];
+        }
+
+        return lasers;
     }
 
     public Vector3 Dir() {

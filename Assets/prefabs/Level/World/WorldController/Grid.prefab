@@ -280,6 +280,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5118241331775579637, guid: 2e30dce377e8c1c47a3e7eaaf74fa5cf, type: 3}
+      propertyPath: m_TileColorArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118241331775579637, guid: 2e30dce377e8c1c47a3e7eaaf74fa5cf, type: 3}
+      propertyPath: m_TileMatrixArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118241331775579637, guid: 2e30dce377e8c1c47a3e7eaaf74fa5cf, type: 3}
+      propertyPath: m_TileSpriteArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118241331775579637, guid: 2e30dce377e8c1c47a3e7eaaf74fa5cf, type: 3}
       propertyPath: m_Tiles.Array.data[1].first.x
       value: 10
       objectReference: {fileID: 0}

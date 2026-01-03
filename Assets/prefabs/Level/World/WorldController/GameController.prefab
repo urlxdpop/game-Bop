@@ -111,17 +111,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1391249187021595104}
     m_Modifications:
-    - target: {fileID: 26159701260599608, guid: fce92dffd3501fe4b9a84c2e41428075, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4337516770950639373, guid: fce92dffd3501fe4b9a84c2e41428075, type: 3}
       propertyPath: m_Name
       value: Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4337516770950639373, guid: fce92dffd3501fe4b9a84c2e41428075, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4896122148355483635, guid: fce92dffd3501fe4b9a84c2e41428075, type: 3}
       propertyPath: m_LocalPosition.x
@@ -225,18 +217,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
-    - target: {fileID: 8287220731873340423, guid: d80a56b73430d824d8fe71d6b24ccf29, type: 3}
-      propertyPath: m_TileColorArray.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8287220731873340423, guid: d80a56b73430d824d8fe71d6b24ccf29, type: 3}
-      propertyPath: m_TileMatrixArray.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8287220731873340423, guid: d80a56b73430d824d8fe71d6b24ccf29, type: 3}
-      propertyPath: m_TileSpriteArray.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -325,10 +305,6 @@ PrefabInstance:
     - target: {fileID: 4939222244672016275, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
       propertyPath: m_Name
       value: EndGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 4939222244672016275, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8121635678037006423, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
       propertyPath: m_Pivot.x

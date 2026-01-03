@@ -36,8 +36,6 @@ public class DBController : MonoBehaviour {
         public string numSecretInLevel;
     }
 
-    // CREATE PLAYER
-
     public void CreatePlayer(string name, string password, GameData levelData, SaveData.SecretsData secretsData, Action<bool, string> callback) {
         StartCoroutine(CreatePlayerRequest(name, password, levelData, secretsData, callback));
     }
@@ -47,8 +45,6 @@ public class DBController : MonoBehaviour {
         string minTimeForLevelStr = IntMatrixToString(levelData.minTimeForLevel);
         string secretsOpenedStr = StringMatrixToString(secretsData.isSecretOpen);
         string numSecretsInLevelStr = IntMatrixToString(secretsData.numSecretsInLevel);
-
-        Debug.Log($"num Sec: {numSecretsInLevelStr}");
 
         WWWForm form = new();
         form.AddField("name", name);
@@ -83,10 +79,6 @@ public class DBController : MonoBehaviour {
 
         callback(true, "ok");
     }
-
-
-
-    // LOGIN
 
     public void ValidateLogin(string name, string password, Action<bool, int, string> callback) {
         StartCoroutine(LoginRequest(name, password, callback));
@@ -128,8 +120,6 @@ public class DBController : MonoBehaviour {
         callback(true, json.userId, null);
     }
 
-
-
     public void UploadData(int userId, GameData levelData, SaveData.SecretsData secretsData, System.Action<bool, string> callback) {
         StartCoroutine(UpdateDataRequest(userId, levelData, secretsData, callback));
     }
@@ -158,9 +148,6 @@ public class DBController : MonoBehaviour {
             callback(true, "ok");
         }
     }
-
-
-    // LOAD USER DATA
 
     public void LoadUserData(int id, Action<bool, SaveData.GameData, SaveData.SecretsData> callback) {
         StartCoroutine(GetUserDataRequest(id, callback));
@@ -242,8 +229,6 @@ public class DBController : MonoBehaviour {
         for (int j = 0; j < strArray.Length; j++) {
             result[j] = int.Parse(strArray[j]);
         }
-
-        Debug.Log (str);
 
         return result;
     }

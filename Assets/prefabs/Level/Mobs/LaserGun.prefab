@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849047452935527034}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 7, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811a3727813f5084fbc5175908915afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dir: {x: 1, y: 0, z: 0}
+  _direction: 0
   _foreground:
     serializedVersion: 2
     m_Bits: 2048
@@ -182,6 +182,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -203,6 +205,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1615436713
   m_SortingLayer: 5
   m_SortingOrder: 0
@@ -252,3 +255,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _laserGunController: {fileID: 4791801408351484047}
+  _activeLaser: {fileID: 21300000, guid: 207d66838461f56479169533f4a3e3e3, type: 3}
+  _deactiveLaser: {fileID: 21300000, guid: 7fd9243ab404fae4497da2348e497fef, type: 3}

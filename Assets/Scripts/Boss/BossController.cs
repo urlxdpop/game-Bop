@@ -4,6 +4,7 @@ public class BossController : MonoBehaviour {
     public static BossController Instance;
 
     private bool _bossFight;
+    private bool _start;
     private IBoss _boss;
 
     //Arena
@@ -15,10 +16,14 @@ public class BossController : MonoBehaviour {
     private void Start() {
         Instance = this;
         FindBoss();
-        if (_boss != null) FindArenaBlocks();
     }
 
     private void Update() {
+        if (!_start) {
+            _start = true;
+            if (_boss != null) FindArenaBlocks();
+        }
+
         if (!_bossFight && _boss != null) {
             PlayerInArena();
         } else if (_bossFight) {
@@ -56,15 +61,20 @@ public class BossController : MonoBehaviour {
             _endArena = end;
             _arenaHeight = Mathf.Abs((int)(start.y - end.y)) + 1;
             _arenaWidth = Mathf.Abs((int)(start.x - end.x)) + 1;
-
         } else {
             Debug.LogError("No arena blocks found");
+        }
+
+        LaserGunController[] laserGunController = FindObjectsByType<LaserGunController>(FindObjectsSortMode.None);
+        
+        foreach (LaserGunController laserGun in laserGunController) {
+            laserGun.InBoss();
         }
     }
 
     private void FindBoss() {
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-        if (boss != null){
+        if (boss != null) {
             _boss = boss.GetComponent<IBoss>();
             if (_boss == null) {
                 Debug.LogError("Boss does not implement IBoss interface");

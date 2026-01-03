@@ -5,7 +5,9 @@ using UnityEngine;
 public class EventButtonController : MonoBehaviour, IEvent {
     [SerializeField] private int _numberEvent;
     [SerializeField] private TextMeshProUGUI _textNumEvent;
+    [SerializeField] private bool _oneActivation;
 
+    private bool _finalActivation = false;
     private bool _isActive = false;
     private bool _startActiveState;
     private GameObject _obj;
@@ -19,7 +21,15 @@ public class EventButtonController : MonoBehaviour, IEvent {
         _startActiveState = false;
     }
 
-    private void Update() { 
+    private void Update() {
+        if (_finalActivation) return;
+
+        if (_oneActivation) {
+            if (_isActive != _startActiveState) {
+                _finalActivation = true;
+            }
+        }
+
         _boxActivated = CheckBox();
         CheckActive();
     }

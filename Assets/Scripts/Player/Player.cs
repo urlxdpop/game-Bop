@@ -68,6 +68,7 @@ public class Player : MonoBehaviour {
         _timeEndInvulneradility = 1f;
         _camera = GetComponentInChildren<Camera>().GetComponent<Transform>();
         _timeEndStunning = 1f;
+        _position = transform.position;
 
         CheckForEncounters();
     }
@@ -136,8 +137,13 @@ public class Player : MonoBehaviour {
     }
 
     public void StopMoving() {
-        _movingBox = false;
-        _isMoving = false;
+        BreakMove();
+    }
+
+    public void AddSomeHP() {
+        if (_hp == 1) {
+            _hp++;
+        }
     }
 
     public bool CheckGunNear(GameObject gun) {
@@ -162,7 +168,7 @@ public class Player : MonoBehaviour {
     }
 
     private void PlayerMovement() {
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             GameController.Instance.OpenMenu();
             return;
         }
@@ -222,7 +228,7 @@ public class Player : MonoBehaviour {
     }
 
     private bool IsWalkable(Vector3 targetPos, bool inSpike, bool inPortal) {
-        Collider2D[] collider = Physics2D.OverlapBoxAll(targetPos, new Vector2(0.5f, 0.5f),0, _foregroundLayer);
+        Collider2D[] collider = Physics2D.OverlapBoxAll(targetPos, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
 
         bool canWalk = true;
 
@@ -256,10 +262,7 @@ public class Player : MonoBehaviour {
         transform.DOMove(targetPos, _speed)
             .OnUpdate(() => {
                 if (StopMove()) {
-                    transform.position = _position;
-                    _isMoving = false;
-                    _movingBox = false;
-                    transform.DOKill();
+                    BreakMove();
                     return;
                 }
             })
@@ -271,8 +274,15 @@ public class Player : MonoBehaviour {
             });
     }
 
+    private void BreakMove() {
+        transform.position = _position;
+        _isMoving = false;
+        _movingBox = false;
+        transform.DOKill();
+    }
+
     private bool StopMove() {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f),0, _foregroundLayer);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
 
         bool isMoving = false;
 
@@ -281,7 +291,7 @@ public class Player : MonoBehaviour {
                 if (!CanWalk(collider)) isMoving = true;
             }
         }
-        
+
 
         return isMoving;
     }
@@ -403,10 +413,10 @@ public class Player : MonoBehaviour {
             box.GetComponent<IEvent>()?.Interact();
             return true;
         } else if (box.IsMoving()) {
-        if (box.DirMoveBox() == (Vector3)_inputVector) {
-            return true;
+            if (box.DirMoveBox() == (Vector3)_inputVector) {
+                return true;
+            }
         }
-    }
         return false;
     }
 
@@ -572,7 +582,7 @@ public class Player : MonoBehaviour {
     }
 
     private bool Interacted(Collider2D col) {
-        if(col.GetComponent<IEvent>() != null && !col.GetComponent<BoxController>() ||
+        if (col.GetComponent<IEvent>() != null && !col.GetComponent<BoxController>() ||
            col.GetComponent<IMobs>() != null ||
            col.GetComponent<IBoss>() != null ||
            col.GetComponent<Laser>() ||

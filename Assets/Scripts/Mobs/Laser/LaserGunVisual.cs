@@ -8,9 +8,14 @@ public class LaserGunVisual : MonoBehaviour
     private Animator _animator;
 
     private const string IS_DIE = "IsDie";
+    private const string ON = "On";
 
     private void Awake() {
         _animator = GetComponent<Animator>();
+    }
+
+    private void Update() {
+        _animator.SetBool(ON, _laserGunController.HaveLaser());
     }
 
     public void DestroyObj() {

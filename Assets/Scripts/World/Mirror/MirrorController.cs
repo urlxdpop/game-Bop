@@ -11,6 +11,11 @@ public class MirrorController : MonoBehaviour
         SetOrientation();
     }
 
+    private void Start() {
+        _dir = SetDir(_direction);
+        SetOrientation();
+    }
+
     public Vector3 GetDir() {
         return _dir;
     }
