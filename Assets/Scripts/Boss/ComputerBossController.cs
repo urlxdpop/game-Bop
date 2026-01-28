@@ -2,7 +2,8 @@ using TMPro;
 using UnityEngine;
 
 [SelectionBase]
-public class ComputerBossController : MonoBehaviour, IBoss {
+public class ComputerBossController : MonoBehaviour, IBoss
+{
     [SerializeField] private GameObject _warningBlock;
 
     private LaserGunController[] _laserGunControllerHor;
@@ -26,7 +27,8 @@ public class ComputerBossController : MonoBehaviour, IBoss {
     private const int SIMPLES_ATTACKS = 10;
     private const int HARD_ATTACKS = 10;
 
-    private void Start() {
+    private void Start()
+    {
         _laserGunControllerHor = new LaserGunController[12];
         _laserGunControllerVer = new LaserGunController[12];
         _laserGuns = new LaserGunController[24];
@@ -35,10 +37,12 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         _warningBlocks = new GameObject[2000];
     }
 
-    public void Fight() {
+    public void Fight()
+    {
         if (_isDied) return;
 
-        if (!_start) {
+        if (!_start)
+        {
             _start = true;
             FindLasers();
         }
@@ -48,19 +52,24 @@ public class ComputerBossController : MonoBehaviour, IBoss {
 
     public void SharpAttack() { }
 
-    public int Faze() {
+    public int Faze()
+    {
         return _fazesAttack;
     }
 
-    private void FindLasers() {
+    private void FindLasers()
+    {
         LaserGunController[] laserGunController = FindObjectsByType<LaserGunController>(FindObjectsSortMode.None);
 
         int x = 0;
         int y = 0;
-        foreach (LaserGunController laserGun in laserGunController) {
-            if (laserGun.transform.rotation == Quaternion.Euler(0, 0, -90)) {
+        foreach (LaserGunController laserGun in laserGunController)
+        {
+            if (laserGun.transform.rotation == Quaternion.Euler(0, 0, -90))
+            {
                 _laserGunControllerHor[x++] = laserGun;
-            } else {
+            } else
+            {
                 _laserGunControllerVer[y++] = laserGun;
             }
         }
@@ -69,54 +78,71 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         _laserGunControllerVer = SortedLaserGuns(_laserGunControllerVer);
     }
 
-    private void Attack() {
-        if (_numAttacks >= 12) {
+    private void Attack()
+    {
+        if (_numAttacks >= 12)
+        {
             _numAttacks = 0;
             _fazesAttack++;
-            if (_fazesAttack == 1) {
+            if (_fazesAttack == 1)
+            {
                 _timer = 0.7f;
-            } else if (_fazesAttack == 2) {
+            } else if (_fazesAttack == 2)
+            {
                 _timer = 0.5f;
-            } else {
+            } else
+            {
                 Die();
             }
         }
 
         _attackTime += Time.deltaTime;
 
-        if (_fazesAttack <= 1) {
+        if (_fazesAttack <= 1)
+        {
             SimpleAttack();
-        } else {
+        } else
+        {
             HardAttack();
         }
     }
 
-    private void ActivatedLaser() {
-        if (_fazesAttack == 0) {
+    private void ActivatedLaser()
+    {
+        if (_fazesAttack == 0)
+        {
             SimpleAttacks();
             Warning();
-        } else if (_fazesAttack == 1) {
+        } else if (_fazesAttack == 1)
+        {
             SimpleAttacks();
             Warning();
         }
     }
 
-    private void SimpleAttack() {
-        if (!_attacked && !_warning) {
-            if (_attackTime >= _timer) {
+    private void SimpleAttack()
+    {
+        if (!_attacked && !_warning)
+        {
+            if (_attackTime >= _timer)
+            {
                 _warning = true;
                 _attackTime = 0;
                 ActivatedLaser();
             }
-        } else if (_warning) {
-            if (_attackTime >= _timer) {
+        } else if (_warning)
+        {
+            if (_attackTime >= _timer)
+            {
                 _attacked = true;
                 _warning = false;
                 _attackTime = 0;
                 SpawnLasers();
             }
-        } else {
-            if (_attackTime >= _timer) {
+        } else
+        {
+            if (_attackTime >= _timer)
+            {
                 _attacked = false;
                 _attackTime = 0;
                 OffLasers();
@@ -125,10 +151,12 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void SimpleAttacks() {
+    private void SimpleAttacks()
+    {
         _attackType = Random.Range(0, SIMPLES_ATTACKS);
 
-        switch (_attackType) {
+        switch (_attackType)
+        {
             case 0:
                 SetLasersForSimpleAttack(0, 0, 1, 1);
                 break;
@@ -162,11 +190,14 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void HardAttack() {
-        if (_attackTime >= _timer) {
+    private void HardAttack()
+    {
+        if (_attackTime >= _timer)
+        {
             _attackTime = 0;
 
-            if (_stageAttack == 0) {
+            if (_stageAttack == 0)
+            {
                 _attackType = Random.Range(0, HARD_ATTACKS);
             }
 
@@ -176,8 +207,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void HardAttacks() {
-        switch (_attackType) {
+    private void HardAttacks()
+    {
+        switch (_attackType)
+        {
             case 0:
                 Attack0(Random.Range(0, 2));
                 break;
@@ -211,27 +244,34 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void OffLasers() {
+    private void OffLasers()
+    {
         LaserGunController[] laserGuns = FindObjectsByType<LaserGunController>(FindObjectsSortMode.None);
 
-        foreach (LaserGunController laserGun in laserGuns) {
+        foreach (LaserGunController laserGun in laserGuns)
+        {
             if (laserGun != null) laserGun.Off();
         }
 
         _numLasers = 0;
     }
 
-    private void SetLasersForSimpleAttack(int gapHor, int gapVer, int numToIntervalHor, int numToIntervalVer, int intervalHor = 1, int intervalVer = 1) {
+    private void SetLasersForSimpleAttack(int gapHor, int gapVer, int numToIntervalHor, int numToIntervalVer, int intervalHor = 1, int intervalVer = 1)
+    {
         int interval = 0;
         int gap = 0;
 
-        for (int i = gapHor; i < _laserGunControllerHor.Length; i++) {
-            if (interval < numToIntervalHor) {
+        for (int i = gapHor; i < _laserGunControllerHor.Length; i++)
+        {
+            if (interval < numToIntervalHor)
+            {
                 interval++;
                 _laserGuns[_numLasers++] = _laserGunControllerHor[i];
-            } else {
+            } else
+            {
                 gap++;
-                if (gap >= intervalHor) {
+                if (gap >= intervalHor)
+                {
                     interval = 0;
                     gap = 0;
                 }
@@ -241,13 +281,17 @@ public class ComputerBossController : MonoBehaviour, IBoss {
 
         interval = 0;
         gap = 0;
-        for (int i = gapVer; i < _laserGunControllerVer.Length; i++) {
-            if (interval < numToIntervalVer) {
+        for (int i = gapVer; i < _laserGunControllerVer.Length; i++)
+        {
+            if (interval < numToIntervalVer)
+            {
                 interval++;
                 _laserGuns[_numLasers++] = _laserGunControllerVer[i];
-            } else {
+            } else
+            {
                 gap++;
-                if (gap >= intervalVer) {
+                if (gap >= intervalVer)
+                {
                     interval = 0;
                     gap = 0;
                 }
@@ -255,14 +299,17 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Warning() {
+    private void Warning()
+    {
         Vector3[] warningPos = new Vector3[2000];
         int numWarning = 0;
 
-        for (int i = 0; i < _numLasers; i++) {
+        for (int i = 0; i < _numLasers; i++)
+        {
             Vector3[] laserPositions = _laserGuns[i].Lasers();
 
-            for (int j = 1; j < laserPositions.Length; j++) {
+            for (int j = 1; j < laserPositions.Length; j++)
+            {
                 warningPos[numWarning + j] = laserPositions[j];
                 _warningBlocks[numWarning + j] = Instantiate(_warningBlock, laserPositions[j], Quaternion.AngleAxis(0, Vector3.forward));
             }
@@ -271,15 +318,19 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void DeactivatedWarning() {
+    private void DeactivatedWarning()
+    {
         GameObject[] warnings = GameObject.FindGameObjectsWithTag("Warning");
 
-        foreach (GameObject warning in warnings) {
+        foreach (GameObject warning in warnings)
+        {
             Destroy(warning);
         }
 
-        for (int i = 0; i < _warningBlocks.Length; i++) {
-            if (_warningBlocks[i] != null) {
+        for (int i = 0; i < _warningBlocks.Length; i++)
+        {
+            if (_warningBlocks[i] != null)
+            {
                 Destroy(_warningBlocks[i]);
                 _warningBlocks[i] = null;
             }
@@ -288,19 +339,23 @@ public class ComputerBossController : MonoBehaviour, IBoss {
 
     }
 
-    private void SpawnLasers() {
+    private void SpawnLasers()
+    {
         DeactivatedWarning();
 
-        for (int i = 0; i < _numLasers; i++) {
+        for (int i = 0; i < _numLasers; i++)
+        {
             _laserGuns[i].On();
         }
 
         _numLasers = 0;
     }
 
-    private LaserGunController[] SortedLaserGuns(LaserGunController[] laserGuns) {
+    private LaserGunController[] SortedLaserGuns(LaserGunController[] laserGuns)
+    {
 
-        System.Array.Sort(laserGuns, (a, b) => {
+        System.Array.Sort(laserGuns, (a, b) =>
+        {
             int cmp = a.transform.position.x.CompareTo(b.transform.position.x);
             if (cmp == 0)
                 cmp = a.transform.position.y.CompareTo(b.transform.position.y);
@@ -310,15 +365,18 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         return laserGuns;
     }
 
-    private void Die() { 
+    private void Die()
+    {
         EventController.Instance.EventTriggerActivated(1);
         Player.Instance.AddSomeHP();
         OffLasers();
         _isDied = true;
     }
 
-    private void Attack0(int variant) {
-        switch (_stageAttack) {
+    private void Attack0(int variant)
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 _timer = 0.7f;
                 SetLasersForSimpleAttack(variant, variant, 1, 1);
@@ -344,8 +402,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack1() {
-        switch (_stageAttack) {
+    private void Attack1()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(12, 2, 1, 1, 2, 2);
                 Warning();
@@ -375,8 +435,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack2() {
-        switch (_stageAttack) {
+    private void Attack2()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(0, 12, 1, 1, 2, 2);
                 Warning();
@@ -406,8 +468,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack3() {
-        switch (_stageAttack) {
+    private void Attack3()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(2, 12, 2, 1);
                 Warning();
@@ -441,8 +505,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack4() {
-        switch (_stageAttack) {
+    private void Attack4()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(12, 0, 2, 1);
                 Warning();
@@ -476,8 +542,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack5() {
-        switch (_stageAttack) {
+    private void Attack5()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(0, 0, 1, 1, 1, 10);
                 Warning();
@@ -514,8 +582,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack6() {
-        switch (_stageAttack) {
+    private void Attack6()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(0, 0, 1, 1, 10, 1);
                 Warning();
@@ -552,8 +622,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack7() {
-        switch (_stageAttack) {
+    private void Attack7()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(12, 0, 1, 2, 2, 1);
                 Warning();
@@ -587,8 +659,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack8() {
-        switch (_stageAttack) {
+    private void Attack8()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(12, 1, 1, 2, 2, 1);
                 Warning();
@@ -622,8 +696,10 @@ public class ComputerBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Attack9() {
-        switch (_stageAttack) {
+    private void Attack9()
+    {
+        switch (_stageAttack)
+        {
             case 1:
                 SetLasersForSimpleAttack(1, 12, 2, 1, 1, 2);
                 Warning();

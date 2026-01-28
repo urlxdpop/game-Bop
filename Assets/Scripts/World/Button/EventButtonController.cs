@@ -2,7 +2,8 @@ using TMPro;
 using UnityEngine;
 
 [SelectionBase]
-public class EventButtonController : MonoBehaviour, IEvent {
+public class EventButtonController : MonoBehaviour, IEvent
+{
     [SerializeField] private int _numberEvent;
     [SerializeField] private TextMeshProUGUI _textNumEvent;
     [SerializeField] private bool _oneActivation;
@@ -13,19 +14,24 @@ public class EventButtonController : MonoBehaviour, IEvent {
     private GameObject _obj;
     private bool _boxActivated;
 
-    private void OnValidate() {
+    private void OnValidate()
+    {
         _textNumEvent.text = _numberEvent.ToString();
     }
 
-    private void Start() {
+    private void Start()
+    {
         _startActiveState = false;
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (_finalActivation) return;
 
-        if (_oneActivation) {
-            if (_isActive != _startActiveState) {
+        if (_oneActivation)
+        {
+            if (_isActive != _startActiveState)
+            {
                 _finalActivation = true;
             }
         }
@@ -34,35 +40,45 @@ public class EventButtonController : MonoBehaviour, IEvent {
         CheckActive();
     }
 
-    public void Interact() {
+    public void Interact()
+    {
         _isActive = !_startActiveState;
 
         EventController.Instance.EventTriggerActivated(_numberEvent);
     }
 
-    public bool IsActive() {
+    public bool IsActive()
+    {
         return _isActive;
     }
 
-    private void CheckActive() {
-        if (_isActive != _startActiveState) {
-            if (gameObject != Player.Instance.CurrentInteractableObject() && !_boxActivated) {
+    private void CheckActive()
+    {
+        if (_isActive != _startActiveState)
+        {
+            if (gameObject != Player.Instance.CurrentInteractableObject() && !_boxActivated)
+            {
                 _isActive = _startActiveState;
                 EventController.Instance.EventTriggerDeactivated(_numberEvent);
             }
         }
     }
 
-    private bool CheckBox() {
+    private bool CheckBox()
+    {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0);
-        foreach (var collider in colliders) {
-            if (MobsOrBox(collider)) {
-                if (collider.gameObject != _obj) {
+        foreach (var collider in colliders)
+        {
+            if (MobsOrBox(collider))
+            {
+                if (collider.gameObject != _obj)
+                {
                     _obj = collider.gameObject;
                     _isActive = !_startActiveState;
                     EventController.Instance.EventTriggerActivated(_numberEvent);
                     return true;
-                } else {
+                } else
+                {
                     return true;
                 }
             }
@@ -71,12 +87,15 @@ public class EventButtonController : MonoBehaviour, IEvent {
         return false;
     }
 
-    private bool MobsOrBox(Collider2D collider) {
-        if (GetComponent<MobsButton>()) {
+    private bool MobsOrBox(Collider2D collider)
+    {
+        if (GetComponent<MobsButton>())
+        {
             if (collider.GetComponent<SpiderController>() ||
                 collider.GetComponent<CannonController>() ||
                 collider.GetComponent<LaserGunController>()) return true;
-        } else {
+        } else
+        {
             if (collider.GetComponent<BoxController>()) return true;
         }
 

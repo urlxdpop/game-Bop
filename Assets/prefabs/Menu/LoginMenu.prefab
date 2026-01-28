@@ -532,7 +532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8241911427867904897
 RectTransform:
   m_ObjectHideFlags: 0
@@ -567,10 +567,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 735539547319818203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d90341c2f25f6469c15439299c51ad, type: 3}
+  m_Script: {fileID: 11500000, guid: d4dc08991a05a77499c7a64d193cfd70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DBRequest
-  _text: {fileID: 3207699412385554846}
+  _message: {fileID: 3207699412385554846}
   _inputName: {fileID: 1080096412332524103}
   _inputPassword: {fileID: 3229166270338974252}
   _playerData: {fileID: 11400000, guid: 68c29fcf744105940b5d41d2d301b09b, type: 2}
@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 632815103521680954}
   - component: {fileID: 3207699412385554846}
   m_Layer: 5
-  m_Name: ErrorText
+  m_Name: MessageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

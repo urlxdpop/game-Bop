@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 235526546186638596}
   - component: {fileID: 9029190980923571660}
   - component: {fileID: 783108536558793633}
-  - component: {fileID: -1915323049009695945}
+  - component: {fileID: 494905965148725966}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -85,7 +85,7 @@ MonoBehaviour:
   _dialogAutor: {fileID: 162424949245199765}
   _dialogText: {fileID: 4118961744987816049}
   _lettersForSecond: 20
---- !u!114 &-1915323049009695945
+--- !u!114 &494905965148725966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,10 +94,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3351770985261394208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d90341c2f25f6469c15439299c51ad, type: 3}
+  m_Script: {fileID: 11500000, guid: d4dc08991a05a77499c7a64d193cfd70, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DBRequest
-  _text: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::DBPlayerRequest
+  _message: {fileID: 0}
   _inputName: {fileID: 0}
   _inputPassword: {fileID: 0}
   _playerData: {fileID: 11400000, guid: 68c29fcf744105940b5d41d2d301b09b, type: 2}

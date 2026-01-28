@@ -2,21 +2,24 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public enum GameState {
+public enum GameState
+{
     FREE_ROAM,
     DIALOG,
     END_GAME,
     MENU
 }
 
-public enum Direction {
+public enum Direction
+{
     UP,
     DOWN,
     LEFT,
     RIGHT,
 }
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
     public static GameController Instance { get; private set; }
 
     [SerializeField] private Tilemap _foregroundTilemap;
@@ -30,7 +33,8 @@ public class GameController : MonoBehaviour {
 
     private float _gameTime;
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
 
         _endGame = GameObject.Find("EndGame");
@@ -38,7 +42,8 @@ public class GameController : MonoBehaviour {
 
     }
 
-    private void Start() {
+    private void Start()
+    {
         _gameTime = 0;
 
         _menu = GetComponentInChildren<GameMenu>().gameObject;
@@ -51,38 +56,46 @@ public class GameController : MonoBehaviour {
         SetCameraLimits();
     }
 
-    private void Update() {
-        if (_cameraController == null) {
+    private void Update()
+    {
+        if (_cameraController == null)
+        {
             SetCameraLimits();
         }
 
         HandlerState();
     }
 
-    public float GameTime() {
+    public float GameTime()
+    {
         return _gameTime;
     }
 
-    public void TheEndGame() {
+    public void TheEndGame()
+    {
         _gameState = GameState.END_GAME;
         _levelData.LevelComplate(SceneManager.GetActiveScene().name, (int)_gameTime);
         _endGame.GetComponent<EndGameController>().SetData((int)_gameTime, _levelData, _secretData);
-        GetComponent<DBRequest>().SaveDataToDB();
+        GetComponent<DBPlayerRequest>().SaveDataToDB();
     }
 
-    public void OpenMenu() {
+    public void OpenMenu()
+    {
         _menu.SetActive(true);
         _gameState = GameState.MENU;
         Player.Instance.StopMoving();
     }
 
-    public void ResumeGame() {
+    public void ResumeGame()
+    {
         _menu.SetActive(false);
         _gameState = GameState.FREE_ROAM;
     }
 
-    private void SetCameraLimits() {
-        if (Camera.main != null && Camera.main.TryGetComponent<CameraController>(out var component)) {
+    private void SetCameraLimits()
+    {
+        if (Camera.main != null && Camera.main.TryGetComponent<CameraController>(out var component))
+        {
             _cameraController = component;
             _foregroundTilemap.CompressBounds();
             _cameraController.SetLimit(
@@ -94,19 +107,24 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    private void SubscribeForActionEvent() {
-        DialogManager.Instance.OnShowDialog += () => {
+    private void SubscribeForActionEvent()
+    {
+        DialogManager.Instance.OnShowDialog += () =>
+        {
             _gameState = GameState.DIALOG;
             Player.Instance.StopMoving();
         };
 
-        DialogManager.Instance.OnHideDialog += () => {
+        DialogManager.Instance.OnHideDialog += () =>
+        {
             if (_gameState == GameState.DIALOG) _gameState = GameState.FREE_ROAM;
         };
     }
 
-    private void HandlerState() {
-        switch (_gameState) {
+    private void HandlerState()
+    {
+        switch (_gameState)
+        {
             case GameState.FREE_ROAM:
                 Player.Instance.HandlerUpdate();
                 _gameTime += Time.deltaTime;

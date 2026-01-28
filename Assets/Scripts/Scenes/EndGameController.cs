@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -46,6 +47,7 @@ public class EndGameController : MonoBehaviour {
     }
 
     public void NextGame() {
+        DOTween.KillAll();
         string sceneName = SceneManager.GetActiveScene().name;
 
         string[] splitScene = sceneName.Split('-');

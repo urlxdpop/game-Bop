@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [SelectionBase]
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
     public static Player Instance { get; private set; }
 
     [SerializeField] private float _speed = 0.5f;
@@ -53,7 +54,8 @@ public class Player : MonoBehaviour {
     private bool _inPortal;
     private PortalController _portal;
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
         _maxHp = _hp;
         _oxygen = 5;
@@ -62,7 +64,8 @@ public class Player : MonoBehaviour {
         _damageVisual = GetComponentInChildren<PlayerDamageVisual>();
     }
 
-    private void Start() {
+    private void Start()
+    {
         _lastButton = "x";
         _currentPos = transform.position;
         _timeEndInvulneradility = 1f;
@@ -73,8 +76,10 @@ public class Player : MonoBehaviour {
         CheckForEncounters();
     }
 
-    public void HandlerUpdate() {
-        if (!_isMoving && !_stunning) {
+    public void HandlerUpdate()
+    {
+        if (!_isMoving && !_stunning)
+        {
             PlayerMovement();
         }
 
@@ -85,73 +90,92 @@ public class Player : MonoBehaviour {
         InWall();
     }
 
-    public Vector2 InputVector() {
+    public Vector2 InputVector()
+    {
         return _inputVector;
     }
 
-    public bool IsMoving() {
+    public bool IsMoving()
+    {
         return _isMoving;
     }
 
-    public bool MovingBox() {
+    public bool MovingBox()
+    {
         return _movingBox;
     }
 
-    public Vector2 CurrentPos() {
+    public Vector2 CurrentPos()
+    {
         return _currentPos;
     }
 
-    public GameObject CurrentInteractableObject() {
+    public GameObject CurrentInteractableObject()
+    {
         return _currentInteractableObject;
     }
 
-    public float Speed() {
+    public float Speed()
+    {
         return _speed;
     }
 
-    public bool CheckCollision(GameObject gameObject, Vector3 pos) {
+    public bool CheckCollision(GameObject gameObject, Vector3 pos)
+    {
         Collider2D collider = Physics2D.OverlapCircle(pos != Vector3.zero ? pos : transform.position, 0.2f);
         if (collider) return collider.gameObject == gameObject;
         return false;
     }
 
-    public void StunningPlayer() {
+    public void StunningPlayer()
+    {
         _stunning = true;
         _webStunning = true;
     }
 
-    public int GetHP() {
+    public int GetHP()
+    {
         return _hp;
     }
 
-    public int GetOxygen() {
+    public int GetOxygen()
+    {
         return _oxygen;
     }
 
-    public int GetMaxHP() {
+    public int GetMaxHP()
+    {
         return _maxHp;
     }
 
-    public void InWater() {
+    public void InWater()
+    {
         _inWater = true;
     }
 
-    public void StopMoving() {
+    public void StopMoving()
+    {
         BreakMove();
     }
 
-    public void AddSomeHP() {
-        if (_hp == 1) {
+    public void AddSomeHP()
+    {
+        if (_hp == 1)
+        {
             _hp++;
         }
     }
 
-    public bool CheckGunNear(GameObject gun) {
+    public bool CheckGunNear(GameObject gun)
+    {
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(transform.position, new Vector2(7f, 7f), _mobsLayer);
 
-        foreach (Collider2D col in collider2Ds) {
-            if (col) {
-                if (col.gameObject == gun) {
+        foreach (Collider2D col in collider2Ds)
+        {
+            if (col)
+            {
+                if (col.gameObject == gun)
+                {
                     return true;
                 }
             }
@@ -160,15 +184,18 @@ public class Player : MonoBehaviour {
         return false;
     }
 
-    public void Die() {
+    public void Die()
+    {
         DOTween.KillAll();
         DOTween.Clear(true);
         GameInput.Instance.Disable();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void PlayerMovement() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+    private void PlayerMovement()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             GameController.Instance.OpenMenu();
             return;
         }
@@ -178,15 +205,18 @@ public class Player : MonoBehaviour {
 
         SetDominantOrientation();
 
-        if (_inputVector != Vector2.zero) {
+        if (_inputVector != Vector2.zero)
+        {
             OnRotate?.Invoke(this, EventArgs.Empty);
             Vector3 targetPos = transform.position;
 
             targetPos.x += _inputVector.x;
             targetPos.y += _inputVector.y;
 
-            if (IsWalkable(targetPos, false, false)) {
-                if (_portal != null) {
+            if (IsWalkable(targetPos, false, false))
+            {
+                if (_portal != null)
+                {
                     Teleported();
                 }
                 Move(targetPos);
@@ -195,50 +225,65 @@ public class Player : MonoBehaviour {
 
     }
 
-    private void SetDominantOrientation() {
-        if (_inputVector.x != 0 && _inputVector.y != 0) {
-            if (_lastButton == "x") {
+    private void SetDominantOrientation()
+    {
+        if (_inputVector.x != 0 && _inputVector.y != 0)
+        {
+            if (_lastButton == "x")
+            {
                 _inputVector.x = 0;
                 _inputVector.y = Mathf.Ceil(_inputVector.y);
                 _lastButton = "y";
-            } else {
+            } else
+            {
                 _inputVector.y = 0;
                 _inputVector.x = Mathf.Ceil(_inputVector.x);
                 _lastButton = "x";
             }
-        } else if (_inputVector.x != 0) {
+        } else if (_inputVector.x != 0)
+        {
             _lastButton = "x";
-        } else {
+        } else
+        {
             _lastButton = "y";
         }
     }
 
-    private void SkillsActivated() {
-        if (Input.GetKey(KeyCode.Space)) {
-            if (!_skills.IsActive()) {
+    private void SkillsActivated()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (!_skills.IsActive())
+            {
                 _skills.DestroyYourself();
                 CheckForDestroy();
             }
-        } else if (Input.GetKey(KeyCode.LeftShift)) {
-            if (!_skills.IsActive()) {
+        } else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (!_skills.IsActive())
+            {
                 _skills.Magnet();
                 CheckForMagnet();
             }
         }
     }
 
-    private bool IsWalkable(Vector3 targetPos, bool inSpike, bool inPortal) {
+    private bool IsWalkable(Vector3 targetPos, bool inSpike, bool inPortal)
+    {
         Collider2D[] collider = Physics2D.OverlapBoxAll(targetPos, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
 
         bool canWalk = true;
 
-        foreach (Collider2D col in collider) {
-            if (col) {
+        foreach (Collider2D col in collider)
+        {
+            if (col)
+            {
                 if (!inPortal) PortalCollider(col);
                 WebCollider(col);
                 if (SpikeCollider(col, inSpike)) canWalk = false;
                 if (!CanWalk(col)) canWalk = false;
-                if (MoveBox(col)) {
+                if (MoveBox(col))
+                {
                     canWalk = true;
                     _movingBox = true;
                 }
@@ -249,8 +294,10 @@ public class Player : MonoBehaviour {
         return canWalk;
     }
 
-    private void Move(Vector3 targetPos) {
-        if (_inPortal) {
+    private void Move(Vector3 targetPos)
+    {
+        if (_inPortal)
+        {
             _inPortal = false;
             return;
         }
@@ -260,13 +307,16 @@ public class Player : MonoBehaviour {
         _position = transform.position;
 
         transform.DOMove(targetPos, _speed)
-            .OnUpdate(() => {
-                if (StopMove()) {
+            .OnUpdate(() =>
+            {
+                if (StopMove())
+                {
                     BreakMove();
                     return;
                 }
             })
-            .OnComplete(() => {
+            .OnComplete(() =>
+            {
                 transform.position = targetPos;
                 _isMoving = false;
                 _movingBox = false;
@@ -274,20 +324,24 @@ public class Player : MonoBehaviour {
             });
     }
 
-    private void BreakMove() {
+    private void BreakMove()
+    {
         transform.position = _position;
         _isMoving = false;
         _movingBox = false;
         transform.DOKill();
     }
 
-    private bool StopMove() {
+    private bool StopMove()
+    {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0, _foregroundLayer);
 
         bool isMoving = false;
 
-        foreach (Collider2D collider in colliders) {
-            if (collider) {
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider)
+            {
                 if (!CanWalk(collider)) isMoving = true;
             }
         }
@@ -296,43 +350,54 @@ public class Player : MonoBehaviour {
         return isMoving;
     }
 
-    private bool CanWalk(Collider2D collider) {
+    private bool CanWalk(Collider2D collider)
+    {
         return collider.GetComponent<ImpulseController>() ||
             collider.GetComponent<WebController>() ||
             collider.GetComponent<SpikeController>() ||
             collider.GetComponent<PortalController>();
     }
 
-    private void CheckForEncounters() {
+    private void CheckForEncounters()
+    {
         Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.3f, _interactLayer);
-        if (collider) {
+        if (collider)
+        {
             GameObject gameObject = collider.gameObject;
             _currentInteractableObject = gameObject;
 
             gameObject.GetComponent<IEvent>()?.Interact();
-        } else {
+        } else
+        {
             _currentInteractableObject = null;
         }
     }
 
-    private void CheckForDestroy() {
+    private void CheckForDestroy()
+    {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(_currentPos, new Vector2(2, 2), _foregroundLayer);
 
-        foreach (Collider2D collider in colliders) {
+        foreach (Collider2D collider in colliders)
+        {
             GameObject gameObject = collider.gameObject;
             if (gameObject.GetComponent<CollipsibleBlockController>()) gameObject.GetComponent<CollipsibleBlockController>().GetComponent<IEvent>().Interact();
         }
     }
 
-    private void CheckForMagnet() {
+    private void CheckForMagnet()
+    {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(_currentPos, new Vector2(4, 4), _foregroundLayer);
 
-        foreach (Collider2D collider in colliders) {
+        foreach (Collider2D collider in colliders)
+        {
             GameObject gameObject = collider.gameObject;
-            if (gameObject.GetComponent<BoxController>()) {
+            if (gameObject.GetComponent<BoxController>())
+            {
                 Vector3 distance = IsTrueDistance((Vector3)_currentPos - gameObject.transform.position);
-                if (distance != Vector3.zero) {
-                    if (gameObject.GetComponent<BoxController>().CanMagnet(distance)) {
+                if (distance != Vector3.zero)
+                {
+                    if (gameObject.GetComponent<BoxController>().CanMagnet(distance))
+                    {
                         gameObject.GetComponent<BoxController>().GetComponent<IEvent>().Interact();
                     }
                 }
@@ -340,32 +405,42 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void CheckMobs() {
-        if (_invulneradility) {
+    private void CheckMobs()
+    {
+        if (_invulneradility)
+        {
             _timeInvulneradility += Time.deltaTime;
-            if (_timeInvulneradility >= _timeEndInvulneradility) {
+            if (_timeInvulneradility >= _timeEndInvulneradility)
+            {
                 _timeInvulneradility = 0;
                 _invulneradility = false;
             }
-        } else {
+        } else
+        {
             Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.2f, _mobsLayer);
 
-            if (collider) {
+            if (collider)
+            {
                 TakeDamage();
             }
         }
     }
 
-    private void CheckBoss() {
+    private void CheckBoss()
+    {
         Stunning();
-        if (BossController.Instance.IsBossFight() && !_stunning) {
+        if (BossController.Instance.IsBossFight() && !_stunning)
+        {
             Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.2f, _bossLayer);
-            if (collider) {
+            if (collider)
+            {
                 TakeDamage();
-                if (collider.GetComponent<SpiderBossController>()) {
+                if (collider.GetComponent<SpiderBossController>())
+                {
                     Vector3 pos = collider.transform.position;
 
-                    if (Mathf.Abs(pos.x - transform.position.x) < 0.5f && Mathf.Abs(pos.y - transform.position.y) < 0.5f) {
+                    if (Mathf.Abs(pos.x - transform.position.x) < 0.5f && Mathf.Abs(pos.y - transform.position.y) < 0.5f)
+                    {
                         transform.position = pos;
                         _stunning = true;
                         _dirFliesAway = ComputeDirForFliesAway();
@@ -375,14 +450,20 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private Vector3 IsTrueDistance(Vector3 distance) {
-        if (Mathf.Abs(distance.x) == 2 || Mathf.Abs(distance.y) == 2) {
-            if (Mathf.Abs(distance.x) == 2 && Mathf.Abs(distance.y) == 2) {
+    private Vector3 IsTrueDistance(Vector3 distance)
+    {
+        if (Mathf.Abs(distance.x) == 2 || Mathf.Abs(distance.y) == 2)
+        {
+            if (Mathf.Abs(distance.x) == 2 && Mathf.Abs(distance.y) == 2)
+            {
                 return Vector3.zero;
-            } else {
-                if (Mathf.Abs(distance.x) == 2) {
+            } else
+            {
+                if (Mathf.Abs(distance.x) == 2)
+                {
                     return new Vector3(distance.x / 2, 0);
-                } else if (Mathf.Abs(distance.y) == 2) {
+                } else if (Mathf.Abs(distance.y) == 2)
+                {
                     return new Vector3(0, distance.y / 2);
                 }
             }
@@ -390,70 +471,90 @@ public class Player : MonoBehaviour {
         return Vector3.zero;
     }
 
-    private bool WebCollider(Collider2D collider) {
-        if (collider.GetComponent<WebController>()) {
+    private bool WebCollider(Collider2D collider)
+    {
+        if (collider.GetComponent<WebController>())
+        {
             collider.GetComponent<WebController>().GetComponent<IEvent>().Interact();
             return true;
         }
         return false;
     }
 
-    private void PortalCollider(Collider2D collider) {
-        if (collider.GetComponent<PortalController>()) {
+    private void PortalCollider(Collider2D collider)
+    {
+        if (collider.GetComponent<PortalController>())
+        {
             _portal = collider.GetComponent<PortalController>();
         }
     }
 
-    private bool MoveBox(Collider2D collider) {
+    private bool MoveBox(Collider2D collider)
+    {
         BoxController box = collider.GetComponent<BoxController>();
 
         if (!box) return false;
 
-        if (box.CanMove(transform.position, _portal)) {
+        if (box.CanMove(transform.position, _portal))
+        {
             box.GetComponent<IEvent>()?.Interact();
             return true;
-        } else if (box.IsMoving()) {
-            if (box.DirMoveBox() == (Vector3)_inputVector) {
+        } else if (box.IsMoving())
+        {
+            if (box.DirMoveBox() == (Vector3)_inputVector)
+            {
                 return true;
             }
         }
         return false;
     }
 
-    private bool SpikeCollider(Collider2D collider, bool inSpike) {
+    private bool SpikeCollider(Collider2D collider, bool inSpike)
+    {
         SpikeController spike = collider.GetComponent<SpikeController>();
-        if (spike) {
+        if (spike)
+        {
             SpikeDamage(spike, inSpike);
             return true;
         }
         return false;
     }
 
-    private void TakeDamage() {
-        if (!_invulneradility) {
+    private void TakeDamage()
+    {
+        if (!_invulneradility)
+        {
             _hp--;
             _invulneradility = true;
             _damageVisual.TakeDamage();
         }
-        if (_hp <= 0) {
+        if (_hp <= 0)
+        {
             Die();
         }
     }
 
-    private void Stunning() {
-        if (_isFliesAway) {
+    private void Stunning()
+    {
+        if (_isFliesAway)
+        {
             FliesAway();
-        } else if (_stunning) {
+        } else if (_stunning)
+        {
             _timeStunning += Time.deltaTime;
-            if (!_isShaking) {
+            if (!_isShaking)
+            {
                 _isShaking = true;
                 StartCoroutine(Shake());
             }
-            if (_timeStunning >= _timeEndStunning) {
+            if (_timeStunning >= _timeEndStunning)
+            {
                 _timeStunning = 0;
-                if (!_webStunning) {
+                if (!_webStunning)
+                {
                     _isFliesAway = true;
-                } else {
+                } else
+                {
                     _webStunning = false;
                     _stunning = false;
                 }
@@ -462,12 +563,14 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private IEnumerator Shake() {
+    private IEnumerator Shake()
+    {
         float x;
         float y;
         float timeLeft = Time.time;
 
-        while ((timeLeft + _timeEndStunning) > Time.time) {
+        while ((timeLeft + _timeEndStunning) > Time.time)
+        {
             x = UnityEngine.Random.Range(-0.4f, 0.4f);
             y = UnityEngine.Random.Range(-0.4f, 0.4f);
 
@@ -478,9 +581,11 @@ public class Player : MonoBehaviour {
         _camera.localPosition = new Vector3(0, 0, -10);
     }
 
-    private Vector3 ComputeDirForFliesAway() {
+    private Vector3 ComputeDirForFliesAway()
+    {
         Vector3 dir = Vector3.right;
-        switch (UnityEngine.Random.Range(0, 4)) {
+        switch (UnityEngine.Random.Range(0, 4))
+        {
             case 0:
                 dir = Vector3.up; break;
             case 1:
@@ -492,13 +597,16 @@ public class Player : MonoBehaviour {
         return dir;
     }
 
-    private void FliesAway() {
-        if (!_isFlyingMove) {
+    private void FliesAway()
+    {
+        if (!_isFlyingMove)
+        {
             _position = transform.position;
             _currentPos = _position + _dirFliesAway;
             _isFlyingMove = true;
 
-            if (!IsWalkable(_currentPos, false, false)) {
+            if (!IsWalkable(_currentPos, false, false))
+            {
                 _isFliesAway = false;
                 _stunning = false;
                 _isFlyingMove = false;
@@ -506,82 +614,103 @@ public class Player : MonoBehaviour {
                 return;
             }
 
-            transform.DOMove(_currentPos, 0.1f).OnComplete(() => {
+            transform.DOMove(_currentPos, 0.1f).OnComplete(() =>
+            {
                 _isFlyingMove = false;
             });
         }
     }
 
-    private void SpikeDamage(SpikeController spike, bool inSpike) {
+    private void SpikeDamage(SpikeController spike, bool inSpike)
+    {
         Vector2 dir = spike.Orientation();
 
-        if (-dir == _inputVector) {
+        if (-dir == _inputVector)
+        {
             TakeDamage();
-        } else {
+        } else
+        {
             TakeDamage();
 
-            if (!inSpike && IsWalkable(transform.position + (Vector3)_inputVector + (Vector3)dir, true, false)) {
+            if (!inSpike && IsWalkable(transform.position + (Vector3)_inputVector + (Vector3)dir, true, false))
+            {
                 transform.position += (Vector3)_inputVector;
                 Move(transform.position + (Vector3)dir);
             }
         }
     }
 
-    private void Teleported() {
+    private void Teleported()
+    {
         Vector3 pos = _portal.Teleported();
 
-        if (IsWalkable(pos, false, true)) {
+        if (IsWalkable(pos, false, true))
+        {
             _inPortal = true;
             transform.position = pos;
             _currentPos = pos;
         }
     }
 
-    private void CheckWater() {
+    private void CheckWater()
+    {
 
-        if (_inWater) {
+        if (_inWater)
+        {
             Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0.1f, _interactLayer);
 
             bool isInWater = false;
-            foreach (Collider2D collider in colliders) {
-                if (collider.GetComponent<WaterController>()) {
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.GetComponent<WaterController>())
+                {
                     isInWater = true;
                 }
             }
 
-            if (!isInWater) {
+            if (!isInWater)
+            {
                 _inWater = false;
-            } else {
-                if (_oxygen > 0) {
+            } else
+            {
+                if (_oxygen > 0)
+                {
                     _timeCurrentOxygen -= Time.deltaTime;
-                    if (_timeCurrentOxygen <= 0) {
+                    if (_timeCurrentOxygen <= 0)
+                    {
                         _oxygen--;
                         _timeCurrentOxygen = TIME_OXYGEN;
                     }
-                } else {
+                } else
+                {
                     TakeDamage();
                     _timeCurrentOxygen = TIME_OXYGEN;
                 }
             }
-        } else {
+        } else
+        {
             _oxygen = 5;
         }
 
         _oxygenVisual.SetActive(_inWater);
     }
 
-    private void InWall() {
+    private void InWall()
+    {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.01f, 0.01f), 0.1f);
 
-        foreach (Collider2D collider in colliders) {
-            if (!CanWalk(collider) && !Interacted(collider)) {
+        foreach (Collider2D collider in colliders)
+        {
+            if (!CanWalk(collider) && !Interacted(collider))
+            {
                 _hp = 0;
                 TakeDamage();
             }
         }
     }
 
-    private bool Interacted(Collider2D col) {
+    private bool Interacted(Collider2D col)
+    {
         if (col.GetComponent<IEvent>() != null && !col.GetComponent<BoxController>() ||
            col.GetComponent<IMobs>() != null ||
            col.GetComponent<IBoss>() != null ||

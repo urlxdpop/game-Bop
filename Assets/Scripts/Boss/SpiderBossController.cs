@@ -1,14 +1,16 @@
 using DG.Tweening;
 using UnityEngine;
 
-enum TypeAttack {
+enum TypeAttack
+{
     JUMP,
     SPAWN_WEB,
     SPAWN_SPIDER
 }
 
 [SelectionBase]
-public class SpiderBossController : MonoBehaviour, IBoss {
+public class SpiderBossController : MonoBehaviour, IBoss
+{
     [SerializeField] private float _dalayWithAttack;
     [SerializeField] private float _animationTimer;
     [SerializeField] private int _numWebs = 15;
@@ -31,7 +33,8 @@ public class SpiderBossController : MonoBehaviour, IBoss {
 
     private Collider2D _collider2D;
 
-    private void Start() {
+    private void Start()
+    {
         _collider2D = GetComponent<Collider2D>();
 
         _warningBlocks = new GameObject[100];
@@ -40,13 +43,16 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         ReturnSettings();
     }
 
-    public void Fight() {
+    public void Fight()
+    {
         if (_isDead) return;
         _timer += Time.deltaTime;
         RotateToPlayer();
-        if (_isAttack) {
+        if (_isAttack)
+        {
             Attack();
-        } else if (_timer > 0) {
+        } else if (_timer > 0)
+        {
             _isAttack = true;
             if (_typeAttack == TypeAttack.JUMP) ShowWarningBlockForJump();
             else if (_typeAttack == TypeAttack.SPAWN_WEB) ShowWarningBlockForSpawnWeb();
@@ -54,30 +60,37 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    public void SharpAttack() {
+    public void SharpAttack()
+    {
         _isAttack = false;
         _typeAttack = TypeAttack.JUMP;
         _timer = 0;
     }
 
-    public void TakeDamage() {
+    public void TakeDamage()
+    {
         _hp--;
-        if (_hp <= 0) {
+        if (_hp <= 0)
+        {
             Die();
         }
     }
 
-    public int GetHP() {
+    public int GetHP()
+    {
         return _hp;
     }
 
-    public void DestroyYourself() {
+    public void DestroyYourself()
+    {
         EventController.Instance.EventTriggerActivated(1);
         Destroy(gameObject);
     }
 
-    private void Attack() {
-        switch (_typeAttack) {
+    private void Attack()
+    {
+        switch (_typeAttack)
+        {
             case TypeAttack.JUMP:
                 Jump();
                 break;
@@ -93,15 +106,20 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void Jump() {
-        if (_timer >= _dalayWithAttack) {
-            if (!_isAnimation) {
+    private void Jump()
+    {
+        if (_timer >= _dalayWithAttack)
+        {
+            if (!_isAnimation)
+            {
                 _isAnimation = true;
                 _collider2D.enabled = false;
 
                 transform.DOMove(_attackPos, _animationTimer);
-                transform.DOScale(1.5f, _animationTimer / 2).OnComplete(() => {
-                    transform.DOScale(1f, _animationTimer / 2).OnComplete(() => {
+                transform.DOScale(1.5f, _animationTimer / 2).OnComplete(() =>
+                {
+                    transform.DOScale(1f, _animationTimer / 2).OnComplete(() =>
+                    {
                         ReturnSettings();
                         _collider2D.enabled = true;
                     });
@@ -110,11 +128,15 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void SpawnWeb() {
-        if (_timer >= _dalayWithAttack) {
-            if (!_isAnimation) {
+    private void SpawnWeb()
+    {
+        if (_timer >= _dalayWithAttack)
+        {
+            if (!_isAnimation)
+            {
                 _isAnimation = true;
-                for (int i = 0; i < _SpawnPos.Length; i++) {
+                for (int i = 0; i < _SpawnPos.Length; i++)
+                {
                     GameObject web = Instantiate(_webBlock, transform.position, Quaternion.AngleAxis(0, Vector3.forward));
                     web.GetComponent<WebController>().BossCreated(_SpawnPos[i]);
                 }
@@ -123,11 +145,15 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void SpawnSpider() {
-        if (_timer >= _dalayWithAttack) {
-            if (!_isAnimation) {
+    private void SpawnSpider()
+    {
+        if (_timer >= _dalayWithAttack)
+        {
+            if (!_isAnimation)
+            {
                 _isAnimation = true;
-                for (int i = 0; i < _numSpider; i++) {
+                for (int i = 0; i < _numSpider; i++)
+                {
                     GameObject spider = Instantiate(Random.Range(0, 1f) > 0.1f ? _spider : _redSpider, transform.position, Quaternion.AngleAxis(0, Vector3.forward));
                     spider.GetComponent<SpiderController>().BossCreated(_SpawnPos[i]);
                     spider.GetComponent<SpiderController>().SetMovingOrientation(GetRandomRotation(), true);
@@ -137,7 +163,8 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void ShowWarningBlockForJump() {
+    private void ShowWarningBlockForJump()
+    {
         _attackPos = Player.Instance.CurrentPos();
         Vector3 startArena = BossController.Instance.GetStartArena();
         Vector3 endArena = BossController.Instance.GetEndArena();
@@ -147,18 +174,22 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         if (_attackPos.y - 1 < endArena.y) _attackPos.y++;
         else if (_attackPos.y + 1 > startArena.y) _attackPos.y--;
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++)
+        {
             _warningBlocks[i] = Instantiate(_warningBlock, new Vector3(_attackPos.x + (i % 3 - 1), _attackPos.y + (i / 3 - 1), _attackPos.z), Quaternion.AngleAxis(0, Vector3.forward));
         }
     }
 
-    private void ShowWarningBlockForSpawnWeb() {
+    private void ShowWarningBlockForSpawnWeb()
+    {
         _attackPos = Player.Instance.CurrentPos();
         Vector3 startArena = BossController.Instance.GetStartArena();
         Vector3 endArena = BossController.Instance.GetEndArena();
 
-        for (int i = 0; i < _numWebs; i++) {
-            while (true) {
+        for (int i = 0; i < _numWebs; i++)
+        {
+            while (true)
+            {
                 int x = (int)Random.Range(_attackPos.x - 4, _attackPos.x + 4);
                 int y = (int)Random.Range(_attackPos.y - 4, _attackPos.y + 4);
                 Vector3 pos = new(x, y, 0);
@@ -173,12 +204,15 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void ShowWarningBlockForSpawnSpider() {
+    private void ShowWarningBlockForSpawnSpider()
+    {
         Vector3 startArena = BossController.Instance.GetStartArena();
         Vector3 endArena = BossController.Instance.GetEndArena();
 
-        for (int i = 0; i < _numSpider; i++) {
-            while (true) {
+        for (int i = 0; i < _numSpider; i++)
+        {
+            while (true)
+            {
                 int x = (int)Random.Range(startArena.x, endArena.x + 1);
                 int y = (int)Random.Range(startArena.y, endArena.y + 1);
                 Vector3 pos = new(x, y, 0);
@@ -192,14 +226,16 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void ReturnSettings() {
+    private void ReturnSettings()
+    {
         _isAnimation = false;
         _isAttack = false;
         _timer = Random.Range(-2f, 0);
 
         HideWarningBlock();
 
-        switch (Random.Range(0, 4)) {
+        switch (Random.Range(0, 4))
+        {
             case 0:
             case 3:
                 _typeAttack = TypeAttack.JUMP; break;
@@ -210,30 +246,37 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         }
     }
 
-    private void HideWarningBlock() {
+    private void HideWarningBlock()
+    {
         GameObject[] warnings = GameObject.FindGameObjectsWithTag("Warning");
 
-        foreach (GameObject warning in warnings) {
+        foreach (GameObject warning in warnings)
+        {
             Destroy(warning);
         }
 
-        for (int i = 0; i < _warningBlocks.Length; i++) {
-            if (_warningBlocks[i] != null) {
+        for (int i = 0; i < _warningBlocks.Length; i++)
+        {
+            if (_warningBlocks[i] != null)
+            {
                 Destroy(_warningBlocks[i]);
                 _warningBlocks[i] = null;
             }
         }
     }
 
-    private void RotateToPlayer() {
+    private void RotateToPlayer()
+    {
         Vector3 dir = Player.Instance.transform.position - transform.position;
         if (_typeAttack != TypeAttack.JUMP) dir = -dir;
         _angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 270;
         transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
     }
 
-    private Vector3 GetRandomRotation() {
-        return Random.Range(0, 4) switch {
+    private Vector3 GetRandomRotation()
+    {
+        return Random.Range(0, 4) switch
+        {
             0 => new(-1, 0),
             1 => new(0, 1),
             2 => new(0, -1),
@@ -241,11 +284,13 @@ public class SpiderBossController : MonoBehaviour, IBoss {
         };
     }
 
-    private void Die() {
+    private void Die()
+    {
         _collider2D.enabled = false;
         _isDead = true;
         GameObject[] spiders = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject spider in spiders) {
+        foreach (GameObject spider in spiders)
+        {
             spider.transform.DOKill();
             Destroy(spider);
         }
