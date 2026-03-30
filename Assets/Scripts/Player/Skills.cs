@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
-public class Skills : MonoBehaviour {
+public class Skills : MonoBehaviour
+{
     [SerializeField] private LayerMask _foreground;
+    [SerializeField] private InputAction _magneticAction;
+    [SerializeField] private InputAction _destroyAction;
 
     private bool _isActive;
     private Vector3 _animPos;
@@ -13,33 +17,67 @@ public class Skills : MonoBehaviour {
     private const string MAGNET = "Magnet";
 
 
-    private void Awake() {
+    private void Awake()
+    {
         _animator = GetComponent<Animator>();
     }
 
-    private void Update() {
-        if (_isActive) {
+    private void Update()
+    {
+        SkillsActivated();
+
+        if (_isActive)
+        {
             transform.position = _animPos;
         }
     }
 
-    public void DestroyYourself() {
+    public void CloseAnim()
+    {
+        _isActive = false;
+    }
+
+    private void DestroyYourself()
+    {
         _animator.SetTrigger(DESTROY);
         _isActive = true;
         _animPos = Player.Instance.CurrentPos();
     }
 
-    public void Magnet() {
+    private void Magnet()
+    {
         _animator.SetTrigger(MAGNET);
         _isActive = true;
         _animPos = Player.Instance.CurrentPos();
     }
 
-    public void CloseAnim() {
-        _isActive = false;
+    private void SkillsActivated()
+    {
+        if (!_isActive)
+        {
+            if (_destroyAction.triggered)
+            {
+                DestroyYourself();
+                Player.Instance.CheckForDestroy();
+
+            } else if (_magneticAction.triggered)
+            {
+                Magnet();
+                Player.Instance.CheckForMagnet();
+            }
+        }
     }
 
-    public bool IsActive() {
-        return _isActive;
+
+    private void OnEnable()
+    {
+        _magneticAction.Enable();
+        _destroyAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _magneticAction?.Disable();
+        _destroyAction?.Disable();
     }
 }

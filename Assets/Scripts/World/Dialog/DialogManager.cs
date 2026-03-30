@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 enum DialogAutors {
@@ -10,6 +11,7 @@ enum DialogAutors {
     Подсказка,
     Табличка
 }
+
 public class DialogManager : MonoBehaviour
 {
     public static DialogManager Instance { get; private set; }
@@ -18,6 +20,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private Text _dialogAutor;
     [SerializeField] private Text _dialogText;
     [SerializeField] private int _lettersForSecond = 20;
+    [SerializeField] private InputAction _skipDialog;
 
     public event Action OnShowDialog;
     public event Action OnHideDialog;
@@ -37,7 +40,7 @@ public class DialogManager : MonoBehaviour
     }
 
     public void HandleUpdate() {
-        if ((Input.anyKeyDown && ArrowAndWASDDontKeyDown()) && !_isTyping) {
+        if (_skipDialog.triggered && !_isTyping) {
             _currentLine++;
             if (_currentLine < _dialog.Lines.Count) {
                 _dialogAutor.text = _dialog.Speakers[_currentLine].ToString();
@@ -82,15 +85,13 @@ public class DialogManager : MonoBehaviour
         _isTyping = false;
     }
 
-    private bool ArrowAndWASDDontKeyDown() {
-        return !(Input.GetKeyDown(KeyCode.DownArrow) 
-            || Input.GetKeyDown(KeyCode.UpArrow) 
-            || Input.GetKeyDown(KeyCode.LeftArrow) 
-            || Input.GetKeyDown(KeyCode.RightArrow)
-            || Input.GetKeyDown(KeyCode.W)
-            || Input.GetKeyDown(KeyCode.A)
-            || Input.GetKeyDown(KeyCode.S)
-            || Input.GetKeyDown(KeyCode.D)
-            );
+    private void OnEnable()
+    {
+        _skipDialog.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _skipDialog.Disable();
     }
 }

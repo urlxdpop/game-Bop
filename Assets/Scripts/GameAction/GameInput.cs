@@ -19,6 +19,13 @@ public class GameInput : MonoBehaviour
         return inputVector;
     }
 
+    public bool GetEscAction()
+    {
+        bool escIsPress = _playerInputAction.UI.Escape.IsPressed();
+
+        return escIsPress;
+    }
+
     public void Disable() {
         _playerInputAction.Disable();
     }

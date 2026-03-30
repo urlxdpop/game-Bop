@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         }
 
         CheckMobs();
-        SkillsActivated();
+        //SkillsActivated();
         CheckWater();
         CheckBoss();
         InWall();
@@ -153,11 +153,6 @@ public class Player : MonoBehaviour
         _inWater = true;
     }
 
-    public void StopMoving()
-    {
-        BreakMove();
-    }
-
     public void AddSomeHP()
     {
         if (_hp == 1)
@@ -192,14 +187,41 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void CheckForDestroy()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(_currentPos, new Vector2(2, 2), _foregroundLayer);
+
+        foreach (Collider2D collider in colliders)
+        {
+            GameObject gameObject = collider.gameObject;
+            if (gameObject.GetComponent<CollipsibleBlockController>()) gameObject.GetComponent<CollipsibleBlockController>().GetComponent<IEvent>().Interact();
+        }
+    }
+
+    public void CheckForMagnet()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(_currentPos, new Vector2(4, 4), _foregroundLayer);
+
+        foreach (Collider2D collider in colliders)
+        {
+            GameObject gameObject = collider.gameObject;
+            if (gameObject.GetComponent<BoxController>())
+            {
+                Vector3 distance = IsTrueDistance((Vector3)_currentPos - gameObject.transform.position);
+                if (distance != Vector3.zero)
+                {
+                    if (gameObject.GetComponent<BoxController>().CanMagnet(distance))
+                    {
+                        gameObject.GetComponent<BoxController>().GetComponent<IEvent>().Interact();
+                    }
+                }
+            }
+        }
+    }
+
+
     private void PlayerMovement()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameController.Instance.OpenMenu();
-            return;
-        }
-
         _portal = null;
         _inputVector = GameInput.Instance.GetMovementAction();
 
@@ -246,25 +268,6 @@ public class Player : MonoBehaviour
         } else
         {
             _lastButton = "y";
-        }
-    }
-
-    private void SkillsActivated()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if (!_skills.IsActive())
-            {
-                _skills.DestroyYourself();
-                CheckForDestroy();
-            }
-        } else if (Input.GetKey(KeyCode.LeftShift))
-        {
-            if (!_skills.IsActive())
-            {
-                _skills.Magnet();
-                CheckForMagnet();
-            }
         }
     }
 
@@ -326,7 +329,6 @@ public class Player : MonoBehaviour
 
     private void BreakMove()
     {
-        transform.position = _position;
         _isMoving = false;
         _movingBox = false;
         transform.DOKill();
@@ -370,38 +372,6 @@ public class Player : MonoBehaviour
         } else
         {
             _currentInteractableObject = null;
-        }
-    }
-
-    private void CheckForDestroy()
-    {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(_currentPos, new Vector2(2, 2), _foregroundLayer);
-
-        foreach (Collider2D collider in colliders)
-        {
-            GameObject gameObject = collider.gameObject;
-            if (gameObject.GetComponent<CollipsibleBlockController>()) gameObject.GetComponent<CollipsibleBlockController>().GetComponent<IEvent>().Interact();
-        }
-    }
-
-    private void CheckForMagnet()
-    {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(_currentPos, new Vector2(4, 4), _foregroundLayer);
-
-        foreach (Collider2D collider in colliders)
-        {
-            GameObject gameObject = collider.gameObject;
-            if (gameObject.GetComponent<BoxController>())
-            {
-                Vector3 distance = IsTrueDistance((Vector3)_currentPos - gameObject.transform.position);
-                if (distance != Vector3.zero)
-                {
-                    if (gameObject.GetComponent<BoxController>().CanMagnet(distance))
-                    {
-                        gameObject.GetComponent<BoxController>().GetComponent<IEvent>().Interact();
-                    }
-                }
-            }
         }
     }
 

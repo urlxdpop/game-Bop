@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
     {
         _gameTime = 0;
 
-        _menu = GetComponentInChildren<GameMenu>().gameObject;
+        _menu = GetComponentInChildren<GameMenu>().GetComponentInChildren<Canvas>().gameObject;
         _menu.SetActive(false);
 
         _gameState = GameState.FREE_ROAM;
@@ -83,7 +83,6 @@ public class GameController : MonoBehaviour
     {
         _menu.SetActive(true);
         _gameState = GameState.MENU;
-        Player.Instance.StopMoving();
     }
 
     public void ResumeGame()
@@ -112,7 +111,6 @@ public class GameController : MonoBehaviour
         DialogManager.Instance.OnShowDialog += () =>
         {
             _gameState = GameState.DIALOG;
-            Player.Instance.StopMoving();
         };
 
         DialogManager.Instance.OnHideDialog += () =>

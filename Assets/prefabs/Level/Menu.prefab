@@ -412,6 +412,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMenu
   _time: {fileID: 8766547882469715933}
+  pauseAction:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7a98f59c-1832-4809-8bcb-14fff0cdc0a6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4bc939d2-e449-459b-b4ad-6606b91a9527
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &4402362179878185280
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +798,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 10
-  m_Text: MAIN MENU
+  m_Text: "\u041C\u0415\u041D\u042E"
 --- !u!1 &6564658922137061782
 GameObject:
   m_ObjectHideFlags: 0

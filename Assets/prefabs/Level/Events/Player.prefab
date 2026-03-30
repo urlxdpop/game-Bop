@@ -324,6 +324,40 @@ MonoBehaviour:
   _foreground:
     serializedVersion: 2
     m_Bits: 2048
+  _magneticAction:
+    m_Name: Magnetic
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 13c6f6ad-8f08-4bd4-b383-019cc903e792
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 52ca6696-fd9b-461c-89f7-26ed6ba5d0a9
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Magnetic
+      m_Flags: 0
+    m_Flags: 0
+  _destroyAction:
+    m_Name: Destroy
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 67545ff2-453d-4e72-bd83-c88bc373a592
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2e764912-0a43-410c-8ce5-f42a175bf788
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Destroy
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &2896636221021282647
 GameObject:
   m_ObjectHideFlags: 0
