@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Unity.AppUI.UI;
 
 public enum GameState
 {
@@ -31,7 +32,10 @@ public class GameController : MonoBehaviour
     private GameState _gameState;
     private CameraController _cameraController;
 
+    private bool _isDialogOpen;
     private float _gameTime;
+
+    public bool IsDialogOpen => _isDialogOpen;
 
     private void Awake()
     {
@@ -46,7 +50,7 @@ public class GameController : MonoBehaviour
     {
         _gameTime = 0;
 
-        _menu = GetComponentInChildren<GameMenu>().GetComponentInChildren<Canvas>().gameObject;
+        _menu = GetComponentInChildren<GameMenu>().GetComponentInChildren<GameMenuPanel>().gameObject;
         _menu.SetActive(false);
 
         _gameState = GameState.FREE_ROAM;
@@ -126,8 +130,10 @@ public class GameController : MonoBehaviour
             case GameState.FREE_ROAM:
                 Player.Instance.HandlerUpdate();
                 _gameTime += Time.deltaTime;
+                _isDialogOpen = false;
                 break;
             case GameState.DIALOG:
+                _isDialogOpen = true;
                 DialogManager.Instance.HandleUpdate();
                 _gameTime += Time.deltaTime;
                 break;

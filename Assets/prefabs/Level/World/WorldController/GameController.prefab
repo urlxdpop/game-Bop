@@ -102,47 +102,6 @@ MonoBehaviour:
       m_Action: Skip Dialog
       m_Flags: 0
     m_Flags: 0
-  _notSkipDialog:
-    m_Name: Not Skip Dialog
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6f7dd907-c7c3-4ab6-bfde-7ffaa9998bd6
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 64d90cf8-1a9a-46a7-a041-faf8c792f598
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Not Skip Dialog
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 4fe54d4e-5b0a-4f86-850c-c78f242247d4
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Not Skip Dialog
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 9b31429b-8290-4b17-b512-1ea857f0eea2
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Not Skip Dialog
-      m_Flags: 0
-    - m_Name: 
-      m_Id: bee1fc01-1a1a-4080-80ec-d5914433c311
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Not Skip Dialog
-      m_Flags: 0
-    m_Flags: 0
 --- !u!114 &494905965148725966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +327,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1391249187021595104}
     m_Modifications:
+    - target: {fileID: 1958124614537381587, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958124614537381587, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2932513457500294362, guid: 1d33958ca2c7a414393fdafec4f02f23, type: 3}
     - target: {fileID: 4939222244672016275, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
       propertyPath: m_Name
       value: EndGame
@@ -453,7 +420,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 788724106092926582, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15bf4dab13e315b4eac106ceb54fec0c, type: 3}
@@ -532,6 +500,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1391249187021595104}
     m_Modifications:
+    - target: {fileID: 6295359396061090082, guid: e6ba13187ba28594fadac642008a96c4, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7015816819127892308, guid: e6ba13187ba28594fadac642008a96c4, type: 3}
       propertyPath: m_Name
       value: Dialog
@@ -615,6 +587,22 @@ PrefabInstance:
     - target: {fileID: 7812374846050509604, guid: e6ba13187ba28594fadac642008a96c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222660619962074711, guid: e6ba13187ba28594fadac642008a96c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 783108536558793633}
+    - target: {fileID: 9222660619962074711, guid: e6ba13187ba28594fadac642008a96c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222660619962074711, guid: e6ba13187ba28594fadac642008a96c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222660619962074711, guid: e6ba13187ba28594fadac642008a96c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

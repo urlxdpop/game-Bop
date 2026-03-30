@@ -13,7 +13,7 @@ public class GameMenu : MonoBehaviour
     private bool _isPaused;
     private bool _isPlaying = true;
 
-    private const string MenuScene = "MainMenu";
+    private const string MenuScene = "Menu";
 
     private void Update()
     {
@@ -28,6 +28,8 @@ public class GameMenu : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1f;
+        _isPaused = false;
         Player.Instance.Die();
     }
 
@@ -45,17 +47,16 @@ public class GameMenu : MonoBehaviour
 
     public void OpenMainMenu()
     {
-        GameController.Instance.OpenMenu();
-        Time.timeScale = 0f;
-        _isPaused = true;
-        AudioListener.pause = true;
+        Time.timeScale = 1f;
+        DOTween.KillAll();
+        SceneManager.LoadScene(MenuScene);
     }
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
-        DOTween.KillAll();
-        SceneManager.LoadScene(MenuScene);
+        GameController.Instance.OpenMenu();
+        Time.timeScale = 0f;
+        _isPaused = true;
     }
 
     private void TogglePause()
@@ -63,7 +64,7 @@ public class GameMenu : MonoBehaviour
         if (_isPaused)
             Continue();
         else
-            OpenMainMenu();
+            LoadMenu();
     }
 
     private void OnEnable()

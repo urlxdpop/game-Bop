@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
         }
 
         CheckMobs();
-        //SkillsActivated();
         CheckWater();
         CheckBoss();
         InWall();
@@ -222,6 +221,8 @@ public class Player : MonoBehaviour
 
     private void PlayerMovement()
     {
+        if (GameController.Instance.IsDialogOpen) return;
+
         _portal = null;
         _inputVector = GameInput.Instance.GetMovementAction();
 

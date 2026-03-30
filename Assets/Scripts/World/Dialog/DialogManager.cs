@@ -41,16 +41,22 @@ public class DialogManager : MonoBehaviour
 
     public void HandleUpdate() {
         if (_skipDialog.triggered && !_isTyping) {
-            _currentLine++;
-            if (_currentLine < _dialog.Lines.Count) {
-                _dialogAutor.text = _dialog.Speakers[_currentLine].ToString();
-                StartCoroutine(TypeDialog(_dialog.Lines[_currentLine]));
-            } else { 
-                _dialogBox.SetActive(false);
-                OnHideDialog?.Invoke();
-                _currentLine = 0;
-                
-            }
+            NextDialog();
+        }
+    }
+
+    public void NextDialog()
+    {
+        _currentLine++;
+        if (_currentLine < _dialog.Lines.Count)
+        {
+            _dialogAutor.text = _dialog.Speakers[_currentLine].ToString();
+            StartCoroutine(TypeDialog(_dialog.Lines[_currentLine]));
+        } else
+        {
+            _dialogBox.SetActive(false);
+            OnHideDialog?.Invoke();
+            _currentLine = 0;
         }
     }
 

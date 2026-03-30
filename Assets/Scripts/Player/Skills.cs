@@ -37,18 +37,20 @@ public class Skills : MonoBehaviour
         _isActive = false;
     }
 
-    private void DestroyYourself()
+    public void Destroy()
     {
         _animator.SetTrigger(DESTROY);
         _isActive = true;
         _animPos = Player.Instance.CurrentPos();
+        Player.Instance.CheckForDestroy();
     }
 
-    private void Magnet()
+    public void Magnet()
     {
         _animator.SetTrigger(MAGNET);
         _isActive = true;
         _animPos = Player.Instance.CurrentPos();
+        Player.Instance.CheckForMagnet();
     }
 
     private void SkillsActivated()
@@ -57,13 +59,10 @@ public class Skills : MonoBehaviour
         {
             if (_destroyAction.triggered)
             {
-                DestroyYourself();
-                Player.Instance.CheckForDestroy();
-
+                Destroy();
             } else if (_magneticAction.triggered)
             {
                 Magnet();
-                Player.Instance.CheckForMagnet();
             }
         }
     }

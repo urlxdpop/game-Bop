@@ -73,4 +73,14 @@ public class EndGameController : MonoBehaviour {
 
         SceneManager.LoadScene("Menu");
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
