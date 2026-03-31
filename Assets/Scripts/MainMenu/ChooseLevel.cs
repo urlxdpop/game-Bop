@@ -76,7 +76,7 @@ public class ChooseLevel : MonoBehaviour {
             int j = i - _page * 10;
 
 
-            _buttons[j] = Instantiate(_LevelButton, new Vector3(transform.position.x, transform.position.y - 75 * j, 0), transform.rotation, transform);
+            _buttons[j] = Instantiate(_LevelButton, transform);
             if (_secretsData.numSecretsInLevel[i] != 0) {
                 int numSecretsFound = 0;
                 

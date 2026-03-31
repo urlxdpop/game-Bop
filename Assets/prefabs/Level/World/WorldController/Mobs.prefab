@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3231713918235329175}
   - component: {fileID: 8464544185388750872}
   - component: {fileID: 1518237504991903912}
+  - component: {fileID: 5956684848942858424}
   m_Layer: 8
   m_Name: Mobs
   m_TagString: Untagged
@@ -195,6 +196,7 @@ Tilemap:
     e33: 1
 --- !u!483693784 &1518237504991903912
 TilemapRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -240,6 +242,7 @@ TilemapRenderer:
   m_SortingLayerID: 811117941
   m_SortingLayer: 1
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -247,4 +250,15 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
+--- !u!114 &5956684848942858424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021836734193778156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0534e4ed6ba25b4fbf02876948f4dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OptimizationRender

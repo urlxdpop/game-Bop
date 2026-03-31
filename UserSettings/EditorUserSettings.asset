@@ -9,40 +9,43 @@ EditorUserSettings:
       value: 18134705175a055722080a3115371d4a0d55006876786860616b0471b8b07a68ffab74f9ee2a3a30300cea1a11320d0beb1a0c25f7060f494b4cdf1b18f3045e38cb5ad8
       flags: 0
     QuickInstaller_com.unity.purchasing_installRecorded:
-      value: 2550581500
+      value: 37434103
       flags: 0
     QuickInstaller_com.unity.services.levelplay_installRecorded:
       value: 2550581500
       flags: 0
     RecentlyUsedSceneGuid-0:
-      value: 5409010352530a0e0b0c0d2413750644464e4b2b2e7b7e31287e4d66e6e6376b
+      value: 5409575f07015e5858560d7145725c44464e4f7d7b7a73357b2b4a30bae1606c
       flags: 0
     RecentlyUsedSceneGuid-1:
-      value: 0757025351000c035a0b547315250b444e4e4d2b7e2d776974794f60e6e5363d
+      value: 5457065600020b58580c082714710744454e4d2e7f2c75312b7a1831e1b16468
       flags: 0
     RecentlyUsedSceneGuid-2:
-      value: 5202015500070f5a090c5c7143725b4441164d7a7b702769282a1837e0b9303b
+      value: 5552065754075a585d565b7043760644144e4f727a7a75312b704566b5e16460
       flags: 0
     RecentlyUsedSceneGuid-3:
-      value: 0053515f5251590e0f5d0f2011735e44144e412c787c276178711c63b2b5606d
+      value: 5500055504070c090c59597a49200c44124e4a2c747f7e67792b4962e3b16068
       flags: 0
     RecentlyUsedSceneGuid-4:
       value: 520703550302510b580d5d2747750e444f151e7c7c7b746478714d64e3b5643b
       flags: 0
     RecentlyUsedSceneGuid-5:
-      value: 0554525f52055a0f5d59597b4927074412154129797b22327b704d31b3b5623d
+      value: 5a07045154065e595c5808714473064447161e7d7c2e7567787b4b6be0b9606e
       flags: 0
     RecentlyUsedSceneGuid-6:
-      value: 00050d0453045c0f5c0a5e7745740e44434f417e752975687f7c1861bab5623a
+      value: 5409010352530a0e0b0c0d2413750644464e4b2b2e7b7e31287e4d66e6e6376b
       flags: 0
     RecentlyUsedSceneGuid-7:
-      value: 550804535454080d08585b7112700a44474f40297b7075692b7a4b30bab36068
+      value: 0554525f52055a0f5d59597b4927074412154129797b22327b704d31b3b5623d
       flags: 0
     RecentlyUsedSceneGuid-8:
-      value: 5205025f03510a0e5c5c087145760c44474f1d787b7f2063287c4931b1b3356f
+      value: 00050d0453045c0f5c0a5e7745740e44434f417e752975687f7c1861bab5623a
       flags: 0
     RecentlyUsedSceneGuid-9:
-      value: 52095603030c080d5f5d0a7312220f4442151b7d7f7a24612e2c1e67b5e5646a
+      value: 550804535454080d08585b7112700a44474f40297b7075692b7a4b30bab36068
+      flags: 0
+    UIAuthoring.DisplayOptions:
+      value: 2d5e5a03
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650

@@ -26,7 +26,7 @@ public class GameInput : MonoBehaviour
         return escIsPress;
     }
 
-    public void Disable() {
+    private void OnDisable() {
         _playerInputAction.Disable();
     }
 }

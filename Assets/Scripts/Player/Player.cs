@@ -182,7 +182,6 @@ public class Player : MonoBehaviour
     {
         DOTween.KillAll();
         DOTween.Clear(true);
-        GameInput.Instance.Disable();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -330,6 +329,7 @@ public class Player : MonoBehaviour
 
     private void BreakMove()
     {
+        transform.position = _position;
         _isMoving = false;
         _movingBox = false;
         transform.DOKill();

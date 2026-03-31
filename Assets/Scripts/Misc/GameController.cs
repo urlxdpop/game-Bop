@@ -1,7 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Unity.AppUI.UI;
 
 public enum GameState
 {

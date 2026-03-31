@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2100175481150079162}
   - component: {fileID: 2634007118221856313}
   - component: {fileID: 2205231340831436958}
+  - component: {fileID: 5694054266049511833}
   m_Layer: 11
   m_Name: Forground
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -59,7 +60,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -69,7 +70,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -79,7 +80,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -89,7 +90,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -166,12 +167,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 5
+    m_Data: {fileID: 1337734503, guid: 7235e2dafb61be446802e28ebb980963, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -1778450130, guid: 7235e2dafb61be446802e28ebb980963, type: 3}
-  - m_RefCount: 5
-    m_Data: {fileID: -1751995273, guid: 7235e2dafb61be446802e28ebb980963, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 11
     m_Data:
@@ -220,6 +221,7 @@ Tilemap:
     e33: 1
 --- !u!483693784 &6646434673203300180
 TilemapRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,6 +267,7 @@ TilemapRenderer:
   m_SortingLayerID: -762614111
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -272,7 +275,6 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
 --- !u!50 &2100175481150079162
 Rigidbody2D:
   serializedVersion: 5
@@ -340,9 +342,51 @@ CompositeCollider2D:
   m_EdgeRadius: 0
   m_ColliderPaths:
   - m_Collider: {fileID: 2205231340831436958}
-    m_ColliderPaths: []
+    m_ColliderPaths:
+    - - X: 270000000
+        Y: -30000000
+      - X: 250000000
+        Y: -30000000
+      - X: 250000000
+        Y: -40000000
+      - X: 260000000
+        Y: -40000000
+      - X: 260000000
+        Y: -50000000
+      - X: 270000000
+        Y: -50000000
+    - - X: 370000000
+        Y: -30000000
+      - X: 360000000
+        Y: -30000000
+      - X: 360000000
+        Y: -60000000
+      - X: 370000000
+        Y: -60000000
+    - - X: 110000000
+        Y: -140000000
+      - X: 60000000
+        Y: -140000000
+      - X: 60000000
+        Y: -150000000
+      - X: 110000000
+        Y: -150000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 36.999973, y: -6}
+      - {x: 36.999973, y: -3}
+      - {x: 36, y: -3.0000293}
+      - {x: 36.00003, y: -6}
+    - - {x: 26.999971, y: -5}
+      - {x: 26.999971, y: -3}
+      - {x: 25, y: -3.0000293}
+      - {x: 25.000029, y: -4}
+      - {x: 26, y: -4.0000296}
+      - {x: 26.000029, y: -5}
+    - - {x: 10.99997, y: -15}
+      - {x: 10.99997, y: -14}
+      - {x: 6, y: -14.000029}
+      - {x: 6.000029, y: -15}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -385,3 +429,15 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &5694054266049511833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114865155338440458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0534e4ed6ba25b4fbf02876948f4dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OptimizationRender

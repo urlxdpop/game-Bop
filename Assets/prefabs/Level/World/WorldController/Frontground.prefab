@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2088731121332448994}
   - component: {fileID: 8190249334150023638}
   - component: {fileID: 5596400457361357442}
+  - component: {fileID: 142441439179462418}
   m_Layer: 16
   m_Name: Frontground
   m_TagString: Untagged
@@ -111,6 +112,7 @@ Tilemap:
     e33: 1
 --- !u!483693784 &5596400457361357442
 TilemapRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -156,6 +158,7 @@ TilemapRenderer:
   m_SortingLayerID: 751719793
   m_SortingLayer: 6
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -163,4 +166,15 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
+--- !u!114 &142441439179462418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6443439417140160528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0534e4ed6ba25b4fbf02876948f4dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OptimizationRender

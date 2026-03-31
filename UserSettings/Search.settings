@@ -9,13 +9,6 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.66F56946" = "Scene"
-	"OpenInspectorPreview.66F56946" = "0"
-	"currentGroup.66F56946" = "asset"
-	"picker_window_position_offset.00000000" = "45,59998;179,2;320;550,4"
-	"picker_visibility_flags.00000000" = "0"
-	"picker_item_size.00000000" = "1"
-	"picker_inspector.00000000" = "0"
 }
 providers = {
 	asset = {
@@ -26,6 +19,16 @@ providers = {
 	scene = {
 		active = true
 		priority = 50
+		defaultAction = null
+	}
+	"unity.ai.pattern.search" = {
+		active = true
+		priority = 80
+		defaultAction = null
+	}
+	"unity.ai.file.search" = {
+		active = true
+		priority = 85
 		defaultAction = null
 	}
 	adb = {
@@ -53,12 +56,12 @@ providers = {
 		priority = 100
 		defaultAction = null
 	}
-	profilermarkers = {
+	store = {
 		active = false
 		priority = 100
 		defaultAction = null
 	}
-	store = {
+	profilermarkers = {
 		active = false
 		priority = 100
 		defaultAction = null
@@ -68,41 +71,10 @@ providers = {
 		priority = 210
 		defaultAction = null
 	}
-	menu = {
-		active = true
-		priority = 80
-		defaultAction = null
-	}
-	settings = {
-		active = true
-		priority = 100
-		defaultAction = null
-	}
-	calculator = {
-		active = true
-		priority = 10
-		defaultAction = null
-	}
-	static_methods = {
-		active = false
-		priority = 85
-		defaultAction = null
-	}
-	"unity.ai.pattern.search" = {
-		active = true
-		priority = 80
-		defaultAction = null
-	}
-	"unity.ai.file.search" = {
-		active = true
-		priority = 85
-		defaultAction = null
-	}
 }
 objectSelectors = {
 }
 recentSearches = [
-	"Scene "
 ]
 searchItemFavorites = [
 ]
