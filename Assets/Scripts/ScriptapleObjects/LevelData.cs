@@ -14,7 +14,11 @@ public class LevelData : ScriptableObject
     public void Load() {
         SaveData.GameData data = SaveManager.Load<SaveData.GameData>(SAVE_KEY);
 
-        levelName = data.sceneName;
+        data ??= new SaveData.GameData();
+        data.levelOpened ??= new bool[100];
+        data.minTimeForLevel ??= new int[100];
+
+        levelName = string.IsNullOrEmpty(data.sceneName) ? "1-1" : data.sceneName;
         levelOpened = data.levelOpened;
         minTimeForLevel = data.minTimeForLevel;
         timeForAllLevels = data.timeForAllLevels;

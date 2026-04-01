@@ -4,8 +4,16 @@ public class PlayerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
 
-    private void Start() {
+    private SpriteRenderer _spriteRenderer;
+
+    private void Start()
+    {
         Instantiate(_player, transform.position, transform.rotation);
-        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void LateUpdate()
+    {
+        if (_spriteRenderer.enabled) _spriteRenderer.enabled = false;
     }
 }

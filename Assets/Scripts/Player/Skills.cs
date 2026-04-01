@@ -55,7 +55,7 @@ public class Skills : MonoBehaviour
 
     private void SkillsActivated()
     {
-        if (!_isActive)
+        if (!_isActive && !GameController.Instance.IsDialogOpen)
         {
             if (_destroyAction.triggered)
             {

@@ -13,9 +13,15 @@ public class SecretsData : ScriptableObject {
     public void Load() {
         SaveData.SecretsData data = SaveManager.Load<SaveData.SecretsData>(SAVE_KEY);
 
-        isSecretOpen = StringInMatrix(data.isSecretOpen);
-        numSecretsInLevel = data.numSecretsInLevel;
-        savingData = data.savingData;
+        data ??= new SaveData.SecretsData();
+
+        if (data.isSecretOpen != null && data.isSecretOpen.Length > 0)
+            isSecretOpen = StringInMatrix(data.isSecretOpen);
+        else
+            isSecretOpen = new bool[100, 10];
+
+        numSecretsInLevel = data.numSecretsInLevel ?? new int[100];
+        savingData = data.savingData ?? new bool[100];
     }
 
     public void Save() {
@@ -71,10 +77,16 @@ public class SecretsData : ScriptableObject {
         return result;
     }
 
-    private bool[,] StringInMatrix(string[] strings) {
+    private bool[,] StringInMatrix(string[] strings)
+    {
+        if (strings == null || strings.Length == 0)
+            return new bool[100, 10]; 
+
         bool[,] result = new bool[strings.Length, strings[0].Length];
-        for (int i = 0; i < strings.Length; i++) {
-            for (int j = 0; j < strings[i].Length; j++) {
+        for (int i = 0; i < strings.Length; i++)
+        {
+            for (int j = 0; j < strings[i].Length; j++)
+            {
                 result[i, j] = strings[i][j] == '1';
             }
         }

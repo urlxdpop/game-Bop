@@ -8,6 +8,7 @@ Library/
 Assets/AssetStoreTools*
 .vs/
 EXE/
+APK/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #

@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 enum DialogAutors {
     Повестователь,
@@ -17,8 +17,8 @@ public class DialogManager : MonoBehaviour
     public static DialogManager Instance { get; private set; }
 
     [SerializeField] private GameObject _dialogBox;
-    [SerializeField] private Text _dialogAutor;
-    [SerializeField] private Text _dialogText;
+    [SerializeField] private TextMeshProUGUI _dialogAutor;
+    [SerializeField] private TextMeshProUGUI _dialogText;
     [SerializeField] private int _lettersForSecond = 20;
     [SerializeField] private InputAction _skipDialog;
 
@@ -28,6 +28,7 @@ public class DialogManager : MonoBehaviour
     private int _currentLine;
     private Dialog _dialog;
     private bool _isTyping;
+    private bool _isSkip;
 
     private void Awake() {
         Instance = this;
@@ -40,13 +41,22 @@ public class DialogManager : MonoBehaviour
     }
 
     public void HandleUpdate() {
-        if (_skipDialog.triggered && !_isTyping) {
+        if (_skipDialog.triggered) {
+            _isSkip = true;
             NextDialog();
         }
     }
 
+    public void SkipTypingOrDialog()
+    {
+        _isSkip = true;
+        NextDialog();
+    }
+
     public void NextDialog()
     {
+        if (_isTyping) return;
+
         _currentLine++;
         if (_currentLine < _dialog.Lines.Count)
         {
@@ -80,11 +90,19 @@ public class DialogManager : MonoBehaviour
 
     private IEnumerator TypeDialog(string line) {
         _isTyping = true;
+        _isSkip = false;
         _dialogText.text = "";
 
         foreach (char letter in line.ToCharArray()) {
             _dialogText.text += letter;
 
+            if (_isSkip)
+            {
+                _isSkip = false;
+                _dialogText.text = line;
+                _isTyping = false;
+                yield break;
+            }
             yield return new WaitForSeconds(1 / _lettersForSecond);
         }
 
