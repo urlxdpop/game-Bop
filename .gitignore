@@ -8,7 +8,7 @@ Library/
 Assets/AssetStoreTools*
 .vs/
 EXE/
-APK/
+apk/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -35,3 +35,4 @@ ExportedObj/
 Icon?
 ehthumbs.db
 Thumbs.db
+APK/gap.apk

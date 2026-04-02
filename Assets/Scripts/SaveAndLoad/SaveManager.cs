@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
 public static class SaveManager
@@ -10,9 +10,13 @@ public static class SaveManager
 
     public static void Save<T>(string key, T data)
     {
-        string json = JsonUtility.ToJson(data, true);
+        string json = JsonUtility.ToJson(data);
 
-        if (Application.isMobilePlatform)
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            PlayerPrefs.SetString(key, json);
+            PlayerPrefs.Save();
+        } else if (Application.isMobilePlatform)
         {
             File.WriteAllText(GetPath(key), json);
         } else
@@ -26,7 +30,13 @@ public static class SaveManager
     {
         string json;
 
-        if (Application.isMobilePlatform)
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            if (!PlayerPrefs.HasKey(key))
+                return System.Activator.CreateInstance<T>();
+
+            json = PlayerPrefs.GetString(key);
+        } else if (Application.isMobilePlatform)
         {
             string path = GetPath(key);
 

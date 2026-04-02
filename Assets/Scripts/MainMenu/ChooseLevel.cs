@@ -11,7 +11,7 @@ public class ChooseLevel : MonoBehaviour {
     private int _numLevels = 0;
     private int _page = 0;
 
-    private const int PAGES = 3;
+    private const int PAGES = 5;
 
     private void Start() {
         _allLevels = SetLevels();

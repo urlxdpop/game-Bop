@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
         _endGame = GameObject.Find("EndGame");
         _endGame.SetActive(false);
 
+        Application.targetFrameRate = 60;
     }
 
     private void Start()
