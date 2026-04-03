@@ -9,7 +9,12 @@ enum DialogAutors {
     Гэп,
     Неизвестный,
     Подсказка,
-    Табличка
+    Табличка,
+    Narrator,
+    Gap,
+    Unknown,
+    Hint,
+    Tablet
 }
 
 public class DialogManager : MonoBehaviour
@@ -29,6 +34,7 @@ public class DialogManager : MonoBehaviour
     private Dialog _dialog;
     private bool _isTyping;
     private bool _isSkip;
+    private bool _isRus;
 
     private void Awake() {
         Instance = this;
@@ -36,7 +42,7 @@ public class DialogManager : MonoBehaviour
 
     private void Start() {
         _currentLine = 0;
-
+        _isRus = GameController.Instance.IsRus;
         _dialogBox.SetActive(false);
     }
 
@@ -60,7 +66,7 @@ public class DialogManager : MonoBehaviour
         _currentLine++;
         if (_currentLine < _dialog.Lines.Count)
         {
-            _dialogAutor.text = _dialog.Speakers[_currentLine].ToString();
+            _dialogAutor.text = (_isRus ? _dialog.Speakers[_currentLine] : _dialog.Speakers[_currentLine] + 5).ToString();
             StartCoroutine(TypeDialog(_dialog.Lines[_currentLine]));
         } else
         {
@@ -83,7 +89,7 @@ public class DialogManager : MonoBehaviour
 
         _dialogBox.SetActive(true);
         _dialog = dialog;
-        _dialogAutor.text = _dialog.Speakers[0].ToString();
+        _dialogAutor.text = (_isRus ? _dialog.Speakers[0] : _dialog.Speakers[0] + 5).ToString();
 
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }

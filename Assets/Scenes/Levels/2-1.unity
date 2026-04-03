@@ -821,8 +821,20 @@ PrefabInstance:
         \u0432\u0435\u0440\u0445"
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: _dialog._linesEng.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: _dialog._speakers.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[0]'
+      value: What? Am I in a lab?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[1]'
+      value: Although Gap knew there was no way out, interest got the better of him.
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: '_dialog._speakers.Array.data[0]'

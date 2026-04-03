@@ -571,8 +571,16 @@ PrefabInstance:
       value: "\u042D\u0439! \u0422\u044B \u043A\u0442\u043E!?"
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: _dialog._linesEng.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: _dialog._speakers.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[0]'
+      value: Hey! Who are you!?
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: '_dialog._speakers.Array.data[0]'
@@ -2400,15 +2408,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: '_dialog._lines.Array.data[8]'
-      value: "\u0418 \u043A\u0430\u043A \u0434\u043E\u0432\u043D\u043E \u044F \u0437\u0434\u0435\u0441\u044C?"
+      value: "\u0418 \u043A\u0430\u043A \u0434\u0430\u0432\u043D\u043E \u044F \u0437\u0434\u0435\u0441\u044C?"
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: '_dialog._lines.Array.data[9]'
       value: "\u042D\u0439, \u0442\u044B \u0433\u0434\u0435?"
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: _dialog._linesEng.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: _dialog._speakers.Array.size
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[0]'
+      value: "\u042D\u0439, \u0442\u044B \u0447\u0435\u0433\u043E \u0443\u0431\u0435\u0433\u0430\u0435\u0448\u044C?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[1]'
+      value: Tell me who you are and why you look so much like me
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[2]'
+      value: Don't you know where you are?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[3]'
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[4]'
+      value: You are forever trapped here
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[5]'
+      value: So where and who are you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[6]'
+      value: You are in your own mind, but you cannot control it
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[7]'
+      value: I'm just an AI making sure you don't get out
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[8]'
+      value: And how long have I been here?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[9]'
+      value: Hey, where are you?
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: '_dialog._speakers.Array.data[0]'

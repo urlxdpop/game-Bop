@@ -786,6 +786,7 @@ MonoBehaviour:
   _timeInGame: {fileID: 1513081438571089588}
   _secretsInLevel: {fileID: 8915274887586207897}
   _secretInGame: {fileID: 7262422100624431012}
+  _title: {fileID: 4760083885140649092}
 --- !u!1 &5713107978858006783
 GameObject:
   m_ObjectHideFlags: 0

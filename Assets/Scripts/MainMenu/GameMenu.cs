@@ -15,15 +15,13 @@ public class GameMenu : MonoBehaviour
 
     private const string MenuScene = "Menu";
 
-    // FPS temporary
-    [SerializeField] private TextMeshProUGUI _fps;
-    private int _frameCount;
-    private float _elapsed;
+    //// FPS temporary
+    //[SerializeField] private TextMeshProUGUI _fps;
+    //private int _frameCount;
+    //private float _elapsed;
 
     private void Update()
     {
-        GetFPS();
-
         float time = GameController.Instance.GameTime();
         _time.text = Mathf.FloorToInt(time / 60).ToString() + ":" + Mathf.FloorToInt(time % 60).ToString();
 
@@ -66,19 +64,19 @@ public class GameMenu : MonoBehaviour
         _isPaused = true;
     }
 
-    private void GetFPS()
-    {
-        _frameCount++;
-        _elapsed += Time.deltaTime;
+    //private void GetFPS()
+    //{
+    //    _frameCount++;
+    //    _elapsed += Time.deltaTime;
 
-        if (_elapsed >= 1f)
-        {
-            _fps.text = (_frameCount/_elapsed).ToString();
+    //    if (_elapsed >= 1f)
+    //    {
+    //        _fps.text = (_frameCount/_elapsed).ToString();
 
-            _frameCount = 0;
-            _elapsed = 0f;
-        }
-    }
+    //        _frameCount = 0;
+    //        _elapsed = 0f;
+    //    }
+    //}
 
     private void TogglePause()
     {

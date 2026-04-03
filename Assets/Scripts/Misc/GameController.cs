@@ -33,11 +33,14 @@ public class GameController : MonoBehaviour
 
     private bool _isDialogOpen;
     private float _gameTime;
+    private bool _isRus;
 
     public bool IsDialogOpen => _isDialogOpen;
+    public bool IsRus => _isRus;
 
     private void Awake()
     {
+        _isRus = true;
         Instance = this;
 
         _endGame = GameObject.Find("EndGame");

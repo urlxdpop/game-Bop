@@ -429,6 +429,7 @@ MonoBehaviour:
       m_Action: Pause
       m_Flags: 0
     m_Flags: 0
+  _fps: {fileID: 0}
 --- !u!1 &4402362179878185280
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +799,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 10
-  m_Text: "\u041C\u0415\u041D\u042E"
+  m_Text: MENU
 --- !u!1 &6564658922137061782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,3 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc55bb506697324ca4bd22ae1ab5ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMenuPanel
+  _title: {fileID: 2580456376186052490}
+  _resume: {fileID: 8193289968235384552}
+  _goToMenu: {fileID: 8883315486750568107}
+  _restart: {fileID: 9148735806296561587}

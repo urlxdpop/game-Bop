@@ -10,8 +10,17 @@ public class EndGameController : MonoBehaviour {
     [SerializeField] private Text _timeInGame;
     [SerializeField] private Text _secretsInLevel;
     [SerializeField] private Text _secretInGame;
+    [SerializeField] private Text _title;
+
+    private bool _isRus;
+
+    private void Start()
+    {
+        _title.text = _isRus ? "Уровень пройден!" : "Level completed!";
+    }
 
     public void SetData(int time, LevelData levelsData, SecretsData secretsData) {
+        _isRus = GameController.Instance.IsRus;
         _levelName.text = SceneManager.GetActiveScene().name;
 
         string[] splitScene = _levelName.text.Split('-');
@@ -19,11 +28,11 @@ public class EndGameController : MonoBehaviour {
         int sceneAct = int.Parse(splitScene[1]);
         int index = (sceneHead - 1) * 15 + sceneAct - 1;
 
-        _timeInLevel.text = "Время на уровень: " + Mathf.FloorToInt(time / 60).ToString() + ":" + Mathf.FloorToInt(time % 60).ToString();
-        _minTimeForLevel.text = "Мин время на уровень: " +
+        _timeInLevel.text = (_isRus ? "Время на уровень: " : "Time per level: ") + Mathf.FloorToInt(time / 60).ToString() + ":" + Mathf.FloorToInt(time % 60).ToString();
+        _minTimeForLevel.text = (_isRus ? "Мин время на уровень: " : "Min time per level: ") +
                 Mathf.FloorToInt(levelsData.minTimeForLevel[index] / 60).ToString() + ":" +
                 Mathf.FloorToInt(levelsData.minTimeForLevel[index] % 60).ToString();
-        _timeInGame.text = "Общее время: " +
+        _timeInGame.text = (_isRus ? "Общее время: " : "Total time: ") +
                 Mathf.FloorToInt(levelsData.timeForAllLevels / 60).ToString() + ":" +
                 Mathf.FloorToInt(levelsData.timeForAllLevels % 60).ToString();
 
@@ -42,8 +51,8 @@ public class EndGameController : MonoBehaviour {
             }
         }
 
-        _secretsInLevel.text = $"Секреты: {secretsInLevel}/{secretsData.numSecretsInLevel[index]}";
-        _secretInGame.text = $"Сереты в общем: {secretInGame}/{allSecrets}";
+        _secretsInLevel.text = $"{(_isRus ? "Секреты" : "Secrets")}: {secretsInLevel}/{secretsData.numSecretsInLevel[index]}";
+        _secretInGame.text = $"{(_isRus ? "Сереты в общем" : "Total secrets")}: {secretInGame}/{allSecrets}";
     }
 
     public void NextGame() {

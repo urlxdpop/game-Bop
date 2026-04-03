@@ -14,12 +14,15 @@ public class SecretsController : MonoBehaviour {
     private int _level;
     private float _timeDisplay = 2f;
     private float _timer = 2f;
+    private bool _isRus;
 
     private void Awake() {
         Instance = this;
     }
 
     private void Start() {
+        _isRus = GameController.Instance.IsRus;
+
         LevelName();
         NumSecrets();
 
@@ -37,7 +40,7 @@ public class SecretsController : MonoBehaviour {
             _numSecretsFound++;
             _secretsData.SecretFound(SceneManager.GetActiveScene().name, numberSecret);
 
-            _textNumSecrets.text = "Secret find: " + _numSecretsFound + " / " + _numSecretsInLevel;
+            _textNumSecrets.text = (_isRus ? "Секреты: " : "Secret find: ") + _numSecretsFound + " / " + _numSecretsInLevel;
             _timer = 0;
         }
 

@@ -60903,8 +60903,29 @@ PrefabInstance:
       value: ;(
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: _dialog._linesEng.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: _dialog._speakers.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[0]'
+      value: Although turning around and leaving was the most sensible option, Gap
+        chose to move on.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[1]'
+      value: Can I turn around?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[2]'
+      value: No, it's for the plot.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[3]'
+      value: ;(
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: '_dialog._speakers.Array.data[1]'

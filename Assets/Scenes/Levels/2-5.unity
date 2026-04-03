@@ -68622,8 +68622,16 @@ PrefabInstance:
         \u0447\u0435\u0440\u0435\u0437 \u0441\u0442\u0435\u043D\u0443?"
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: _dialog._linesEng.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: _dialog._speakers.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
+      propertyPath: '_dialog._linesEng.Array.data[0]'
+      value: And how do I get through the wall?
       objectReference: {fileID: 0}
     - target: {fileID: 8764330269578779754, guid: 5a645d15237cb9d4eac49be67178e7d8, type: 3}
       propertyPath: '_dialog._speakers.Array.data[0]'
