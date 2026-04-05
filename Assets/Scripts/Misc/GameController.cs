@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using YG;
 
 public enum GameState
 {
@@ -40,7 +41,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        _isRus = true;
+        _isRus = YG2.envir.language == "ru";
         Instance = this;
 
         _endGame = GameObject.Find("EndGame");
@@ -60,7 +61,7 @@ public class GameController : MonoBehaviour
 
         SubscribeForActionEvent();
 
-        SetCameraLimits();
+        YG2.InterstitialAdvShow();
     }
 
     private void Update()
@@ -83,19 +84,22 @@ public class GameController : MonoBehaviour
         _gameState = GameState.END_GAME;
         _levelData.LevelComplate(SceneManager.GetActiveScene().name, (int)_gameTime);
         _endGame.GetComponent<EndGameController>().SetData((int)_gameTime, _levelData, _secretData);
-        GetComponent<DBPlayerRequest>().SaveDataToDB();
+        YG2.StickyAdActivity(true);
+        //GetComponent<DBPlayerRequest>().SaveDataToDB();
     }
 
     public void OpenMenu()
     {
         _menu.SetActive(true);
         _gameState = GameState.MENU;
+        YG2.StickyAdActivity(true);
     }
 
     public void ResumeGame()
     {
         _menu.SetActive(false);
         _gameState = GameState.FREE_ROAM;
+        YG2.StickyAdActivity(false);
     }
 
     private void SetCameraLimits()

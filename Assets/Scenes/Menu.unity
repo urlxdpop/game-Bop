@@ -785,6 +785,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 758614704}
     m_Modifications:
+    - target: {fileID: 372638642760390079, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1249654410943381056, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -819,11 +823,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1606583971786626337, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1861375357083722837, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1863502391263362126, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -969,6 +973,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6686982136777980923, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
+      propertyPath: _start.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686982136777980923, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
+      propertyPath: _start.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 34800a80-35f6-41d7-b120-ec26c321172b
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686982136777980923, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
+      propertyPath: _start.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686982136777980923, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
+      propertyPath: _start.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Start
+      objectReference: {fileID: 0}
     - target: {fileID: 7002646280712408097, guid: c6b0d465e27359342926962f731bb6c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
@@ -1014,6 +1034,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 758614704}
     m_Modifications:
+    - target: {fileID: 4342913682430500208, guid: 76206e25f6075d2458be733211a574c0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6954146638531096680, guid: 76206e25f6075d2458be733211a574c0, type: 3}
       propertyPath: m_Name
       value: Rating
@@ -1239,6 +1263,10 @@ PrefabInstance:
       propertyPath: _message
       value: 
       objectReference: {fileID: 1204202062}
+    - target: {fileID: 3494155164687270354, guid: 12af09be0ee30d34db61697de5c6477a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8241911427867904897, guid: 12af09be0ee30d34db61697de5c6477a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

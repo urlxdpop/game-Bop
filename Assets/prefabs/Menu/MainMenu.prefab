@@ -705,6 +705,23 @@ MonoBehaviour:
   _playerData: {fileID: 11400000, guid: 68c29fcf744105940b5d41d2d301b09b, type: 2}
   _playerName: {fileID: 8273430996661025666}
   _loginButton: {fileID: 1863502391263362126}
+  _start:
+    m_Name: Start
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: dc7555bf-8eff-48ba-ac94-2c34bf193b70
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 7ee2530c-e00d-45a6-94f2-55f63d9270e2
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Start
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &5044827248753372482
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,12 +12,22 @@ public class EndGameController : MonoBehaviour {
     [SerializeField] private Text _secretsInLevel;
     [SerializeField] private Text _secretInGame;
     [SerializeField] private Text _title;
+    [SerializeField] private InputAction _OpenMainMenuAction;
+    [SerializeField] private InputAction _NextGameAction;
+    [SerializeField] private InputAction _RestartAction;
 
     private bool _isRus;
 
     private void Start()
     {
         _title.text = _isRus ? "Уровень пройден!" : "Level completed!";
+    }
+
+    private void Update()
+    {
+        if (_OpenMainMenuAction.triggered) OpenMainMenu();
+        else if (_NextGameAction.triggered) NextGame();
+        else if (_RestartAction.triggered) Restart();
     }
 
     public void SetData(int time, LevelData levelsData, SecretsData secretsData) {
@@ -91,5 +102,18 @@ public class EndGameController : MonoBehaviour {
     public void OpenMainMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    private void OnEnable()
+    {
+        _OpenMainMenuAction.Enable();
+        _NextGameAction.Enable();
+        _RestartAction.Enable();
+    }
+
+    private void OnDisable() {
+        _OpenMainMenuAction.Disable();
+        _NextGameAction.Disable();
+        _RestartAction.Disable();
     }
 }

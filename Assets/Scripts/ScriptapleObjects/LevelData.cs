@@ -46,8 +46,14 @@ public class LevelData : ScriptableObject
             i++;
         }
 
-        int head = Mathf.FloorToInt(i/15)+1;
-        int act = (i%15);
+        if (i >= 45)
+        {
+            levelName = "3-15";
+            return;
+        }
+
+        int head = Mathf.FloorToInt((i - 1) / 15) + 1;
+        int act = ((i - 1) % 15) + 1;
         levelName = $"{head}-{act}";
     }
 

@@ -787,6 +787,57 @@ MonoBehaviour:
   _secretsInLevel: {fileID: 8915274887586207897}
   _secretInGame: {fileID: 7262422100624431012}
   _title: {fileID: 4760083885140649092}
+  _OpenMainMenuAction:
+    m_Name: Open Main Menu
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: dca37c91-9cb0-48e5-973c-2b6c272f18a9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1e678cb8-c2da-4a92-a459-6c0235210fd5
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Open Main Menu
+      m_Flags: 0
+    m_Flags: 0
+  _NextGameAction:
+    m_Name: Next Game
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6491829c-a621-4810-810c-f5dc627c4b6c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 377f6e00-80d0-4871-bc31-5bd280f934ff
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Next Game
+      m_Flags: 0
+    m_Flags: 0
+  _RestartAction:
+    m_Name: Restart
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 90db265d-24e9-4072-ab77-a1e9b26a8077
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: dd4ca6a4-5446-4154-8421-ace4c9b821d6
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Restart
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &5713107978858006783
 GameObject:
   m_ObjectHideFlags: 0

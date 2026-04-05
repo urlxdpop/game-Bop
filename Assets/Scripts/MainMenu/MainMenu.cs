@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
 public class MainMenu : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private Button _playerName;
     [SerializeField] private Button _loginButton;
-
+    [SerializeField] private InputAction _start;
 
     private void Awake()
     {
@@ -26,7 +28,26 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        _start.Enable();
         UpdatePlayerData();
+        YG2.StickyAdActivity(true);
+
+        if (YG2.isFirstGameSession)
+        {
+            ResetData();
+        }
+    }
+
+    private void Update()
+    {
+        if (_start.triggered) {
+            StartGame();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _start.Disable();
     }
 
     public void StartGame()
