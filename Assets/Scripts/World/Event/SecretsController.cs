@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
 
 public class SecretsController : MonoBehaviour {
     public static SecretsController Instance { get; private set; }
 
     [SerializeField] private SecretsData _secretsData;
-    [SerializeField] private Text _textNumSecrets;
+    [SerializeField] private TextMeshProUGUI _textNumSecrets;
     [SerializeField] private GameObject _textBox;
 
     private int _numSecretsInLevel;

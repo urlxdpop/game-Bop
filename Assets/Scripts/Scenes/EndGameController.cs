@@ -2,16 +2,15 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
+using TMPro;
 public class EndGameController : MonoBehaviour {
-    [SerializeField] private Text _levelName;
-    [SerializeField] private Text _timeInLevel;
-    [SerializeField] private Text _minTimeForLevel;
-    [SerializeField] private Text _timeInGame;
-    [SerializeField] private Text _secretsInLevel;
-    [SerializeField] private Text _secretInGame;
-    [SerializeField] private Text _title;
+    [SerializeField] private TextMeshProUGUI _levelName;
+    [SerializeField] private TextMeshProUGUI _timeInLevel;
+    [SerializeField] private TextMeshProUGUI _minTimeForLevel;
+    [SerializeField] private TextMeshProUGUI _timeInGame;
+    [SerializeField] private TextMeshProUGUI _secretsInLevel;
+    [SerializeField] private TextMeshProUGUI _secretInGame;
+    [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private InputAction _OpenMainMenuAction;
     [SerializeField] private InputAction _NextGameAction;
     [SerializeField] private InputAction _RestartAction;

@@ -23,8 +23,6 @@ public class LaserGunController : MonoBehaviour
     {
         _dir = SetDir(_direction);
         transform.rotation = SetOrientation(_dir);
-
-        _Lasers = new Laser[100];
     }
 
     private void Start()
@@ -32,11 +30,13 @@ public class LaserGunController : MonoBehaviour
         _dir = SetDir(_direction);
         transform.rotation = SetOrientation(_dir);
 
-        TraceLaserPath();
-        SpawnLasers();
+        _Lasers = new Laser[100];
+
+        //TraceLaserPath();
+        //SpawnLasers();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_isDie || !_isOn) return;
 

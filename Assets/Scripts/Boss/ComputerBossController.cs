@@ -15,7 +15,7 @@ public class ComputerBossController : MonoBehaviour, IBoss
     private int _numAttacks = 0;
     private bool _start = false;
 
-    private float _timer = 0.5f;
+    private float _timer = 1f;
     private float _attackTime;
     private bool _attacked;
     private bool _warning;

@@ -6,6 +6,7 @@ public class PlayerData : ScriptableObject
     public int playerId;
     public string playerName;
     public int saveId = -1;
+    public bool HasInitialized;
 
     private const string SAVE_KEY = "PlayerData";
 

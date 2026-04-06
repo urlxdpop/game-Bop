@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour
 
         SubscribeForActionEvent();
 
+        YG2.StickyAdActivity(false);
         YG2.InterstitialAdvShow();
     }
 

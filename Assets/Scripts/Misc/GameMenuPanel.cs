@@ -1,12 +1,13 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameMenuPanel : MonoBehaviour
 {
-    [SerializeField] private Text _title;
-    [SerializeField] private Text _resume;
-    [SerializeField] private Text _goToMenu;
-    [SerializeField] private Text _restart;
+    [SerializeField] private TextMeshProUGUI _title;
+    [SerializeField] private TextMeshProUGUI _resume;
+    [SerializeField] private TextMeshProUGUI _goToMenu;
+    [SerializeField] private TextMeshProUGUI _restart;
 
     bool _isRus;
 
@@ -19,6 +20,12 @@ public class GameMenuPanel : MonoBehaviour
             _resume.text = "Продолжить";
             _goToMenu.text = "В главное меню";
             _restart.text = "Начать заново";
+        }else
+        {
+            _title.text = "Menu";
+            _resume.text = "Resume";
+            _goToMenu.text = "Main menu";
+            _restart.text = "Restart";
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -12,9 +13,19 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button _playerName;
     [SerializeField] private Button _loginButton;
     [SerializeField] private InputAction _start;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     private void Awake()
     {
+        if (canvasGroup == null)
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+            {
+                canvasGroup = GetComponentInParent<CanvasGroup>();
+            }
+        }
+        
         if (Application.isMobilePlatform)
         {
             if (PlayerPrefs.GetInt("FirstLaunch", 0) == 0)
@@ -24,17 +35,36 @@ public class MainMenu : MonoBehaviour
             }
             Debug.Log(PlayerPrefs.GetInt("FirstLaunch", 0) == 0);
         }
+
+        _start.Enable();
     }
 
     private void Start()
     {
-        _start.Enable();
+        StartCoroutine(StartMenu());
+    }
+
+    private IEnumerator StartMenu()
+    {
+        if (canvasGroup != null)
+        {
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+        }
+        yield return new WaitForSeconds(0.5f);
+        if (canvasGroup != null)
+        {
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+        }
         UpdatePlayerData();
         YG2.StickyAdActivity(true);
 
-        if (YG2.isFirstGameSession)
+        if (YG2.isFirstGameSession && !_playerData.HasInitialized)
         {
             ResetData();
+            _playerData.HasInitialized = true;
+            _playerData.Save();
         }
     }
 
@@ -52,6 +82,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        _start.Disable();
         SceneManager.LoadScene(_levelData.levelName);
     }
 
@@ -61,17 +92,6 @@ public class MainMenu : MonoBehaviour
         _levelData.SetLevelName();
         _secretData.Load();
         _playerData.Load();
-
-        if (_playerData.playerId != -1)
-        {
-            _playerName.GetComponentInChildren<Text>().text = _playerData.playerName;
-            _loginButton.gameObject.SetActive(false);
-            _playerName.gameObject.SetActive(true);
-        } else
-        {
-            _loginButton.gameObject.SetActive(true);
-            _playerName.gameObject.SetActive(false);
-        }
     }
 
     public void QuitGame()
@@ -82,6 +102,7 @@ public class MainMenu : MonoBehaviour
     public void Logout()
     {
         _playerData.Logout();
+        _start.Disable();
         SceneManager.LoadScene("Menu");
     }
 
@@ -89,7 +110,7 @@ public class MainMenu : MonoBehaviour
     {
         _levelData.ResetData();
         _secretData.ResetData();
-
+        _start.Disable();
         SceneManager.LoadScene("Menu");
     }
 
@@ -101,7 +122,7 @@ public class MainMenu : MonoBehaviour
         }
 
         _levelData.Save();
-
+        _start.Disable();
         SceneManager.LoadScene("Menu");
     }
 }

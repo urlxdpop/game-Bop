@@ -18,7 +18,6 @@ public class GameMenu : MonoBehaviour
 
     private void Start()
     {
-        // явно включаем действи€ только при создании этого объекта
         pauseAction.Enable();
         restartAction.Enable();
         quitAction.Enable();
