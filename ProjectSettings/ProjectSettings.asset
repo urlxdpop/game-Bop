@@ -696,24 +696,24 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN;APP_UI_EDITOR_ONLY;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
+    Android: DOTWEEN;APP_UI_EDITOR_ONLY;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
     Kepler: DOTWEEN
-    LinuxHeadlessSimulation: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
-    Nintendo Switch: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
+    LinuxHeadlessSimulation: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
+    Nintendo Switch: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
     Nintendo Switch 2: DOTWEEN
-    PS4: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
-    PS5: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
+    PS4: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
+    PS5: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
     QNX: DOTWEEN
-    Standalone: DOTWEEN;APP_UI_EDITOR_ONLY;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
+    Standalone: DOTWEEN;APP_UI_EDITOR_ONLY;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN;APP_UI_EDITOR_ONLY;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
-    Windows Store Apps: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
-    XboxOne: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
-    iPhone: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
-    tvOS: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg
+    WebGL: DOTWEEN;APP_UI_EDITOR_ONLY;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
+    Windows Store Apps: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
+    XboxOne: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
+    iPhone: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
+    tvOS: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;RedefinePlayerPrefs_yg;StickyAdv_yg;EnvirData_yg;InterstitialAdv_yg
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

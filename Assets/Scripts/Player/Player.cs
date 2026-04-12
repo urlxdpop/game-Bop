@@ -358,7 +358,8 @@ public class Player : MonoBehaviour
         return collider.GetComponent<ImpulseController>() ||
             collider.GetComponent<WebController>() ||
             collider.GetComponent<SpikeController>() ||
-            collider.GetComponent<PortalController>();
+            collider.GetComponent<PortalController>() ||
+            collider.GetComponentInParent<CameraController>();
     }
 
     private void CheckForEncounters()
